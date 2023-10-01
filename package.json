@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "description": "Development environment for nestjs-clone-bay",
   "scripts": {
+    "start": "docker compose up -d && cd lib && npm run build && cd ../dev && npm run start:dev",
+    "stop": "docker compose down",
+    "lint": "npm run lint:dev && npm run lint:lib",
+    "lint:dev": "cd dev && npm run lint",
+    "lint:lib": "cd lib && npm run lint"
   },
   "author": "Joonas Häkkinen <joonashak@proton.me>",
   "license": "GPL-3.0-only",

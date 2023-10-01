@@ -1,0 +1,16 @@
+services:
+  mongo:
+    image: mongo:5.0-focal
+    restart: unless-stopped
+    container_name: nestjs-clone-bay-mongo
+    volumes:
+      - type: volume
+        source: nestjs-clone-bay-mongo-data
+        target: /data/db
+        volume:
+          nocopy: true
+    ports:
+      - 27017:27017
+
+volumes:
+  nestjs-clone-bay-mongo-data:
