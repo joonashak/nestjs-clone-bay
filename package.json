@@ -1,0 +1,12 @@
+{
+  "name": "nestjs-clone-bay",
+  "version": "0.0.0",
+  "description": "Development environment for nestjs-clone-bay",
+  "scripts": {
+  },
+  "author": "Joonas Häkkinen <joonashak@proton.me>",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "@nestjs/cli": "^10.1.10"
+  }
+}
