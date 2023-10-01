@@ -1,6 +1,6 @@
 {
   "name": "dev",
-  "version": "0.0.2",
+  "version": "0.0.0",
   "description": "",
   "author": "",
   "private": true,
@@ -29,7 +29,7 @@
     "dotenv": "^16.3.1",
     "express-session": "^1.17.3",
     "mongoose": "^7.5.2",
-    "nestjs-eve-auth": "file:../lib",
+    "nestjs-clone-bay": "file:../lib",
     "passport-oauth2": "^1.7.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
