@@ -1,9 +1,9 @@
-import { SsoService } from "@joonashak/nestjs-eve-auth";
+import { SsoModule } from "@joonashak/nestjs-eve-auth";
 import { Module } from "@nestjs/common";
 import { SsoController } from "./sso.controller";
 
 @Module({
-  providers: [SsoService],
+  imports: [SsoModule],
   controllers: [SsoController],
 })
 export class CloneBayModule {}

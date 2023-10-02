@@ -1,6 +1,7 @@
 import { EveAuthModule } from "@joonashak/nestjs-eve-auth";
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
+import { CloneBayModule } from "nestjs-clone-bay";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { AuthModule } from "./auth/auth.module";
@@ -23,6 +24,7 @@ import { UserService } from "./user/user.service";
       imports: [AuthModule],
     }),
     UserModule,
+    CloneBayModule,
   ],
   controllers: [AppController],
   providers: [AppService, UserService],

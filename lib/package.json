@@ -34,7 +34,7 @@
   "peerDependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
-    "@joonashak/nestjs-eve-auth": "^0.0.3"
+    "@joonashak/nestjs-eve-auth": "^0.0.7"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
