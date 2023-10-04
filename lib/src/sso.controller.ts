@@ -20,11 +20,6 @@ import { HttpExceptionFilter } from "./filters/http-exception.filter";
 export class SsoController {
   constructor(private ssoService: SsoService) {}
 
-  @Get()
-  getHello(): string {
-    return "hello";
-  }
-
   @RequireSsoAuth()
   @Get("sso/login")
   // eslint-disable-next-line @typescript-eslint/no-empty-function
