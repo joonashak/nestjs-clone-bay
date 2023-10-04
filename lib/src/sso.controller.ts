@@ -3,8 +3,18 @@ import {
   RequireSsoAuth,
   SsoService,
 } from "@joonashak/nestjs-eve-auth";
-import { Controller, Get, Query, Res, Session } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  Query,
+  Res,
+  Session,
+  UseFilters,
+  UsePipes,
+  ValidationPipe,
+} from "@nestjs/common";
 import { Response } from "express";
+import { HttpExceptionFilter } from "./filters/http-exception.filter";
 
 @Controller()
 export class SsoController {
@@ -20,8 +30,8 @@ export class SsoController {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   async login() {}
 
-  // @UsePipes(ValidationPipe)
-  // @UseFilters(HttpExceptionFilter)
+  @UsePipes(ValidationPipe)
+  @UseFilters(HttpExceptionFilter)
   @Get("sso/callback")
   async callback(
     @Query() callbackParams: EveSsoCallbackParams,
