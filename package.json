@@ -1,6 +1,6 @@
 {
   "name": "nestjs-clone-bay",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Development environment for nestjs-clone-bay",
   "scripts": {
     "start": "docker compose up -d && cd lib && npm run build && cd ../dev && npm run start:dev",
