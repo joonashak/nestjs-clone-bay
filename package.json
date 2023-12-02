@@ -7,7 +7,9 @@
     "stop": "docker compose down",
     "lint": "npm run lint:dev && npm run lint:lib",
     "lint:dev": "cd dev && npm run lint",
-    "lint:lib": "cd lib && npm run lint"
+    "lint:lib": "cd lib && npm run lint",
+    "version": "scripts/version_sub_projects.sh $npm_package_version",
+    "postversion": "git push && git push --tags"
   },
   "author": "Joonas Häkkinen <joonashak@proton.me>",
   "license": "GPL-3.0-only",
