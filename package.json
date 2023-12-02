@@ -9,7 +9,8 @@
     "lint:dev": "cd dev && npm run lint",
     "lint:lib": "cd lib && npm run lint",
     "version": "scripts/version_sub_projects.sh $npm_package_version",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "test": "cd lib && npm test"
   },
   "author": "Joonas Häkkinen <joonashak@proton.me>",
   "license": "GPL-3.0-only",
