@@ -32,3 +32,9 @@ jobs:
         working-directory: lib
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  docs:
+    name: Publish docs
+    needs:
+      - publish
+    uses: ./.github/workflows/publish_docs.yaml
