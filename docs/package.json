@@ -1,0 +1,21 @@
+{
+  "name": "docs",
+  "version": "0.0.1",
+  "description": "Documentation for @joonashak/nestjs-clone-bay library.",
+  "authors": {
+    "name": "Joonas Häkkinen",
+    "email": "hakkijoo@gmail.com"
+  },
+  "scripts": {
+    "start": "vuepress dev src",
+    "build": "vuepress build src",
+    "generate": "typedoc && rm src/api/README.md && mv src/api/modules.md src/api/index.md"
+  },
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "typedoc": "^0.25.3",
+    "typedoc-plugin-markdown": "^3.17.1",
+    "vuepress": "^2.0.0-beta.68",
+    "vuepress-plugin-copy-code2": "^2.0.0-beta.250"
+  }
+}
