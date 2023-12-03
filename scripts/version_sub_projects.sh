@@ -8,6 +8,7 @@
 # List projects to update here by their folder name.
 projects=(
   "dev"
+  "docs"
   "lib"
 )
 
