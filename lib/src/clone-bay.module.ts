@@ -3,6 +3,7 @@ import { Global, Module } from "@nestjs/common";
 import { CloneBayModuleDefinition } from "./clone-bay.module-definition";
 import { SsoController } from "./sso.controller";
 
+/** @group Modules */
 @Global()
 @Module({
   imports: [SsoModule],
