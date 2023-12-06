@@ -28,7 +28,7 @@ import { UserService } from "./user/user.service";
     //   imports: [AuthModule],
     // }),
     UserModule,
-    CloneBayModule,
+    CloneBayModule.forRoot({ testing: true }),
   ],
   controllers: [AppController],
   providers: [AppService, UserService],

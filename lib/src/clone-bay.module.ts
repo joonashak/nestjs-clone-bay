@@ -1,9 +1,11 @@
 import { SsoModule } from "@joonashak/nestjs-eve-auth";
-import { Module } from "@nestjs/common";
+import { Global, Module } from "@nestjs/common";
+import { CloneBayModuleDefinition } from "./clone-bay.module-definition";
 import { SsoController } from "./sso.controller";
 
+@Global()
 @Module({
   imports: [SsoModule],
   controllers: [SsoController],
 })
-export class CloneBayModule {}
+export class CloneBayModule extends CloneBayModuleDefinition {}
