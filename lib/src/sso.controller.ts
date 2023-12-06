@@ -14,11 +14,15 @@ import {
   ValidationPipe,
 } from "@nestjs/common";
 import { Response } from "express";
+import { CharacterService } from "./entities/character/character.service";
 import { HttpExceptionFilter } from "./filters/http-exception.filter";
 
 @Controller()
 export class SsoController {
-  constructor(private ssoService: SsoService) {}
+  constructor(
+    private ssoService: SsoService,
+    private characterService: CharacterService,
+  ) {}
 
   @RequireSsoAuth()
   @Get("sso/login")
@@ -34,7 +38,21 @@ export class SsoController {
     @Session() session: Record<string, any>,
     @Res() response: Response,
   ) {
-    await this.ssoService.callback(callbackParams, session);
+    const result = await this.ssoService.callback(callbackParams, session);
+
+    const existingCharacter = await this.characterService.findOneByEveId(
+      result.character.id,
+    );
+
+    if (!existingCharacter) {
+      await this.characterService.create({
+        eveId: result.character.id,
+        name: result.character.name,
+        accessToken: result.tokens.accessToken,
+        refreshToken: result.tokens.refreshToken,
+      });
+    }
+
     response.redirect("/");
   }
 }

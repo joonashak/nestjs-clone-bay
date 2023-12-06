@@ -10,7 +10,11 @@ export class CharacterService {
     private characterModel: Model<CharacterDocument>,
   ) {}
 
-  async create(character: Character) {
+  async create(character: Character): Promise<Character> {
     return this.characterModel.create(character);
+  }
+
+  async findOneByEveId(eveId: number): Promise<Character | null> {
+    return this.characterModel.findOne({ eveId });
   }
 }
