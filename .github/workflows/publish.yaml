@@ -39,4 +39,7 @@ jobs:
     name: Publish docs
     needs:
       - publish
+    permissions:
+      pages: write
+      id-token: write
     uses: ./.github/workflows/publish_docs.yaml
