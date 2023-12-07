@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { DynamicConfigInitService } from "./dynamic-config-init.service";
 import { DynamicConfig, DynamicConfigSchema } from "./dynamic-config.model";
+import { DynamicConfigService } from "./dynamic-config.service";
 
 @Module({
   imports: [
@@ -9,7 +10,7 @@ import { DynamicConfig, DynamicConfigSchema } from "./dynamic-config.model";
       { name: DynamicConfig.name, schema: DynamicConfigSchema },
     ]),
   ],
-  providers: [DynamicConfigInitService],
-  exports: [MongooseModule],
+  providers: [DynamicConfigService, DynamicConfigInitService],
+  exports: [DynamicConfigService, MongooseModule],
 })
 export class ConfigModule {}
