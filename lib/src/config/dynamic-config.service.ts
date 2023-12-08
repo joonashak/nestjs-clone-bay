@@ -21,11 +21,23 @@ export class DynamicConfigService {
   }
 
   // TODO: Invalidate cache.
-  private async update(
-    configUpdate: PartialDeep<DynamicConfig>,
-  ): Promise<DynamicConfig> {
+  private async update(configUpdate: PartialDeep<DynamicConfig>) {
     const current = await this.get();
     merge(current, configUpdate);
     return this.dynamicConfigModel.findOneAndUpdate({}, current, { new: true });
+  }
+
+  /* API methods. */
+
+  async setAllowedCharacters(allowedCharacters: number[]) {
+    return this.update({ allowedCharacters });
+  }
+
+  async setAllowedCorporations(allowedCorporations: number[]) {
+    return this.update({ allowedCorporations });
+  }
+
+  async setAllowedAlliances(allowedAlliances: number[]) {
+    return this.update({ allowedAlliances });
   }
 }
