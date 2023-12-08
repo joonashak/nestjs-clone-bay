@@ -1,4 +1,5 @@
 import { SsoModule } from "@joonashak/nestjs-eve-auth";
+import { CacheModule } from "@nestjs/cache-manager";
 import { Global, Module } from "@nestjs/common";
 import { CloneBayConfigService } from "./api/clone-bay-config.service";
 import { CloneBayModuleDefinition } from "./clone-bay.module-definition";
@@ -9,7 +10,12 @@ import { SsoController } from "./sso.controller";
 /** @group Modules */
 @Global()
 @Module({
-  imports: [ConfigModule, SsoModule, CharacterModule],
+  imports: [
+    CacheModule.register({ ttl: 5000, isGlobal: true }),
+    ConfigModule,
+    SsoModule,
+    CharacterModule,
+  ],
   controllers: [SsoController],
   providers: [CloneBayConfigService],
   exports: [CloneBayConfigService],
