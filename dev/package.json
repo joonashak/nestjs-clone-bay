@@ -29,7 +29,7 @@
     "connect-mongo": "^5.0.0",
     "dotenv": "^16.3.1",
     "express-session": "^1.17.3",
-    "mongoose": "^7.5.2",
+    "mongoose": "^8.0.3",
     "nestjs-clone-bay": "file:../lib",
     "passport-oauth2": "^1.7.0",
     "reflect-metadata": "^0.1.13",

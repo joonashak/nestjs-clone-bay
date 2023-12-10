@@ -50,6 +50,7 @@ export class SsoController {
         name: result.character.name,
         accessToken: result.tokens.accessToken,
         refreshToken: result.tokens.refreshToken,
+        corporation: { eveId: 1, name: "corb", ticker: "SPURD" },
       });
     }
 
