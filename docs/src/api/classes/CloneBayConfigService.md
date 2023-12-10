@@ -13,17 +13,17 @@ immediately.
 
 ### getDynamicConfig
 
-▸ **getDynamicConfig**(): `Promise`\<`DynamicConfig`\>
+▸ **getDynamicConfig**(): `Promise`\<[`DynamicConfig`](DynamicConfig.md)\>
 
 Get current dynamic configuration.
 
 #### Returns
 
-`Promise`\<`DynamicConfig`\>
+`Promise`\<[`DynamicConfig`](DynamicConfig.md)\>
 
 #### Defined in
 
-[src/api/clone-bay-config.service.ts:23](https://github.com/joonashak/nestjs-clone-bay/blob/fb218b0/lib/src/api/clone-bay-config.service.ts#L23)
+[src/api/clone-bay-config.service.ts:23](https://github.com/joonashak/nestjs-clone-bay/blob/92443ec/lib/src/api/clone-bay-config.service.ts#L23)
 
 ___
 
@@ -48,7 +48,7 @@ alliance included in this allowlist.
 
 #### Defined in
 
-[src/api/clone-bay-config.service.ts:59](https://github.com/joonashak/nestjs-clone-bay/blob/fb218b0/lib/src/api/clone-bay-config.service.ts#L59)
+[src/api/clone-bay-config.service.ts:59](https://github.com/joonashak/nestjs-clone-bay/blob/92443ec/lib/src/api/clone-bay-config.service.ts#L59)
 
 ___
 
@@ -73,7 +73,7 @@ allowlist.
 
 #### Defined in
 
-[src/api/clone-bay-config.service.ts:35](https://github.com/joonashak/nestjs-clone-bay/blob/fb218b0/lib/src/api/clone-bay-config.service.ts#L35)
+[src/api/clone-bay-config.service.ts:35](https://github.com/joonashak/nestjs-clone-bay/blob/92443ec/lib/src/api/clone-bay-config.service.ts#L35)
 
 ___
 
@@ -98,4 +98,4 @@ corporation included in this allowlist.
 
 #### Defined in
 
-[src/api/clone-bay-config.service.ts:47](https://github.com/joonashak/nestjs-clone-bay/blob/fb218b0/lib/src/api/clone-bay-config.service.ts#L47)
+[src/api/clone-bay-config.service.ts:47](https://github.com/joonashak/nestjs-clone-bay/blob/92443ec/lib/src/api/clone-bay-config.service.ts#L47)

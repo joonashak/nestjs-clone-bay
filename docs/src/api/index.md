@@ -10,6 +10,7 @@
 
 ## Types
 
+- [DynamicConfig](classes/DynamicConfig.md)
 - [CloneBayOptions](interfaces/CloneBayOptions.md)
 
 ## Constants
