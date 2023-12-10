@@ -38,20 +38,23 @@ export class SsoController {
     @Session() session: Record<string, any>,
     @Res() response: Response,
   ) {
-    const result = await this.ssoService.callback(callbackParams, session);
+    const {
+      character: { id: characterId },
+      tokens,
+    } = await this.ssoService.callback(callbackParams, session);
 
-    const existingCharacter = await this.characterService.findOneByEveId(
-      result.character.id,
-    );
+    const character = await this.characterService.addPublicInfoFromEsi({
+      eveId: characterId,
+      ...tokens,
+    });
+
+    const existingCharacter =
+      await this.characterService.findOneByEveId(characterId);
 
     if (!existingCharacter) {
-      await this.characterService.create({
-        eveId: result.character.id,
-        name: result.character.name,
-        accessToken: result.tokens.accessToken,
-        refreshToken: result.tokens.refreshToken,
-        corporation: { eveId: 1, name: "corb", ticker: "SPURD" },
-      });
+      await this.characterService.create(character);
+    } else {
+      this.characterService.update(character);
     }
 
     response.redirect("/");
