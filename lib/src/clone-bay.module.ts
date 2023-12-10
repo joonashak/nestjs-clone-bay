@@ -5,6 +5,7 @@ import { CloneBayConfigService } from "./api/clone-bay-config.service";
 import { CloneBayModuleDefinition } from "./clone-bay.module-definition";
 import { ConfigModule } from "./config/config.module";
 import { CharacterModule } from "./entities/character/character.module";
+import { UserModule } from "./entities/user/user.module";
 import { SsoController } from "./sso.controller";
 
 /** @group Modules */
@@ -12,9 +13,10 @@ import { SsoController } from "./sso.controller";
 @Module({
   imports: [
     CacheModule.register({ ttl: 5000, isGlobal: true }),
+    CharacterModule,
     ConfigModule,
     SsoModule,
-    CharacterModule,
+    UserModule,
   ],
   controllers: [SsoController],
   providers: [CloneBayConfigService],
