@@ -7,6 +7,7 @@ export class User {
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
     ref: Character.name,
+    required: true,
     unique: true,
   })
   main: Character;

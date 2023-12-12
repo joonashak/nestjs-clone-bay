@@ -5,10 +5,10 @@ import { Corporation } from "../corporation/corporation.model";
 
 @Schema({ timestamps: true })
 export class Character {
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   eveId: number;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   name: string;
 
   @Prop({ required: true })
