@@ -4,8 +4,6 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { CloneBayModule } from "nestjs-clone-bay";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { UserModule } from "./user/user.module";
-import { UserService } from "./user/user.service";
 
 @Module({
   imports: [
@@ -27,10 +25,10 @@ import { UserService } from "./user/user.service";
     //   inject: [AuthService],
     //   imports: [AuthModule],
     // }),
-    UserModule,
+
     CloneBayModule.forRoot({ testing: true }),
   ],
   controllers: [AppController],
-  providers: [AppService, UserService],
+  providers: [AppService],
 })
 export class AppModule {}

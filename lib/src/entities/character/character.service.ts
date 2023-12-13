@@ -14,15 +14,16 @@ export class CharacterService {
     private esiService: EsiService,
   ) {}
 
-  async create(character: Character): Promise<Character> {
-    return this.characterModel.create(character);
+  async create(character: Character): Promise<CharacterDocument> {
+    await this.characterModel.create(character);
+    return this.findOneByEveId(character.eveId);
   }
 
-  async findOneByEveId(eveId: number): Promise<Character | null> {
+  async findOneByEveId(eveId: number): Promise<CharacterDocument | null> {
     return this.characterModel.findOne({ eveId });
   }
 
-  async update({ eveId, ...character }: Character): Promise<Character> {
+  async update({ eveId, ...character }: Character): Promise<CharacterDocument> {
     return this.characterModel.findOneAndUpdate({ eveId }, character, {
       new: true,
     });
