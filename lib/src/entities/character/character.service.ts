@@ -1,33 +1,12 @@
 import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
 import { EsiService } from "../../esi/esi.service";
 import { Alliance } from "../alliance/alliance.model";
 import { Corporation } from "../corporation/corporation.model";
-import { Character, CharacterDocument } from "./character.model";
+import { Character } from "./character.model";
 
 @Injectable()
 export class CharacterService {
-  constructor(
-    @InjectModel(Character.name)
-    private characterModel: Model<CharacterDocument>,
-    private esiService: EsiService,
-  ) {}
-
-  async create(character: Character): Promise<CharacterDocument> {
-    await this.characterModel.create(character);
-    return this.findOneByEveId(character.eveId);
-  }
-
-  async findOneByEveId(eveId: number): Promise<CharacterDocument | null> {
-    return this.characterModel.findOne({ eveId });
-  }
-
-  async update({ eveId, ...character }: Character): Promise<CharacterDocument> {
-    return this.characterModel.findOneAndUpdate({ eveId }, character, {
-      new: true,
-    });
-  }
+  constructor(private esiService: EsiService) {}
 
   /**
    * Returns given Character with public information from ESI added.
