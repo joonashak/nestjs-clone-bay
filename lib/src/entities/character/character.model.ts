@@ -1,14 +1,13 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose from "mongoose";
+import { Prop, Schema } from "@nestjs/mongoose";
 import { Alliance } from "../alliance/alliance.model";
 import { Corporation } from "../corporation/corporation.model";
 
-@Schema({ timestamps: true })
+@Schema()
 export class Character {
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true })
   eveId: number;
 
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true })
   name: string;
 
   @Prop({ required: true })
@@ -23,6 +22,3 @@ export class Character {
   @Prop({ select: false, default: null })
   refreshToken?: string;
 }
-
-export type CharacterDocument = Character & mongoose.Document;
-export const CharacterSchema = SchemaFactory.createForClass(Character);

@@ -23,13 +23,16 @@ export class AuthenticationService {
       ...tokens,
     });
 
-    // TODO: Check if user exists. If it does, update character data.
-    // const existingCharacter =
-    //   await this.characterService.findOneByEveId(characterEveId);
+    // TODO: Apply authentication allowlists.
+    // TODO: Check if new users are accepted.
 
-    // const character = existingCharacter
-    //   ? await this.characterService.update(esiCharacter)
-    //   : await this.characterService.create(esiCharacter);
+    const user = await this.userService.findByCharacterEveId(
+      esiCharacter.eveId,
+    );
+
+    if (user) {
+      return this.userService.updateCharacter(user, esiCharacter);
+    }
 
     return this.userService.create({ main: esiCharacter });
   }
