@@ -15,6 +15,7 @@ import {
 } from "@nestjs/common";
 import { Response } from "express";
 import { AuthenticationService } from "./authentication/authentication.service";
+import { USER_ID_KEY_IN_SESSION } from "./constants";
 import { CharacterService } from "./entities/character/character.service";
 import { HttpExceptionFilter } from "./filters/http-exception.filter";
 
@@ -50,7 +51,8 @@ export class SsoController {
       ...tokens,
     });
 
-    await this.authenticationService.ssoLogin(esiCharacter);
+    const user = await this.authenticationService.ssoLogin(esiCharacter);
+    session[USER_ID_KEY_IN_SESSION] = user.id;
 
     response.redirect("/");
   }

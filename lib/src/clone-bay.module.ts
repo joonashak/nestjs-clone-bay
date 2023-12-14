@@ -24,6 +24,6 @@ import { SsoController } from "./sso.controller";
   ],
   controllers: [SsoController],
   providers: [CloneBayConfigService],
-  exports: [CloneBayConfigService],
+  exports: [CloneBayConfigService, UserModule, AuthenticationModule],
 })
 export class CloneBayModule extends CloneBayModuleDefinition {}

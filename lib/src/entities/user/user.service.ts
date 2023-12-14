@@ -11,8 +11,12 @@ export class UserService {
 
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async create(user: User) {
+  async create(user: Omit<User, "id">) {
     return this.userModel.create(user);
+  }
+
+  async findById(userId: string): Promise<UserDocument> {
+    return this.userModel.findOne({ id: userId });
   }
 
   /** Search for one user with given character as main or in alts. */
