@@ -1,7 +1,6 @@
 import { SsoModule } from "@joonashak/nestjs-eve-auth";
 import { CacheModule } from "@nestjs/cache-manager";
 import { Global, Module } from "@nestjs/common";
-import { CloneBayConfigService } from "./api/clone-bay-config.service";
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { CloneBayModuleDefinition } from "./clone-bay.module-definition";
 import { ConfigModule } from "./config/config.module";
@@ -23,7 +22,6 @@ import { SsoController } from "./sso.controller";
     UserModule,
   ],
   controllers: [SsoController],
-  providers: [CloneBayConfigService],
-  exports: [CloneBayConfigService, UserModule, AuthenticationModule],
+  exports: [ConfigModule, UserModule, AuthenticationModule],
 })
 export class CloneBayModule extends CloneBayModuleDefinition {}
