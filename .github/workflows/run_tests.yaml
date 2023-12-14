@@ -29,3 +29,22 @@ jobs:
         run: npm ci
       - name: Run unit tests
         run: npm run test:unit
+
+  integration-test-lib:
+    name: Run integration tests (library)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lib
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start MongoDB
+        run: docker compose up -d mongo
+        working-directory: .
+      - name: Install dependencies
+        run: npm ci
+      - name: Run integration tests
+        run: MONGO_URL=mongodb://localhost/nestjs-clone-bay-test npm run test:integration
+      - name: Stop Mongo
+        run: docker compose down
+        working-directory: .
