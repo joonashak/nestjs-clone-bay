@@ -15,12 +15,14 @@ import {
 } from "@nestjs/common";
 import { Response } from "express";
 import { AuthenticationService } from "./authentication/authentication.service";
+import { CharacterService } from "./entities/character/character.service";
 import { HttpExceptionFilter } from "./filters/http-exception.filter";
 
 @Controller()
 export class SsoController {
   constructor(
     private ssoService: SsoService,
+    private characterService: CharacterService,
     private authenticationService: AuthenticationService,
   ) {}
 
@@ -43,7 +45,12 @@ export class SsoController {
       tokens,
     } = await this.ssoService.callback(callbackParams, session);
 
-    await this.authenticationService.authenticate(characterId, tokens);
+    const esiCharacter = await this.characterService.addPublicInfoFromEsi({
+      eveId: characterId,
+      ...tokens,
+    });
+
+    await this.authenticationService.ssoLogin(esiCharacter);
 
     response.redirect("/");
   }
