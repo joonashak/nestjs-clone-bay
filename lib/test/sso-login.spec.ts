@@ -1,3 +1,4 @@
+import { SsoService } from "@joonashak/nestjs-eve-auth";
 import { INestApplication } from "@nestjs/common";
 import { MongooseModule, getConnectionToken } from "@nestjs/mongoose";
 import { Test, TestingModule } from "@nestjs/testing";
@@ -29,6 +30,7 @@ describe("SSO login", () => {
   let app: INestApplication;
   let userService: UserService;
   let dynamicConfigService: DynamicConfigService;
+  let ssoService: SsoService;
   let findMockUser: () => Promise<User>;
 
   beforeEach(async () => {
@@ -62,6 +64,7 @@ describe("SSO login", () => {
     await app.init();
     userService = app.get(UserService);
     dynamicConfigService = app.get(DynamicConfigService);
+    ssoService = app.get(SsoService);
 
     findMockUser = async () => {
       const user = await userService.findByCharacterEveId(mockEsiCharacterId);
@@ -143,6 +146,65 @@ describe("SSO login", () => {
       await expect(findMockUser()).resolves.toMatchObject({
         main: { eveId: mockEsiCharacterId },
       });
+    });
+  });
+
+  describe("Existing users", () => {
+    beforeEach(async () => {
+      await request(app.getHttpServer()).get(callbackUrl);
+    });
+
+    it("User is updated upon login", async () => {
+      const user = await userService.findByCharacterEveId(mockEsiCharacterId);
+      await request(app.getHttpServer()).get(callbackUrl).expect(302);
+      const updatedUser =
+        await userService.findByCharacterEveId(mockEsiCharacterId);
+
+      expect(updatedUser._id).toEqual(user._id);
+      expect(updatedUser.updatedAt).not.toEqual(user.updatedAt);
+    });
+
+    it.skip("Old tokens are updated upon login", async () => {
+      // TODO: Implement this test once there is a proper way to find a user with tokens (not selected by default for safety).
+      const accessToken = "fjn9+4178gh3957fbg1";
+      const refreshToken = "n0v58234nv";
+      jest.spyOn(ssoService, "callback").mockResolvedValueOnce({
+        character: { id: mockEsiCharacterId, name: mockEsiCharacter.name },
+        tokens: { accessToken, refreshToken },
+      });
+
+      await request(app.getHttpServer()).get(callbackUrl).expect(302);
+      const updatedUser =
+        await userService.findByCharacterEveId(mockEsiCharacterId);
+
+      expect(updatedUser.main.accessToken).toEqual(accessToken);
+      expect(updatedUser.main.refreshToken).toEqual(refreshToken);
+    });
+
+    it("Existing users are allowed to login when DynamicConfig.allowNewUsers is off", async () => {
+      mockDynamicConfig(dynamicConfigService, { allowNewUsers: false });
+      await request(app.getHttpServer()).get(callbackUrl).expect(302);
+    });
+
+    it("Existing users are allowed to login when allowlists are in use", async () => {
+      mockDynamicConfig(dynamicConfigService, { allowedCharacters: [9187623] });
+      await request(app.getHttpServer()).get(callbackUrl).expect(302);
+    });
+
+    it("Existing users are denied login when allowlists are in use and DynamicConfig.applyAllowlistsToExistingUsers is on", async () => {
+      mockDynamicConfig(dynamicConfigService, {
+        allowedCharacters: [9187623],
+        applyAllowlistsToExistingUsers: true,
+      });
+      await request(app.getHttpServer()).get(callbackUrl).expect(403);
+    });
+
+    it("Existing users are allowed to login when allowed by allowlists and DynamicConfig.applyAllowlistsToExistingUsers is on", async () => {
+      mockDynamicConfig(dynamicConfigService, {
+        allowedCharacters: [mockEsiCharacterId],
+        applyAllowlistsToExistingUsers: true,
+      });
+      await request(app.getHttpServer()).get(callbackUrl).expect(302);
     });
   });
 });

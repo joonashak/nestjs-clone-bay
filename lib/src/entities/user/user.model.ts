@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { randomUUID } from "crypto";
-import mongoose from "mongoose";
+import { Document, SchemaTimestampsConfig } from "mongoose";
 import { Character } from "../character/character.model";
 
 @Schema({ timestamps: true })
@@ -15,5 +15,5 @@ export class User {
   alts?: Character[];
 }
 
-export type UserDocument = User & mongoose.Document;
+export type UserDocument = User & Document & SchemaTimestampsConfig;
 export const UserSchema = SchemaFactory.createForClass(User);
