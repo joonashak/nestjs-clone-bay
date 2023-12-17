@@ -1,7 +1,7 @@
 import { SsoModule } from "@joonashak/nestjs-eve-auth";
-import { CacheModule } from "@nestjs/cache-manager";
 import { Global, Module } from "@nestjs/common";
 import { AuthenticationModule } from "./authentication/authentication.module";
+import { CacheModule } from "./cache/cache.module";
 import { CloneBayModuleDefinition } from "./clone-bay.module-definition";
 import { ConfigModule } from "./config/config.module";
 import { CharacterModule } from "./entities/character/character.module";
@@ -14,7 +14,7 @@ import { SsoController } from "./sso.controller";
 @Module({
   imports: [
     AuthenticationModule,
-    CacheModule.register({ ttl: 5000, isGlobal: true }),
+    CacheModule,
     CharacterModule,
     ConfigModule,
     EsiModule,
