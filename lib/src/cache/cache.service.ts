@@ -9,4 +9,8 @@ export class CacheService {
   wrap<T>(key: string, fn: () => Promise<T>, ttl?: WrapTTL<T>): Promise<T> {
     return this.cacheManager.wrap(key, fn, ttl);
   }
+
+  del(key: string): Promise<void> {
+    return this.cacheManager.del(key);
+  }
 }

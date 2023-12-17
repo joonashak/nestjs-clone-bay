@@ -3,13 +3,17 @@ import { InjectModel } from "@nestjs/mongoose";
 import { merge } from "lodash";
 import { Model } from "mongoose";
 import { Character } from "../character/character.model";
+import { UserCacheService } from "./user-cache.service";
 import { User, UserDocument } from "./user.model";
 
 @Injectable()
 export class UserService {
   private logger = new Logger(UserService.name);
 
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<UserDocument>,
+    private userCacheService: UserCacheService,
+  ) {}
 
   async create(user: Omit<User, "id">) {
     return this.userModel.create(user);
@@ -21,9 +25,7 @@ export class UserService {
 
   /** Search for one user with given character as main or in alts. */
   async findByCharacterEveId(characterEveId: number): Promise<UserDocument> {
-    return this.userModel.findOne({
-      $or: [{ "main.eveId": characterEveId }, { "alts.eveId": characterEveId }],
-    });
+    return this.userCacheService.findByCharacterEveId(characterEveId);
   }
 
   /**
@@ -36,6 +38,8 @@ export class UserService {
     user: UserDocument,
     character: Character,
   ): Promise<UserDocument> {
+    await this.userCacheService.invalidateForUser(user);
+
     if (user.main.eveId === character.eveId) {
       merge(user, { main: character });
       return user.save();

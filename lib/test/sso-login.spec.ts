@@ -8,9 +8,11 @@ import { AuthenticationAllowlistService } from "../src/authentication/authentica
 import { AuthenticationService } from "../src/authentication/authentication.service";
 import { DynamicConfigService } from "../src/config/dynamic-config.service";
 import { CharacterService } from "../src/entities/character/character.service";
+import { UserCacheService } from "../src/entities/user/user-cache.service";
 import { User, UserSchema } from "../src/entities/user/user.model";
 import { UserService } from "../src/entities/user/user.service";
 import { SsoController } from "../src/sso.controller";
+import { MockCacheService } from "./mocks/cache.service.mock";
 import {
   mockDynamicConfig,
   provideMockDynamicConfigService,
@@ -49,7 +51,9 @@ describe("SSO login", () => {
         MockOAuthStrategy,
         MockSsoService,
         provideMockDynamicConfigService(),
+        MockCacheService,
         UserService,
+        UserCacheService,
       ],
     }).compile();
 
