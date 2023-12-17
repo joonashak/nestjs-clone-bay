@@ -62,6 +62,9 @@ export class UserService {
 
     const existing = await this.findByCharacterEveId(alt.eveId);
     if (existing) {
+      this.logger.log(
+        `Nothing was done because character given to add as an alt is already registered. (userId=${userId}, characterId=${alt.eveId})`,
+      );
       return existing;
     }
 

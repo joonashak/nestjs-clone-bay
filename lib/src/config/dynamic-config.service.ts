@@ -34,14 +34,17 @@ export class DynamicConfigService {
   /* API methods. */
 
   async setAllowedCharacters(allowedCharacters: number[]) {
+    this.logger.log("Allowed characters updated.");
     return this.update({ allowedCharacters });
   }
 
   async setAllowedCorporations(allowedCorporations: number[]) {
+    this.logger.log("Allowed corporations updated.");
     return this.update({ allowedCorporations });
   }
 
   async setAllowedAlliances(allowedAlliances: number[]) {
+    this.logger.log("Allowed alliances updated.");
     return this.update({ allowedAlliances });
   }
 }

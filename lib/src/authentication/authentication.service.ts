@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable } from "@nestjs/common";
+import { ForbiddenException, Injectable, Logger } from "@nestjs/common";
 import { DynamicConfigService } from "../config/dynamic-config.service";
 import { Character } from "../entities/character/character.model";
 import { UserDocument } from "../entities/user/user.model";
@@ -7,6 +7,8 @@ import { AuthenticationAllowlistService } from "./authentication-allowlist.servi
 
 @Injectable()
 export class AuthenticationService {
+  private readonly logger = new Logger(AuthenticationService.name);
+
   constructor(
     private dynamicConfigService: DynamicConfigService,
     private userService: UserService,
@@ -47,6 +49,9 @@ export class AuthenticationService {
       return true;
     }
 
+    this.logger.log(
+      `Existing user was refused authentication due to allowlist check. (userId=${user.id})`,
+    );
     return false;
   }
 
@@ -63,6 +68,9 @@ export class AuthenticationService {
       return true;
     }
 
+    this.logger.log(
+      `New user was refused authentication due to allowlist check. (userId=${character.eveId})`,
+    );
     return false;
   }
 }

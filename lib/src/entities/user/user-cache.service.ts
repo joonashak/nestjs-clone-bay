@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { CacheService } from "../../cache/cache.service";
@@ -11,6 +11,8 @@ const keyForFindByCharacterEveId = (id: number) =>
 
 @Injectable()
 export class UserCacheService {
+  private logger = new Logger(UserCacheService.name);
+
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private cacheService: CacheService,
@@ -46,5 +48,7 @@ export class UserCacheService {
         this.cacheService.del(keyForFindByCharacterEveId(id)),
       ),
     );
+
+    this.logger.verbose(`User caches invalidated. (userId=${user.id}`);
   }
 }
