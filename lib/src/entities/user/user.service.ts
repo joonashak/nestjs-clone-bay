@@ -20,7 +20,7 @@ export class UserService {
   }
 
   async findById(userId: string): Promise<UserDocument> {
-    return this.userModel.findOne({ id: userId });
+    return this.userCacheService.findById(userId);
   }
 
   /** Search for one user with given character as main or in alts. */
