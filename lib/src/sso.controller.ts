@@ -17,6 +17,7 @@ import { Response } from "express";
 import { AuthenticationService } from "./authentication/authentication.service";
 import { USER_ID_KEY_IN_SESSION } from "./constants";
 import { CharacterService } from "./entities/character/character.service";
+import { UserService } from "./entities/user/user.service";
 import { HttpExceptionFilter } from "./filters/http-exception.filter";
 
 @Controller()
@@ -25,6 +26,7 @@ export class SsoController {
     private ssoService: SsoService,
     private characterService: CharacterService,
     private authenticationService: AuthenticationService,
+    private userService: UserService,
   ) {}
 
   @RequireSsoAuth()
@@ -51,8 +53,12 @@ export class SsoController {
       ...tokens,
     });
 
-    const user = await this.authenticationService.ssoLogin(esiCharacter);
-    session[USER_ID_KEY_IN_SESSION] = user.id;
+    if (session[USER_ID_KEY_IN_SESSION]) {
+      this.userService.addAlt(esiCharacter, session[USER_ID_KEY_IN_SESSION]);
+    } else {
+      const user = await this.authenticationService.ssoLogin(esiCharacter);
+      session[USER_ID_KEY_IN_SESSION] = user.id;
+    }
 
     response.redirect("/");
   }

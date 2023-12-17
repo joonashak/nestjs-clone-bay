@@ -55,4 +55,18 @@ export class UserService {
 
     return user.save();
   }
+
+  async addAlt(alt: Character, userId: string): Promise<UserDocument> {
+    const user = await this.findById(userId);
+    await this.userCacheService.invalidateForUser(user);
+
+    const existing = await this.findByCharacterEveId(alt.eveId);
+    if (existing) {
+      return existing;
+    }
+
+    user.alts.push(alt);
+    user.markModified("alts");
+    return user.save();
+  }
 }
