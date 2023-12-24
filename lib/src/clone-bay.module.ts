@@ -7,7 +7,6 @@ import { ConfigModule } from "./config/config.module";
 import { CharacterModule } from "./entities/character/character.module";
 import { UserModule } from "./entities/user/user.module";
 import { EsiModule } from "./esi/esi.module";
-import { SsoController } from "./sso.controller";
 
 /** @group Modules */
 @Global()
@@ -21,7 +20,6 @@ import { SsoController } from "./sso.controller";
     SsoModule,
     UserModule,
   ],
-  controllers: [SsoController],
   exports: [ConfigModule, UserModule, AuthenticationModule],
 })
 export class CloneBayModule extends CloneBayModuleDefinition {}

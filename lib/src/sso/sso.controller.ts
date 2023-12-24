@@ -14,11 +14,11 @@ import {
   ValidationPipe,
 } from "@nestjs/common";
 import { Response } from "express";
-import { AuthenticationService } from "./authentication/authentication.service";
-import { USER_ID_KEY_IN_SESSION } from "./constants";
-import { CharacterService } from "./entities/character/character.service";
-import { UserService } from "./entities/user/user.service";
-import { HttpExceptionFilter } from "./filters/http-exception.filter";
+import { AuthenticationService } from "../authentication/authentication.service";
+import { USER_ID_KEY_IN_SESSION } from "../constants";
+import { CharacterService } from "../entities/character/character.service";
+import { UserService } from "../entities/user/user.service";
+import { HttpExceptionFilter } from "../filters/http-exception.filter";
 
 @Controller()
 export class SsoController {

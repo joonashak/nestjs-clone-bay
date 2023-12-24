@@ -11,7 +11,7 @@ import { CharacterService } from "../src/entities/character/character.service";
 import { UserCacheService } from "../src/entities/user/user-cache.service";
 import { User, UserSchema } from "../src/entities/user/user.model";
 import { UserService } from "../src/entities/user/user.service";
-import { SsoController } from "../src/sso.controller";
+import { SsoController } from "../src/sso/sso.controller";
 import { MockCacheService } from "./mocks/cache.service.mock";
 import {
   mockDynamicConfig,
