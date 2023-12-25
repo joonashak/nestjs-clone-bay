@@ -28,7 +28,7 @@ export class AuthenticationService {
     }
 
     if (await this.newUserCanAuthenticate(esiCharacter)) {
-      return this.userService.create({ main: esiCharacter });
+      return this.userService.create({ main: esiCharacter, alts: [] });
     }
 
     throw new ForbiddenException();
