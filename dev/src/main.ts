@@ -2,6 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import MongoStore from "connect-mongo";
 import "dotenv/config";
 import session from "express-session";
+import mongoose from "mongoose";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
@@ -17,7 +18,7 @@ async function bootstrap() {
       }),
     }),
   );
-
+  mongoose.set("debug", true);
   await app.listen(3000);
 }
 bootstrap();
