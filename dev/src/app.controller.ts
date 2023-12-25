@@ -1,5 +1,5 @@
 import { Controller, Get } from "@nestjs/common";
-import { RequireAuthentication } from "nestjs-clone-bay";
+import { RequireAuthentication, UserId } from "nestjs-clone-bay";
 import { AppService } from "./app.service";
 
 @Controller()
@@ -13,7 +13,7 @@ export class AppController {
 
   @RequireAuthentication()
   @Get("auth")
-  async auth() {
-    return "jee";
+  async auth(@UserId() userId: string) {
+    return "hello " + userId;
   }
 }
