@@ -61,7 +61,12 @@ export class UserService {
   }
 
   async addAlt(alt: Character, userId: string): Promise<UserDocument> {
-    const user = await this.findById(userId);
+    // Must populate unselected fields to avoid removing them.
+    const user = await this.userModel
+      .findOne({ id: userId })
+      .populate("alts.accessToken")
+      .populate("alts.refreshToken");
+
     await this.userCacheService.invalidateForUser(user);
 
     const existing = await this.findByCharacterEveId(alt.eveId);
