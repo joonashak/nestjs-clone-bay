@@ -22,7 +22,8 @@ export class TokenService {
     private ssoService: SsoService,
   ) {}
 
-  async useToken(accessToken: string) {
+  /** Check given access token's expiry, refreshing, if necessary. */
+  async useToken(accessToken: string): Promise<string> {
     if (this.tokenIsAlive(accessToken)) {
       const characterEveId = this.getCharacterEveId(accessToken);
       return this.refreshToken(characterEveId);
@@ -31,7 +32,12 @@ export class TokenService {
     return accessToken;
   }
 
-  async refreshToken(characterEveId: number) {
+  /**
+   * Refresh SSO tokens for character.
+   *
+   * New tokens are saved after refreshing and the new access token returned.
+   */
+  async refreshToken(characterEveId: number): Promise<string> {
     const user = await this.findUserWithTokens(characterEveId);
     const character = this.getCharacter(user, characterEveId);
 
@@ -41,6 +47,9 @@ export class TokenService {
     character.refreshToken = tokens.refreshToken;
     user.markModified("alts");
     await user.save();
+    await this.userCacheService.invalidateForUser(user);
+
+    return tokens.accessToken;
   }
 
   private tokenIsAlive(accessToken: string): boolean {
