@@ -28,6 +28,10 @@ export class UserService {
     return this.userCacheService.findByCharacterEveId(characterEveId);
   }
 
+  async findWithAccessTokens(userId: string): Promise<UserDocument> {
+    return this.userCacheService.findWithAccessTokens(userId);
+  }
+
   /**
    * Update `user` with `character`.
    *

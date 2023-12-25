@@ -9,6 +9,9 @@ const keyForFindById = (id: string) => `cloneBay.userService.findById-${id}`;
 const keyForFindByCharacterEveId = (id: number) =>
   `cloneBay.userService.findByCharacterEveId-${id}`;
 
+const keyForFindWithAccessTokens = (id: string) =>
+  `cloneBay.userService.findWithAccessTokens-${id}`;
+
 @Injectable()
 export class UserCacheService {
   private logger = new Logger(UserCacheService.name);
@@ -37,8 +40,20 @@ export class UserCacheService {
     );
   }
 
+  async findWithAccessTokens(userId: string): Promise<UserDocument> {
+    const key = keyForFindWithAccessTokens(userId);
+
+    return this.cacheService.wrap(key, () =>
+      this.userModel
+        .findOne({ id: userId })
+        .populate("main.accessToken")
+        .populate("alts.accessToken"),
+    );
+  }
+
   async invalidateForUser(user: UserDocument): Promise<void> {
     await this.cacheService.del(keyForFindById(user.id));
+    await this.cacheService.del(keyForFindWithAccessTokens(user.id));
 
     // Must invalidate character-specific caches for main and all alts.
     const characterEveIds = user.alts.map((alt) => alt.eveId);
