@@ -23,7 +23,7 @@ export class TokenService {
   ) {}
 
   async useToken(accessToken: string) {
-    if (!this.tokenIsAlive(accessToken)) {
+    if (this.tokenIsAlive(accessToken)) {
       const characterEveId = this.getCharacterEveId(accessToken);
       return this.refreshToken(characterEveId);
     }
@@ -32,11 +32,14 @@ export class TokenService {
   }
 
   async refreshToken(characterEveId: number) {
-    const user = await this.findUserWithRefreshTokens(characterEveId);
+    const user = await this.findUserWithTokens(characterEveId);
     const character = this.getCharacter(user, characterEveId);
+
     const tokens = await this.ssoService.refreshTokens(character.refreshToken);
+
     character.accessToken = tokens.accessToken;
-    // TODO: markModified does not work for alts here. Write a real query...
+    character.refreshToken = tokens.refreshToken;
+    user.markModified("alts");
     await user.save();
   }
 
@@ -60,7 +63,7 @@ export class TokenService {
     return characterEveId;
   }
 
-  private async findUserWithRefreshTokens(
+  private async findUserWithTokens(
     characterEveId: number,
   ): Promise<UserDocument> {
     return this.userModel
@@ -70,7 +73,9 @@ export class TokenService {
           { "alts.eveId": characterEveId },
         ],
       })
+      .populate("main.accessToken")
       .populate("main.refreshToken")
+      .populate("alts.accessToken")
       .populate("alts.refreshToken");
   }
 
