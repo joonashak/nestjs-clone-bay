@@ -3,7 +3,11 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { MongooseModule } from "@nestjs/mongoose";
-import { CloneBayModule, CloneBaySsoModule } from "nestjs-clone-bay";
+import {
+  CloneBayModule,
+  CloneBayResolversModule,
+  CloneBaySsoModule,
+} from "nestjs-clone-bay";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
@@ -34,6 +38,7 @@ import { AppService } from "./app.service";
     // }),
     CloneBayModule.forRoot({ testing: true }),
     CloneBaySsoModule,
+    CloneBayResolversModule,
   ],
   controllers: [AppController],
   providers: [AppService],

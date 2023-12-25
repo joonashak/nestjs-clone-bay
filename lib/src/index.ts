@@ -1,4 +1,5 @@
 export * from "./api/clone-bay-config.service";
+export { CloneBayResolversModule } from "./api/clone-bay-resolvers.module";
 export * from "./api/clone-bay-sso.module";
 export * from "./authentication/authentication.guard";
 export * from "./clone-bay-options.interface";
