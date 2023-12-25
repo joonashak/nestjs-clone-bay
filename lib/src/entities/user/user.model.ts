@@ -8,11 +8,12 @@ export class User {
   @Prop({ default: randomUUID, unique: true, index: true })
   id: string;
 
-  @Prop({ required: true, unique: true })
+  @Prop({ type: Character, required: true, unique: true })
   main: Character;
 
-  @Prop()
-  alts?: Character[];
+  // DANGER: Not specifying the type explicitly here will result in alt characters' tokens being included by default!
+  @Prop({ type: [Character] })
+  alts: Character[];
 }
 
 export type UserDocument = User & Document & SchemaTimestampsConfig;
