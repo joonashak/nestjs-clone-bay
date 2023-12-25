@@ -1,5 +1,5 @@
-import { Controller, Get, UseGuards } from "@nestjs/common";
-import { AuthenticationGuard } from "nestjs-clone-bay";
+import { Controller, Get } from "@nestjs/common";
+import { RequireAuthentication } from "nestjs-clone-bay";
 import { AppService } from "./app.service";
 
 @Controller()
@@ -11,8 +11,8 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @RequireAuthentication()
   @Get("auth")
-  @UseGuards(AuthenticationGuard)
   async auth() {
     return "jee";
   }

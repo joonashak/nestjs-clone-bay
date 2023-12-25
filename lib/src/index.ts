@@ -7,3 +7,4 @@ export * from "./clone-bay.module";
 export { CLONE_BAY_MODULE_OPTIONS_TOKEN } from "./clone-bay.module-definition";
 export { DynamicConfig } from "./config/dynamic-config.model";
 export * from "./constants";
+export { RequireAuthentication } from "./decorators/require-authentication.decorator";
