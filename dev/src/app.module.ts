@@ -11,6 +11,7 @@ import {
 } from "nestjs-clone-bay";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
+import { SomeModule } from "./some/some.module";
 
 /*
  * WARNING!
@@ -38,6 +39,7 @@ import { AppService } from "./app.service";
     CloneBayModule.forRoot({ testing: true }),
     CloneBaySsoModule,
     CloneBayResolversModule,
+    SomeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
