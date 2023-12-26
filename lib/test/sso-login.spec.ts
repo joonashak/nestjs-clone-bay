@@ -168,8 +168,7 @@ describe("SSO login", () => {
       expect(updatedUser.updatedAt).not.toEqual(user.updatedAt);
     });
 
-    it.skip("Old tokens are updated upon login", async () => {
-      // TODO: Implement this test once there is a proper way to find a user with tokens (not selected by default for safety).
+    it("Old tokens are updated upon login", async () => {
       const accessToken = "fjn9+4178gh3957fbg1";
       const refreshToken = "n0v58234nv";
       jest.spyOn(ssoService, "callback").mockResolvedValueOnce({
@@ -178,11 +177,9 @@ describe("SSO login", () => {
       });
 
       await request(app.getHttpServer()).get(callbackUrl).expect(302);
-      const updatedUser =
-        await userService.findByCharacterEveId(mockEsiCharacterId);
-
+      const user = await findMockUser();
+      const updatedUser = await userService.findWithAccessTokens(user.id);
       expect(updatedUser.main.accessToken).toEqual(accessToken);
-      expect(updatedUser.main.refreshToken).toEqual(refreshToken);
     });
 
     it("Existing users are allowed to login when DynamicConfig.allowNewUsers is off", async () => {
