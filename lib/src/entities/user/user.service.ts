@@ -81,4 +81,19 @@ export class UserService {
     user.markModified("alts");
     return user.save();
   }
+
+  /** Check if character is registered under user. */
+  async userOwnsCharacter(
+    userId: string,
+    characterEveId: number,
+  ): Promise<boolean> {
+    const user =
+      await this.userCacheService.findByCharacterEveId(characterEveId);
+
+    if (user && user.id === userId) {
+      return true;
+    }
+
+    return false;
+  }
 }

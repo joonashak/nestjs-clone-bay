@@ -64,6 +64,6 @@ export class UserCacheService {
       ),
     );
 
-    this.logger.verbose(`User caches invalidated. (userId=${user.id}`);
+    this.logger.verbose(`User caches invalidated. (userId=${user.id})`);
   }
 }
