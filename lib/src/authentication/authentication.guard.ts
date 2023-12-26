@@ -13,6 +13,7 @@ export class AuthenticationGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = getRequest(context);
+
     const user = await this.userService.findById(
       request.session[USER_ID_KEY_IN_SESSION],
     );

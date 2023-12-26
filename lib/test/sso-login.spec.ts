@@ -16,7 +16,7 @@ import { MockCacheService } from "./mocks/cache.service.mock";
 import {
   mockDynamicConfig,
   provideMockDynamicConfigService,
-} from "./mocks/dnyamic-config.service.mock";
+} from "./mocks/dynamic-config.service.mock";
 import {
   MockEsiService,
   mockEsiCharacter,
