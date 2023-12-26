@@ -92,6 +92,16 @@ export class TokenService {
     return characterEveId;
   }
 
+  /** Revoke all refresh tokens for user. */
+  async revokeTokens(user: User): Promise<void> {
+    user = await this.findUserWithTokens(user.main.eveId);
+    const refreshTokens = user.alts.map((alt) => alt.refreshToken);
+    refreshTokens.push(user.main.refreshToken);
+    await Promise.all(
+      refreshTokens.map((token) => this.ssoService.revokeRefreshToken(token)),
+    );
+  }
+
   private async findUserWithTokens(
     characterEveId: number,
   ): Promise<UserDocument> {
