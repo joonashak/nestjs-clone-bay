@@ -1,30 +1,17 @@
 import { SsoService } from "@joonashak/nestjs-eve-auth";
 import { INestApplication } from "@nestjs/common";
-import { MongooseModule, getConnectionToken } from "@nestjs/mongoose";
-import { Test, TestingModule } from "@nestjs/testing";
-import session from "express-session";
+import { getConnectionToken } from "@nestjs/mongoose";
 import request from "supertest";
-import { AuthenticationAllowlistService } from "../src/authentication/authentication-allowlist.service";
-import { AuthenticationService } from "../src/authentication/authentication.service";
 import { DynamicConfigService } from "../src/config/dynamic-config.service";
-import { CharacterService } from "../src/entities/character/character.service";
-import { UserCacheService } from "../src/entities/user/user-cache.service";
-import { User, UserSchema } from "../src/entities/user/user.model";
+import { User } from "../src/entities/user/user.model";
 import { UserService } from "../src/entities/user/user.service";
-import { SsoController } from "../src/sso/sso.controller";
-import { MockCacheService } from "./mocks/cache.service.mock";
+import { mockDynamicConfig } from "./mocks/dynamic-config.service.mock";
 import {
-  mockDynamicConfig,
-  provideMockDynamicConfigService,
-} from "./mocks/dynamic-config.service.mock";
-import {
-  MockEsiService,
   mockEsiCharacter,
   mockEsiCharacterId,
   mockEsiCorporation,
 } from "./mocks/esi-service.mock";
-import { MockOAuthStrategy } from "./mocks/oauth.strategy.mock";
-import { MockSsoService } from "./mocks/sso-service.mock";
+import { createTestingApp } from "./testing-app";
 
 const callbackUrl = "/sso/callback?code=asd&state=asd";
 
@@ -36,36 +23,7 @@ describe("SSO login", () => {
   let findMockUser: () => Promise<User>;
 
   beforeEach(async () => {
-    // TODO: This is really messy, so need to make a proper testing module which mocks all the stuff that makes external requests.
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [
-        MongooseModule.forRoot(process.env.MONGO_URL),
-        MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-      ],
-      controllers: [SsoController],
-      providers: [
-        AuthenticationAllowlistService,
-        AuthenticationService,
-        CharacterService,
-        MockEsiService,
-        MockOAuthStrategy,
-        MockSsoService,
-        provideMockDynamicConfigService(),
-        MockCacheService,
-        UserService,
-        UserCacheService,
-      ],
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-    app.use(
-      session({
-        secret: "my-secret",
-        resave: false,
-        saveUninitialized: false,
-      }),
-    );
-    await app.init();
+    app = await createTestingApp();
     userService = app.get(UserService);
     dynamicConfigService = app.get(DynamicConfigService);
     ssoService = app.get(SsoService);
