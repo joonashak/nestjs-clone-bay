@@ -5,9 +5,10 @@ import {
   Logger,
 } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { decode } from "jsonwebtoken";
 import { Model } from "mongoose";
+import { EveAccessToken } from "../../types/eve-access-token.dto";
 import { Character } from "../character/character.model";
 import { UserCacheService } from "./user-cache.service";
 import { User, UserDocument } from "./user.model";
@@ -21,6 +22,25 @@ export class TokenService {
     private userCacheService: UserCacheService,
     private ssoService: SsoService,
   ) {}
+
+  async findAccessTokens(userId: string): Promise<EveAccessToken[]> {
+    const { main, alts } =
+      await this.userCacheService.findWithAccessTokens(userId);
+
+    const accessTokens: EveAccessToken[] = alts.map(
+      ({ eveId, accessToken }) => ({
+        eveId,
+        accessToken,
+      }),
+    );
+
+    accessTokens.push({
+      eveId: main.eveId,
+      accessToken: main.accessToken,
+    });
+
+    return accessTokens;
+  }
 
   /** Check given access token's expiry, refreshing, if necessary. */
   async useToken(accessToken: string): Promise<string> {
