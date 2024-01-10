@@ -4,6 +4,7 @@ import { RequireAuthentication } from "../../decorators/require-authentication.d
 import { UserId } from "../../decorators/user-id.decorator";
 import { EveAccessToken } from "../../types/eve-access-token.dto";
 import { TokenService } from "./token.service";
+import { User } from "./user.model";
 import { UserService } from "./user.service";
 
 @Resolver()
@@ -14,6 +15,12 @@ export class UserResolver {
     private tokenService: TokenService,
     private userService: UserService,
   ) {}
+
+  @RequireAuthentication()
+  @Query(() => User)
+  async whoami(@UserId() userId: string): Promise<User> {
+    return this.userService.findById(userId);
+  }
 
   @RequireAuthentication()
   @Query(() => [EveAccessToken])
