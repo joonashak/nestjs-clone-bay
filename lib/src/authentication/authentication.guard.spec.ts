@@ -46,12 +46,34 @@ describe("TokenAuthGuard", () => {
   });
 
   it("Denies access when user is not found", async () => {
+    const ctx = mockContextWithUserId("asd");
+    jest.spyOn(userService, "findById").mockResolvedValueOnce(null);
+    const test = async () => guard.canActivate(ctx);
+    await expect(test()).resolves.toBe(false);
+    expect(userService.findById).toBeCalledWith("asd");
+    expect(userService.findById).toBeCalledTimes(1);
+    expect(authenticationService.existingUserCanAuthenticate).toBeCalledTimes(
+      0,
+    );
+  });
+
+  it("Denies access when user ID is not included in session", async () => {
     const ctx = mockContextWithSession({});
     jest.spyOn(userService, "findById").mockResolvedValueOnce(null);
     const test = async () => guard.canActivate(ctx);
     await expect(test()).resolves.toBe(false);
-    expect(userService.findById).toBeCalledWith(undefined);
-    expect(userService.findById).toBeCalledTimes(1);
+    expect(userService.findById).toBeCalledTimes(0);
+    expect(authenticationService.existingUserCanAuthenticate).toBeCalledTimes(
+      0,
+    );
+  });
+
+  it("Denies access when user ID is undefined", async () => {
+    const ctx = mockContextWithUserId(undefined);
+    jest.spyOn(userService, "findById").mockResolvedValueOnce(null);
+    const test = async () => guard.canActivate(ctx);
+    await expect(test()).resolves.toBe(false);
+    expect(userService.findById).toBeCalledTimes(0);
     expect(authenticationService.existingUserCanAuthenticate).toBeCalledTimes(
       0,
     );
