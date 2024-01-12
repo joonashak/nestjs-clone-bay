@@ -28,7 +28,8 @@ export class AuthenticationService {
     }
 
     if (await this.newUserCanAuthenticate(esiCharacter)) {
-      return this.userService.create({ main: esiCharacter, alts: [] });
+      const admin = (await this.userService.userCount()) === 0;
+      return this.userService.create({ main: esiCharacter, alts: [], admin });
     }
 
     throw new ForbiddenException();

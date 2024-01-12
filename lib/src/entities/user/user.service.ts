@@ -96,4 +96,8 @@ export class UserService {
 
     return false;
   }
+
+  async userCount(): Promise<number> {
+    return this.userModel.collection.estimatedDocumentCount();
+  }
 }

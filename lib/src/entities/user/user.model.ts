@@ -19,6 +19,10 @@ export class User {
   @Field(() => [Character])
   @Prop({ type: [Character] })
   alts: Character[];
+
+  @Field()
+  @Prop({ default: false })
+  admin: boolean;
 }
 
 export type UserDocument = User & Document & SchemaTimestampsConfig;
