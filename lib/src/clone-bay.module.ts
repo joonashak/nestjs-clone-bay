@@ -1,6 +1,7 @@
 import { SsoModule } from "@joonashak/nestjs-eve-auth";
 import { Global, Module } from "@nestjs/common";
 import { AuthenticationModule } from "./authentication/authentication.module";
+import { AuthorizationModule } from "./authorization/authorization.module";
 import { CacheModule } from "./cache/cache.module";
 import { CloneBayModuleDefinition } from "./clone-bay.module-definition";
 import { ConfigModule } from "./config/config.module";
@@ -13,6 +14,7 @@ import { EsiModule } from "./esi/esi.module";
 @Module({
   imports: [
     AuthenticationModule,
+    AuthorizationModule,
     CacheModule,
     CharacterModule,
     ConfigModule,

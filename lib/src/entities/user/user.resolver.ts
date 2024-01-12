@@ -1,5 +1,9 @@
 import { ForbiddenException, Logger } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import {
+  Action,
+  CaslAbilityFactory,
+} from "../../authorization/casl-ability.factory";
 import { RequireAuthentication } from "../../decorators/require-authentication.decorator";
 import { UserId } from "../../decorators/user-id.decorator";
 import { EveAccessToken } from "../../types/eve-access-token.dto";
@@ -14,12 +18,24 @@ export class UserResolver {
   constructor(
     private tokenService: TokenService,
     private userService: UserService,
+    private caslAbilityFactory: CaslAbilityFactory,
   ) {}
 
   @RequireAuthentication()
   @Query(() => User)
   async whoami(@UserId() userId: string): Promise<User> {
     return this.userService.findById(userId);
+  }
+
+  // FIXME: Testing CASL.
+  @RequireAuthentication()
+  @Query(() => [User])
+  async getAllUsers(@UserId() userId: string): Promise<User[]> {
+    // TODO: Rewrite into a guard + decorator.
+    const user = await this.userService.findById(userId);
+    const ability = this.caslAbilityFactory.createForUser(user);
+    console.log(ability.can(Action.Read, User));
+    return this.userService.findAll();
   }
 
   @RequireAuthentication()
@@ -34,7 +50,6 @@ export class UserResolver {
     @UserId() userId: string,
     @Args("characterEveId") characterEveId: number,
   ): Promise<EveAccessToken> {
-    // FIXME: Improve authorization. First use case for CASL?
     const canActivate = await this.userService.userOwnsCharacter(
       userId,
       characterEveId,

@@ -28,6 +28,7 @@
     "test:integration": "jest --config ./test/jest.config.json -i"
   },
   "dependencies": {
+    "@casl/ability": "^6.5.0",
     "@nestjs/cache-manager": "^2.1.1",
     "@nestjs/platform-express": "^10.0.0",
     "axios": "^1.6.2",

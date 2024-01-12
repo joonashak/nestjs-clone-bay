@@ -19,6 +19,10 @@ export class UserService {
     return this.userModel.create(user);
   }
 
+  async findAll(): Promise<UserDocument[]> {
+    return this.userModel.find({});
+  }
+
   async findById(userId: string): Promise<UserDocument> {
     return this.userCacheService.findById(userId);
   }
