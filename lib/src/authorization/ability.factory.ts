@@ -8,30 +8,24 @@ import {
 import { Injectable } from "@nestjs/common";
 import { Character } from "../entities/character/character.model";
 import { User } from "../entities/user/user.model";
+import { UserAction } from "./user-action.enum";
 
 type Subjects = InferSubjects<typeof User | typeof Character> | "all";
 
-export enum Action {
-  Manage = "manage",
-  Create = "create",
-  Read = "read",
-  Update = "update",
-  Delete = "delete",
-}
-
-export type AppAbility = MongoAbility<[Action, Subjects]>;
+export type UserAbility = MongoAbility<[UserAction, Subjects]>;
 
 @Injectable()
-export class CaslAbilityFactory {
+export class AbilityFactory {
   createForUser(user: User) {
-    const { can, build } = new AbilityBuilder<AppAbility>(createMongoAbility);
+    const { can: allow, build } = new AbilityBuilder<UserAbility>(
+      createMongoAbility,
+    );
 
     if (user.admin) {
-      can(Action.Manage, "all");
+      allow(UserAction.Manage, "all");
     }
 
     return build({
-      // Read https://casl.js.org/v6/en/guide/subject-type-detection#use-classes-as-subject-types for details
       detectSubjectType: (item) =>
         item.constructor as ExtractSubjectType<Subjects>,
     });

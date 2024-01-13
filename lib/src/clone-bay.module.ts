@@ -22,6 +22,11 @@ import { EsiModule } from "./esi/esi.module";
     SsoModule,
     UserModule,
   ],
-  exports: [ConfigModule, UserModule, AuthenticationModule],
+  exports: [
+    ConfigModule,
+    UserModule,
+    AuthenticationModule,
+    AuthorizationModule,
+  ],
 })
 export class CloneBayModule extends CloneBayModuleDefinition {}

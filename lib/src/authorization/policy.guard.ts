@@ -3,7 +3,7 @@ import { Reflector } from "@nestjs/core";
 import getRequest from "../common/utils/get-request.util";
 import { USER_ID_KEY_IN_SESSION } from "../constants";
 import { UserService } from "../entities/user/user.service";
-import { AppAbility, CaslAbilityFactory } from "./casl-ability.factory";
+import { AbilityFactory, UserAbility } from "./ability.factory";
 import { CHECK_POLICIES_KEY } from "./check-policies.decorator";
 import { PolicyHandler } from "./policy-handler.interface";
 
@@ -11,7 +11,7 @@ import { PolicyHandler } from "./policy-handler.interface";
 export class PolicyGuard implements CanActivate {
   constructor(
     private reflector: Reflector,
-    private caslAbilityFactory: CaslAbilityFactory,
+    private caslAbilityFactory: AbilityFactory,
     private userService: UserService,
   ) {}
 
@@ -32,7 +32,7 @@ export class PolicyGuard implements CanActivate {
     );
   }
 
-  private execPolicyHandler(handler: PolicyHandler, ability: AppAbility) {
+  private execPolicyHandler(handler: PolicyHandler, ability: UserAbility) {
     if (typeof handler === "function") {
       return handler(ability);
     }
