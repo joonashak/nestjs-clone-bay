@@ -1,10 +1,14 @@
-import { UseGuards } from "@nestjs/common";
+import {
+  RequirePolicies,
+  User,
+  UserAbility,
+  UserAction,
+} from "@joonashak/nestjs-clone-bay";
 import { Query, Resolver } from "@nestjs/graphql";
-import { SomeGuard } from "./some.guard";
 
 @Resolver()
 export class SomeResolver {
-  @UseGuards(SomeGuard)
+  @RequirePolicies((ability: UserAbility) => ability.can(UserAction.Read, User))
   @Query(() => String)
   async someQuery() {
     return "Moi";
