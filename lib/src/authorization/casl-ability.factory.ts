@@ -32,11 +32,6 @@ export class CaslAbilityFactory {
       can(Action.Manage, "all");
     }
 
-    const ownedCharacterIds = user.alts.map((alt) => alt.eveId);
-    ownedCharacterIds.push(user.main.eveId);
-    console.log("ownedCharacterIds", ownedCharacterIds);
-    can(Action.Update, Character, { eveId: { $in: ownedCharacterIds } });
-
     return build({
       // Read https://casl.js.org/v6/en/guide/subject-type-detection#use-classes-as-subject-types for details
       detectSubjectType: (item) =>
