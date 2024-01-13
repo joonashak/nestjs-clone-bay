@@ -1,5 +1,5 @@
+import { RequireAuthentication, UserId } from "@joonashak/nestjs-clone-bay";
 import { Controller, Get } from "@nestjs/common";
-import { RequireAuthentication, UserId } from "nestjs-clone-bay";
 import { AppService } from "./app.service";
 
 @Controller()

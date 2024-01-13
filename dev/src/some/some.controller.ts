@@ -1,9 +1,9 @@
-import { Controller, Get } from "@nestjs/common";
 import {
   CloneBayUserService,
   RequireAuthentication,
   UserId,
-} from "nestjs-clone-bay";
+} from "@joonashak/nestjs-clone-bay";
+import { Controller, Get } from "@nestjs/common";
 
 @Controller()
 export class SomeController {

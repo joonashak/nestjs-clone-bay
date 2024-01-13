@@ -34,7 +34,6 @@
     "express-session": "^1.17.3",
     "graphql": "^16.8.1",
     "mongoose": "^8.0.2",
-    "nestjs-clone-bay": "file:../lib",
     "passport-oauth2": "^1.7.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
@@ -54,6 +53,7 @@
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "install-local": "^3.0.1",
     "jest": "^29.5.0",
     "prettier": "^2.8.8",
     "source-map-support": "^0.5.21",
@@ -80,5 +80,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "localDependencies": {
+    "@joonashak/nestjs-clone-bay": "../lib"
   }
 }

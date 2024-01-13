@@ -1,5 +1,5 @@
+import { CloneBayUserService } from "@joonashak/nestjs-clone-bay";
 import { Module } from "@nestjs/common";
-import { CloneBayUserService } from "nestjs-clone-bay";
 import { SomeController } from "./some.controller";
 import { SomeService } from "./some.service";
 

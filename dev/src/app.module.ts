@@ -1,14 +1,14 @@
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
+import {
+  CloneBayModule,
+  CloneBayResolversModule,
+  CloneBaySsoModule,
+} from "@joonashak/nestjs-clone-bay";
 import { EveAuthModule } from "@joonashak/nestjs-eve-auth";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { MongooseModule } from "@nestjs/mongoose";
-import {
-  CloneBayModule,
-  CloneBayResolversModule,
-  CloneBaySsoModule,
-} from "nestjs-clone-bay";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { SomeModule } from "./some/some.module";

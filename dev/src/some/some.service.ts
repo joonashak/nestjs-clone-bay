@@ -1,5 +1,5 @@
+import { CloneBayUserService } from "@joonashak/nestjs-clone-bay";
 import { Injectable } from "@nestjs/common";
-import { CloneBayUserService } from "nestjs-clone-bay";
 
 @Injectable()
 export class SomeService {
