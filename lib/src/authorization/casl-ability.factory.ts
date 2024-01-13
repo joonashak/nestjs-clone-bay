@@ -1,9 +1,9 @@
 import {
-  Ability,
   AbilityBuilder,
-  AbilityClass,
   ExtractSubjectType,
   InferSubjects,
+  MongoAbility,
+  createMongoAbility,
 } from "@casl/ability";
 import { Injectable } from "@nestjs/common";
 import { Character } from "../entities/character/character.model";
@@ -19,14 +19,12 @@ export enum Action {
   Delete = "delete",
 }
 
-export type AppAbility = Ability<[Action, Subjects]>;
+export type AppAbility = MongoAbility<[Action, Subjects]>;
 
 @Injectable()
 export class CaslAbilityFactory {
   createForUser(user: User) {
-    const { can, build } = new AbilityBuilder<Ability<[Action, Subjects]>>(
-      Ability as AbilityClass<AppAbility>,
-    );
+    const { can, build } = new AbilityBuilder<AppAbility>(createMongoAbility);
 
     if (user.admin) {
       can(Action.Manage, "all");
