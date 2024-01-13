@@ -29,6 +29,8 @@ export class UserResolver {
 
   // FIXME: Testing CASL.
   @RequireAuthentication()
+  // @UseGuards(PoliciesGuard)
+  // @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, User))
   @Query(() => [User])
   async getAllUsers(@UserId() userId: string): Promise<User[]> {
     // TODO: Rewrite into a guard + decorator.
