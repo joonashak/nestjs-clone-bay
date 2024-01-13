@@ -1,13 +1,12 @@
-import { ForbiddenException, Logger, UseGuards } from "@nestjs/common";
+import { ForbiddenException, Logger } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import {
   Action,
   AppAbility,
   CaslAbilityFactory,
 } from "../../authorization/casl-ability.factory";
-import { CheckPolicies } from "../../authorization/check-policies.decorator";
-import { PoliciesGuard } from "../../authorization/policies.guard";
 import { RequireAuthentication } from "../../decorators/require-authentication.decorator";
+import { RequirePolicies } from "../../decorators/require-policies.decorator";
 import { UserId } from "../../decorators/user-id.decorator";
 import { EveAccessToken } from "../../types/eve-access-token.dto";
 import { TokenService } from "./token.service";
@@ -32,8 +31,7 @@ export class UserResolver {
 
   // FIXME: Testing CASL.
   @RequireAuthentication()
-  @UseGuards(PoliciesGuard)
-  @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, User))
+  @RequirePolicies((ability: AppAbility) => ability.can(Action.Read, User))
   @Query(() => [User])
   async getAllUsers(): Promise<User[]> {
     return this.userService.findAll();
