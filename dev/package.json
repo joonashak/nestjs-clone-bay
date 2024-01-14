@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@apollo/server": "^4.9.5",
+    "@casl/ability": "^6.5.0",
     "@joonashak/nestjs-eve-auth": "^0.3.0",
     "@nestjs/apollo": "^12.0.11",
     "@nestjs/common": "^10.0.0",
