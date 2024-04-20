@@ -1,5 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import { AuthenticatedEsiApiService } from "../authenticated-esi-api/authenticated-esi-api.service";
+import {
+  AuthenticatedEsiApiService,
+  GetOptions,
+} from "../authenticated-esi-api/authenticated-esi-api.service";
 
 /**
  * Support for authenticated ESI API requests.
@@ -10,7 +13,7 @@ import { AuthenticatedEsiApiService } from "../authenticated-esi-api/authenticat
 export class CloneBayEsiApiService {
   constructor(private apiService: AuthenticatedEsiApiService) {}
 
-  async get(characterId: number, url: string) {
-    return this.apiService.get(characterId, url);
+  async get(options: GetOptions) {
+    return this.apiService.get(options);
   }
 }
