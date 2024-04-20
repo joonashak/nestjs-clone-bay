@@ -63,7 +63,7 @@ export class TokenService {
    * New tokens are saved after refreshing and the new access token returned.
    */
   async refreshToken(characterEveId: number): Promise<string> {
-    const user = await this.findUserWithTokens(characterEveId);
+    const user = await this.findUserWithRefreshTokens(characterEveId);
     const character = this.getCharacter(user, characterEveId);
 
     const tokens = await this.ssoService.refreshTokens(character.refreshToken);
@@ -78,16 +78,17 @@ export class TokenService {
   }
 
   /** Revoke all refresh tokens for user. */
-  async revokeTokens(user: User): Promise<void> {
-    user = await this.findUserWithTokens(user.main.eveId);
+  async revokeTokens(inputUser: User): Promise<void> {
+    const user = await this.findUserWithRefreshTokens(inputUser.main.eveId);
     const refreshTokens = user.alts.map((alt) => alt.refreshToken);
     refreshTokens.push(user.main.refreshToken);
     await Promise.all(
       refreshTokens.map((token) => this.ssoService.revokeRefreshToken(token)),
     );
+    await this.userCacheService.invalidateForUser(user);
   }
 
-  private async findUserWithTokens(
+  private async findUserWithRefreshTokens(
     characterEveId: number,
   ): Promise<UserDocument> {
     return this.userModel
