@@ -18,20 +18,12 @@ export class TokenService {
   async findAccessTokens(userId: string): Promise<EveAccessToken[]> {
     const { main, alts } =
       await this.userCacheService.findWithAccessTokens(userId);
+    const characters = alts.concat(main);
 
-    const accessTokens: EveAccessToken[] = alts.map(
-      ({ eveId, accessToken }) => ({
-        eveId,
-        accessToken,
-      }),
-    );
-
-    accessTokens.push({
-      eveId: main.eveId,
-      accessToken: main.accessToken,
-    });
-
-    return accessTokens;
+    return characters.map(({ eveId, accessToken }) => ({
+      eveId,
+      accessToken,
+    }));
   }
 
   /**
