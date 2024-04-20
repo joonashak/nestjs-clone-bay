@@ -12,6 +12,7 @@ import { SsoController } from "../src/sso/sso.controller";
 import { MockCacheService } from "./mocks/cache.service.mock";
 import { provideMockDynamicConfigService } from "./mocks/dynamic-config.service.mock";
 import { MockEsiService } from "./mocks/esi-service.mock";
+import { provideMockModuleConfigService } from "./mocks/mock-module-config";
 import { MockOAuthStrategy } from "./mocks/oauth.strategy.mock";
 import { MockSsoService } from "./mocks/sso-service.mock";
 
@@ -29,6 +30,7 @@ export const createTestingApp = async (): Promise<INestApplication> => {
       MockEsiService,
       MockOAuthStrategy,
       MockSsoService,
+      provideMockModuleConfigService(),
       provideMockDynamicConfigService(),
       MockCacheService,
       UserService,
