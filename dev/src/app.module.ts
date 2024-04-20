@@ -35,7 +35,7 @@ import { SomeModule } from "./some/some.module";
       secretKey: process.env.SECRET_KEY,
       callbackUrl: "http://localhost:3000/sso/callback",
     }),
-    CloneBayModule.forRoot({}),
+    CloneBayModule.forRoot(),
     CloneBaySsoModule,
     CloneBayResolversModule,
     SomeModule,

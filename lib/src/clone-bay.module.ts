@@ -3,6 +3,7 @@ import { Global, Module } from "@nestjs/common";
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { AuthorizationModule } from "./authorization/authorization.module";
 import { CacheModule } from "./cache/cache.module";
+import { CloneBayModuleOptions } from "./clone-bay-module-options.interface";
 import {
   CLONE_BAY_MODULE_OPTIONS_TOKEN,
   CloneBayModuleDefinition,
@@ -33,4 +34,14 @@ import { EsiModule } from "./esi/esi.module";
     AuthorizationModule,
   ],
 })
-export class CloneBayModule extends CloneBayModuleDefinition {}
+export class CloneBayModule extends CloneBayModuleDefinition {
+  // Pass-through method to allow zero arguments.
+  static forRoot(options: CloneBayModuleOptions = {}) {
+    return super.forRoot(options);
+  }
+
+  // Pass-through method to allow zero arguments.
+  static forRootAsync(options: CloneBayModuleOptions = {}) {
+    return super.forRootAsync(options);
+  }
+}
