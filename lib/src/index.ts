@@ -1,12 +1,13 @@
-export * from "./api/clone-bay-config.service";
+export { CloneBayConfigService } from "./api/clone-bay-config.service";
+export { CloneBayEsiApiService } from "./api/clone-bay-esi-api.service";
 export { CloneBayResolversModule } from "./api/clone-bay-resolvers.module";
-export * from "./api/clone-bay-sso.module";
+export { CloneBaySsoModule } from "./api/clone-bay-sso.module";
 export { CloneBayUserService } from "./api/clone-bay-user.service";
-export * from "./authentication/authentication.guard";
+export { AuthenticationGuard } from "./authentication/authentication.guard";
 export { UserAbility } from "./authorization/ability.factory";
 export { UserAction } from "./authorization/user-action.enum";
-export * from "./clone-bay-module-options.interface";
-export * from "./clone-bay.module";
+export { CloneBayModuleOptions } from "./clone-bay-module-options.interface";
+export { CloneBayModule } from "./clone-bay.module";
 export { CLONE_BAY_MODULE_OPTIONS_TOKEN } from "./clone-bay.module-definition";
 export { DynamicConfig } from "./config/dynamic-config.model";
 export * from "./constants";

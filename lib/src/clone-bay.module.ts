@@ -1,5 +1,6 @@
 import { SsoModule } from "@joonashak/nestjs-eve-auth";
 import { Global, Module } from "@nestjs/common";
+import { AuthenticatedEsiApiModule } from "./authenticated-esi-api/authenticated-esi-api.module";
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { AuthorizationModule } from "./authorization/authorization.module";
 import { CacheModule } from "./cache/cache.module";
@@ -25,6 +26,7 @@ import { EsiModule } from "./esi/esi.module";
     EsiModule,
     SsoModule,
     UserModule,
+    AuthenticatedEsiApiModule,
   ],
   exports: [
     CLONE_BAY_MODULE_OPTIONS_TOKEN,
@@ -32,6 +34,7 @@ import { EsiModule } from "./esi/esi.module";
     UserModule,
     AuthenticationModule,
     AuthorizationModule,
+    AuthenticatedEsiApiModule,
   ],
 })
 export class CloneBayModule extends CloneBayModuleDefinition {

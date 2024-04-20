@@ -1,4 +1,7 @@
-import { CloneBayUserService } from "@joonashak/nestjs-clone-bay";
+import {
+  CloneBayEsiApiService,
+  CloneBayUserService,
+} from "@joonashak/nestjs-clone-bay";
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { SomeAbilityFactory } from "./some-ability.factory";
@@ -14,6 +17,7 @@ import { SomeService } from "./some.service";
   providers: [
     SomeService,
     CloneBayUserService,
+    CloneBayEsiApiService,
     SomeResolver,
     SomeAbilityFactory,
   ],
