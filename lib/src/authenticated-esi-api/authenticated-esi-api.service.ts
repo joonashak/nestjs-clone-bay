@@ -26,10 +26,31 @@ export class AuthenticatedEsiApiService {
     this.assertUrlIsSafe(options.url, options.allowUnsafeUrl);
 
     const token = await this.getAccessToken(options);
-
-    return axios.get(options.url, {
+    const axiosConfig = {
       headers: { Authorization: `Bearer ${token.accessToken}` },
-    });
+    };
+
+    try {
+      const res = await axios.get(options.url, axiosConfig);
+      return res;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (
+        error.response.status !== 403 ||
+        error.response.data.error !== "token is expired"
+      ) {
+        throw error;
+      }
+
+      const newToken = await this.tokenService.refreshToken(
+        options.characterEveId,
+      );
+
+      const res = await axios.get(options.url, {
+        headers: { Authorization: `Bearer ${newToken}` },
+      });
+      return res;
+    }
   }
 
   /** Prevent leaking tokens accidentally. */

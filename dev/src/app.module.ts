@@ -34,6 +34,7 @@ import { SomeModule } from "./some/some.module";
       clientId: process.env.CLIENT_ID,
       secretKey: process.env.SECRET_KEY,
       callbackUrl: "http://localhost:3000/sso/callback",
+      scopes: ["esi-characters.read_titles.v1"],
     }),
     CloneBayModule.forRoot(),
     CloneBaySsoModule,
