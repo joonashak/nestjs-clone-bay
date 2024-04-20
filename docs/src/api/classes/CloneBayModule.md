@@ -22,52 +22,52 @@ CloneBayModuleDefinition.constructor
 
 #### Defined in
 
-node_modules/@nestjs/common/module-utils/interfaces/configurable-module-cls.interface.d.ts:12
+lib/node_modules/@nestjs/common/module-utils/interfaces/configurable-module-cls.interface.d.ts:12
 
-## Properties
+## Methods
 
 ### forRoot
 
-▪ `Static` **forRoot**: (`options`: [`CloneBayOptions`](../interfaces/CloneBayOptions.md) & `Partial`\<{}\>) => `DynamicModule`
+▸ **forRoot**(`options?`): `DynamicModule`
 
-#### Type declaration
-
-▸ (`options`): `DynamicModule`
-
-##### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`CloneBayOptions`](../interfaces/CloneBayOptions.md) & `Partial`\<{}\> |
+| `options` | [`CloneBayModuleOptions`](../interfaces/CloneBayModuleOptions.md) |
 
-##### Returns
+#### Returns
 
 `DynamicModule`
 
-#### Inherited from
+#### Overrides
 
 CloneBayModuleDefinition.forRoot
+
+#### Defined in
+
+[lib/src/clone-bay.module.ts:39](https://github.com/joonashak/nestjs-clone-bay/blob/a434a6f/lib/src/clone-bay.module.ts#L39)
 
 ___
 
 ### forRootAsync
 
-▪ `Static` **forRootAsync**: (`options`: `ConfigurableModuleAsyncOptions`\<[`CloneBayOptions`](../interfaces/CloneBayOptions.md), ``"create"``\> & `Partial`\<{}\>) => `DynamicModule`
+▸ **forRootAsync**(`options?`): `DynamicModule`
 
-#### Type declaration
-
-▸ (`options`): `DynamicModule`
-
-##### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options` | `ConfigurableModuleAsyncOptions`\<[`CloneBayOptions`](../interfaces/CloneBayOptions.md), ``"create"``\> & `Partial`\<{}\> |
+| `options` | [`CloneBayModuleOptions`](../interfaces/CloneBayModuleOptions.md) |
 
-##### Returns
+#### Returns
 
 `DynamicModule`
 
-#### Inherited from
+#### Overrides
 
 CloneBayModuleDefinition.forRootAsync
+
+#### Defined in
+
+[lib/src/clone-bay.module.ts:44](https://github.com/joonashak/nestjs-clone-bay/blob/a434a6f/lib/src/clone-bay.module.ts#L44)

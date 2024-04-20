@@ -4,4 +4,4 @@
 
 #### Defined in
 
-[src/clone-bay.module-definition.ts:11](https://github.com/joonashak/nestjs-clone-bay/blob/92443ec/lib/src/clone-bay.module-definition.ts#L11)
+[lib/src/clone-bay.module-definition.ts:11](https://github.com/joonashak/nestjs-clone-bay/blob/a434a6f/lib/src/clone-bay.module-definition.ts#L11)

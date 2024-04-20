@@ -23,7 +23,7 @@ Get current dynamic configuration.
 
 #### Defined in
 
-[src/api/clone-bay-config.service.ts:23](https://github.com/joonashak/nestjs-clone-bay/blob/92443ec/lib/src/api/clone-bay-config.service.ts#L23)
+[lib/src/api/clone-bay-config.service.ts:25](https://github.com/joonashak/nestjs-clone-bay/blob/a434a6f/lib/src/api/clone-bay-config.service.ts#L25)
 
 ___
 
@@ -48,7 +48,7 @@ alliance included in this allowlist.
 
 #### Defined in
 
-[src/api/clone-bay-config.service.ts:59](https://github.com/joonashak/nestjs-clone-bay/blob/92443ec/lib/src/api/clone-bay-config.service.ts#L59)
+[lib/src/api/clone-bay-config.service.ts:61](https://github.com/joonashak/nestjs-clone-bay/blob/a434a6f/lib/src/api/clone-bay-config.service.ts#L61)
 
 ___
 
@@ -73,7 +73,7 @@ allowlist.
 
 #### Defined in
 
-[src/api/clone-bay-config.service.ts:35](https://github.com/joonashak/nestjs-clone-bay/blob/92443ec/lib/src/api/clone-bay-config.service.ts#L35)
+[lib/src/api/clone-bay-config.service.ts:37](https://github.com/joonashak/nestjs-clone-bay/blob/a434a6f/lib/src/api/clone-bay-config.service.ts#L37)
 
 ___
 
@@ -98,4 +98,4 @@ corporation included in this allowlist.
 
 #### Defined in
 
-[src/api/clone-bay-config.service.ts:47](https://github.com/joonashak/nestjs-clone-bay/blob/92443ec/lib/src/api/clone-bay-config.service.ts#L47)
+[lib/src/api/clone-bay-config.service.ts:49](https://github.com/joonashak/nestjs-clone-bay/blob/a434a6f/lib/src/api/clone-bay-config.service.ts#L49)
