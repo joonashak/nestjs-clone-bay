@@ -36,7 +36,7 @@ export class UserResolver {
   @RequireAuthentication()
   @Query(() => [EveAccessToken])
   async getMyTokens(@UserId() userId: string): Promise<EveAccessToken[]> {
-    return this.tokenService.findAccessTokens(userId);
+    return this.tokenService.findAccessTokensByUserId(userId);
   }
 
   @RequireAuthentication()
