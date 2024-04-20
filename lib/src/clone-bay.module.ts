@@ -3,7 +3,10 @@ import { Global, Module } from "@nestjs/common";
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { AuthorizationModule } from "./authorization/authorization.module";
 import { CacheModule } from "./cache/cache.module";
-import { CloneBayModuleDefinition } from "./clone-bay.module-definition";
+import {
+  CLONE_BAY_MODULE_OPTIONS_TOKEN,
+  CloneBayModuleDefinition,
+} from "./clone-bay.module-definition";
 import { ConfigModule } from "./config/config.module";
 import { CharacterModule } from "./entities/character/character.module";
 import { UserModule } from "./entities/user/user.module";
@@ -23,6 +26,7 @@ import { EsiModule } from "./esi/esi.module";
     UserModule,
   ],
   exports: [
+    CLONE_BAY_MODULE_OPTIONS_TOKEN,
     ConfigModule,
     UserModule,
     AuthenticationModule,

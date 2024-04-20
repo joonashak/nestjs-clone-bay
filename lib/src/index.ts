@@ -5,7 +5,7 @@ export { CloneBayUserService } from "./api/clone-bay-user.service";
 export * from "./authentication/authentication.guard";
 export { UserAbility } from "./authorization/ability.factory";
 export { UserAction } from "./authorization/user-action.enum";
-export * from "./clone-bay-options.interface";
+export * from "./clone-bay-module-options.interface";
 export * from "./clone-bay.module";
 export { CLONE_BAY_MODULE_OPTIONS_TOKEN } from "./clone-bay.module-definition";
 export { DynamicConfig } from "./config/dynamic-config.model";
