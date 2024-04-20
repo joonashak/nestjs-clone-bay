@@ -14,4 +14,5 @@ export { RequireAuthentication } from "./decorators/require-authentication.decor
 export { RequirePolicies } from "./decorators/require-policies.decorator";
 export { UserId } from "./decorators/user-id.decorator";
 export { User } from "./entities/user/user.model";
+export * from "./exceptions";
 export { EveAccessToken } from "./types/eve-access-token.dto";

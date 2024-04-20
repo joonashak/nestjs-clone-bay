@@ -2,6 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { validateSync } from "class-validator";
 import { CloneBayModuleOptions } from "../clone-bay-module-options.interface";
 import { CLONE_BAY_MODULE_OPTIONS_TOKEN } from "../clone-bay.module-definition";
+import { InvalidConfigurationException } from "../exceptions/invalid-configuration.exception";
 import { ModuleConfig } from "./module-config.model";
 
 @Injectable()
@@ -16,8 +17,7 @@ export class ModuleConfigService {
     const errors = validateSync(this.config);
 
     if (errors.length) {
-      // FIXME:
-      throw new Error();
+      throw new InvalidConfigurationException();
     }
   }
 }
