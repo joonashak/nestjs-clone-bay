@@ -15,6 +15,7 @@ import {
 } from "@nestjs/common";
 import { Response } from "express";
 import { AuthenticationService } from "../authentication/authentication.service";
+import { ModuleConfigService } from "../config/module-config.service";
 import { USER_ID_KEY_IN_SESSION } from "../constants";
 import { CharacterService } from "../entities/character/character.service";
 import { UserService } from "../entities/user/user.service";
@@ -27,6 +28,7 @@ export class SsoController {
     private characterService: CharacterService,
     private authenticationService: AuthenticationService,
     private userService: UserService,
+    private moduleConfigService: ModuleConfigService,
   ) {}
 
   @RequireSsoAuth()
@@ -60,6 +62,6 @@ export class SsoController {
       session[USER_ID_KEY_IN_SESSION] = user.id;
     }
 
-    response.redirect("/");
+    response.redirect(this.moduleConfigService.config.afterLoginUrl);
   }
 }
