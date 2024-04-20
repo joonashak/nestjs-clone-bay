@@ -1,12 +1,6 @@
 import { SsoService } from "@joonashak/nestjs-eve-auth";
-import {
-  Injectable,
-  InternalServerErrorException,
-  Logger,
-} from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import dayjs from "dayjs";
-import { decode } from "jsonwebtoken";
 import { Model } from "mongoose";
 import { EveAccessToken } from "../../types/eve-access-token.dto";
 import { Character } from "../character/character.model";
@@ -15,8 +9,6 @@ import { User, UserDocument } from "./user.model";
 
 @Injectable()
 export class TokenService {
-  private logger = new Logger(TokenService.name);
-
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private userCacheService: UserCacheService,
@@ -42,16 +34,6 @@ export class TokenService {
     return accessTokens;
   }
 
-  /** Check given access token's expiry, refreshing, if necessary. */
-  async useToken(accessToken: string): Promise<string> {
-    if (this.tokenIsAlive(accessToken)) {
-      const characterEveId = this.getCharacterEveId(accessToken);
-      return this.refreshToken(characterEveId);
-    }
-
-    return accessToken;
-  }
-
   /**
    * Refresh SSO tokens for character.
    *
@@ -70,26 +52,6 @@ export class TokenService {
     await this.userCacheService.invalidateForUser(user);
 
     return tokens.accessToken;
-  }
-
-  private tokenIsAlive(accessToken: string): boolean {
-    const decodedToken = decode(accessToken);
-    const expiry = dayjs.unix(decodedToken["exp"]);
-    return expiry.isAfter();
-  }
-
-  private getCharacterEveId(accessToken: string): number {
-    const decodedToken = decode(accessToken);
-
-    const characterEveId = Number(decodedToken.sub.toString().split(":")[2]);
-
-    if (!characterEveId) {
-      throw new InternalServerErrorException(
-        "Could not find character EVE ID from access token.",
-      );
-    }
-
-    return characterEveId;
   }
 
   /** Revoke all refresh tokens for user. */
