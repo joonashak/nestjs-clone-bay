@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[lib/src/exceptions/invalid-configuration.exception.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/a434a6f/lib/src/exceptions/invalid-configuration.exception.ts#L6)
+[lib/src/exceptions/invalid-configuration.exception.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/exceptions/invalid-configuration.exception.ts#L6)
 
 ## Methods
 

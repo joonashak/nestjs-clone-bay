@@ -35,4 +35,4 @@ Useful to build new decorators (or a decorator factory) encapsulating multiple d
 
 #### Defined in
 
-[lib/src/decorators/require-authentication.decorator.ts:4](https://github.com/joonashak/nestjs-clone-bay/blob/a434a6f/lib/src/decorators/require-authentication.decorator.ts#L4)
+[lib/src/decorators/require-authentication.decorator.ts:4](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/decorators/require-authentication.decorator.ts#L4)

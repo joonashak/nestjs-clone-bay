@@ -1,19 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { has } from "lodash";
 import { TokenService } from "../entities/user/token.service";
 import { UnsafeEsiUrlException } from "../exceptions/unsafe-esi-url.exception";
-
-export type RequestOptions = {
-  characterEveId: number;
-  url: string;
-  userId?: string;
-  data?: object;
-  axiosConfig?: AxiosRequestConfig;
-  allowUnsafeUrl?: boolean;
-  /** Must be explicitly set to `true` if user ID is not given. */
-  allowAnyCharacter?: boolean;
-};
+import { EsiApiRequestOptions } from "../types/esi-api-request-options.interface";
 
 const defaultOptions = {
   allowUnsafeUrl: false,
@@ -28,7 +18,7 @@ type RequestMethods = "get" | "post" | "put" | "delete";
 export class AuthenticatedEsiApiService {
   constructor(private tokenService: TokenService) {}
 
-  async request<T>(method: RequestMethods, getOptions: RequestOptions) {
+  async request<T>(method: RequestMethods, getOptions: EsiApiRequestOptions) {
     const options = { ...defaultOptions, ...getOptions };
     this.assertUrlIsSafe(options.url, options.allowUnsafeUrl);
     const { accessToken } = await this.getAccessToken(options);
@@ -69,7 +59,7 @@ export class AuthenticatedEsiApiService {
    * Safely get access token taking into account user ownership and other
    * settings.
    */
-  private async getAccessToken(options: RequestOptions) {
+  private async getAccessToken(options: EsiApiRequestOptions) {
     if (!options.userId && options.allowAnyCharacter) {
       return this.tokenService.findAccessTokenByCharacterId(
         options.characterEveId,
@@ -85,7 +75,7 @@ export class AuthenticatedEsiApiService {
   private async executeRequest<T>(
     method: RequestMethods,
     accessToken: string,
-    options: RequestOptions,
+    options: EsiApiRequestOptions,
   ) {
     const { axiosConfig, url, data } = options;
     const config = {

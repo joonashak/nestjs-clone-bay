@@ -8,11 +8,13 @@
 ## Services
 
 - [CloneBayConfigService](classes/CloneBayConfigService.md)
+- [CloneBayEsiApiService](classes/CloneBayEsiApiService.md)
 
 ## Types
 
 - [DynamicConfig](classes/DynamicConfig.md)
 - [CloneBayModuleOptions](interfaces/CloneBayModuleOptions.md)
+- [EsiApiRequestOptions](interfaces/EsiApiRequestOptions.md)
 
 ## Exceptions
 

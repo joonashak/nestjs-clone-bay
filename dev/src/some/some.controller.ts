@@ -25,12 +25,14 @@ export class SomeController {
   @Get("esi")
   async esi(@UserId() userId: string) {
     const user = await this.cloneBayUserService.findById(userId);
-    const res = await this.esiApiService.get({
+    const res = await this.esiApiService.post({
       characterEveId: user.main.eveId,
       userId: user.id,
-      url: `https://esi.evetech.net/v2/characters/${user.main.eveId}/titles/`,
+      url: `https://esi.evetech.net/v1/universe/ids/`,
+      data: ["the scope"],
     });
 
+    console.log(res.data);
     return res.data;
   }
 }
