@@ -17,6 +17,8 @@ const defaultGetOptions = {
   allowAnyCharacter: false,
 };
 
+type RequestMethods = "get" | "post" | "put" | "delete";
+
 @Injectable()
 export class AuthenticatedEsiApiService {
   constructor(private tokenService: TokenService) {}
@@ -26,12 +28,9 @@ export class AuthenticatedEsiApiService {
     this.assertUrlIsSafe(options.url, options.allowUnsafeUrl);
 
     const token = await this.getAccessToken(options);
-    const axiosConfig = {
-      headers: { Authorization: `Bearer ${token.accessToken}` },
-    };
 
     try {
-      const res = await axios.get(options.url, axiosConfig);
+      const res = await this.executeRequest("get", token.accessToken, options);
       return res;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -46,9 +45,7 @@ export class AuthenticatedEsiApiService {
         options.characterEveId,
       );
 
-      const res = await axios.get(options.url, {
-        headers: { Authorization: `Bearer ${newToken}` },
-      });
+      const res = await this.executeRequest("get", newToken, options);
       return res;
     }
   }
@@ -81,5 +78,20 @@ export class AuthenticatedEsiApiService {
       options.characterEveId,
       options.userId,
     );
+  }
+
+  private async executeRequest(
+    method: RequestMethods,
+    accessToken: string,
+    options: GetOptions,
+  ) {
+    const config = {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    };
+    const request = {
+      get: async () => axios.get(options.url, config),
+    };
+
+    return request[method]();
   }
 }
