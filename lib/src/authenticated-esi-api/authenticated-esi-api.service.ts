@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { has } from "lodash";
 import { TokenService } from "../entities/user/token.service";
 import { UnsafeEsiUrlException } from "../exceptions/unsafe-esi-url.exception";
 
@@ -27,31 +28,28 @@ type RequestMethods = "get" | "post" | "put" | "delete";
 export class AuthenticatedEsiApiService {
   constructor(private tokenService: TokenService) {}
 
-  async request(method: RequestMethods, getOptions: RequestOptions) {
+  async request<T>(method: RequestMethods, getOptions: RequestOptions) {
     const options = { ...defaultOptions, ...getOptions };
     this.assertUrlIsSafe(options.url, options.allowUnsafeUrl);
+    const { accessToken } = await this.getAccessToken(options);
 
-    const token = await this.getAccessToken(options);
+    let response: AxiosResponse<T>;
 
     try {
-      const res = await this.executeRequest(method, token.accessToken, options);
-      return res;
+      response = await this.executeRequest<T>(method, accessToken, options);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      if (
-        error.response.status !== 403 ||
-        error.response.data.error !== "token is expired"
-      ) {
+      if (!this.tokenHasExpired(error)) {
         throw error;
       }
 
       const newToken = await this.tokenService.refreshToken(
         options.characterEveId,
       );
-
-      const res = await this.executeRequest(method, newToken, options);
-      return res;
+      response = await this.executeRequest<T>(method, newToken, options);
     }
+
+    return response;
   }
 
   /** Prevent leaking tokens accidentally. */
@@ -84,26 +82,39 @@ export class AuthenticatedEsiApiService {
     );
   }
 
-  private async executeRequest(
+  private async executeRequest<T>(
     method: RequestMethods,
     accessToken: string,
     options: RequestOptions,
   ) {
+    const { axiosConfig, url, data } = options;
     const config = {
-      ...options.axiosConfig,
+      ...axiosConfig,
       headers: {
-        ...options.axiosConfig.headers,
+        ...axiosConfig.headers,
         Authorization: `Bearer ${accessToken}`,
       },
     };
 
     const request = {
-      get: async () => axios.get(options.url, config),
-      post: async () => axios.post(options.url, options.data, config),
-      put: async () => axios.put(options.url, options.data, config),
-      delete: async () => axios.delete(options.url, config),
+      get: async () => axios.get<T>(url, config),
+      post: async () => axios.post<T>(url, data, config),
+      put: async () => axios.put<T>(url, data, config),
+      delete: async () => axios.delete<T>(url, config),
     };
 
     return request[method]();
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private tokenHasExpired(error: any): boolean {
+    if (!has(error, "response") || !has(error, "response.data.error")) {
+      return false;
+    }
+
+    return (
+      error.response.status === 403 &&
+      error.response.data.error === "token is expired"
+    );
   }
 }
