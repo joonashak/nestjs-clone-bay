@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { TokenService } from "../entities/user/token.service";
 import { UnsafeEsiUrlException } from "../exceptions/unsafe-esi-url.exception";
 
@@ -8,14 +8,17 @@ export type RequestOptions = {
   url: string;
   userId?: string;
   data?: object;
+  axiosConfig?: AxiosRequestConfig;
   allowUnsafeUrl?: boolean;
   /** Must be explicitly set to `true` if user ID is not given. */
   allowAnyCharacter?: boolean;
 };
 
-const defaultGetOptions = {
+const defaultOptions = {
   allowUnsafeUrl: false,
   allowAnyCharacter: false,
+  axiosConfig: {},
+  data: {},
 };
 
 type RequestMethods = "get" | "post" | "put" | "delete";
@@ -25,7 +28,7 @@ export class AuthenticatedEsiApiService {
   constructor(private tokenService: TokenService) {}
 
   async request(method: RequestMethods, getOptions: RequestOptions) {
-    const options = { ...defaultGetOptions, ...getOptions };
+    const options = { ...defaultOptions, ...getOptions };
     this.assertUrlIsSafe(options.url, options.allowUnsafeUrl);
 
     const token = await this.getAccessToken(options);
@@ -87,8 +90,13 @@ export class AuthenticatedEsiApiService {
     options: RequestOptions,
   ) {
     const config = {
-      headers: { Authorization: `Bearer ${accessToken}` },
+      ...options.axiosConfig,
+      headers: {
+        ...options.axiosConfig.headers,
+        Authorization: `Bearer ${accessToken}`,
+      },
     };
+
     const request = {
       get: async () => axios.get(options.url, config),
       post: async () => axios.post(options.url, options.data, config),
