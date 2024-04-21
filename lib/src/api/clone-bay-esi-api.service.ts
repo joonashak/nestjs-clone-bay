@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import {
   AuthenticatedEsiApiService,
-  GetOptions,
+  RequestOptions,
 } from "../authenticated-esi-api/authenticated-esi-api.service";
 
 /**
@@ -13,7 +13,19 @@ import {
 export class CloneBayEsiApiService {
   constructor(private apiService: AuthenticatedEsiApiService) {}
 
-  async get(options: GetOptions) {
-    return this.apiService.get(options);
+  async get(options: RequestOptions) {
+    return this.apiService.request("get", options);
+  }
+
+  async post(options: RequestOptions) {
+    return this.apiService.request("post", options);
+  }
+
+  async put(options: RequestOptions) {
+    return this.apiService.request("put", options);
+  }
+
+  async delete(options: RequestOptions) {
+    return this.apiService.request("delete", options);
   }
 }

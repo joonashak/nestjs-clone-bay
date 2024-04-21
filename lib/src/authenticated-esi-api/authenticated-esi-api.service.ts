@@ -3,10 +3,11 @@ import axios from "axios";
 import { TokenService } from "../entities/user/token.service";
 import { UnsafeEsiUrlException } from "../exceptions/unsafe-esi-url.exception";
 
-export type GetOptions = {
+export type RequestOptions = {
   characterEveId: number;
   url: string;
   userId?: string;
+  data?: object;
   allowUnsafeUrl?: boolean;
   /** Must be explicitly set to `true` if user ID is not given. */
   allowAnyCharacter?: boolean;
@@ -23,14 +24,14 @@ type RequestMethods = "get" | "post" | "put" | "delete";
 export class AuthenticatedEsiApiService {
   constructor(private tokenService: TokenService) {}
 
-  async get(getOptions: GetOptions) {
+  async request(method: RequestMethods, getOptions: RequestOptions) {
     const options = { ...defaultGetOptions, ...getOptions };
     this.assertUrlIsSafe(options.url, options.allowUnsafeUrl);
 
     const token = await this.getAccessToken(options);
 
     try {
-      const res = await this.executeRequest("get", token.accessToken, options);
+      const res = await this.executeRequest(method, token.accessToken, options);
       return res;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -45,7 +46,7 @@ export class AuthenticatedEsiApiService {
         options.characterEveId,
       );
 
-      const res = await this.executeRequest("get", newToken, options);
+      const res = await this.executeRequest(method, newToken, options);
       return res;
     }
   }
@@ -67,7 +68,7 @@ export class AuthenticatedEsiApiService {
    * Safely get access token taking into account user ownership and other
    * settings.
    */
-  private async getAccessToken(options: GetOptions) {
+  private async getAccessToken(options: RequestOptions) {
     if (!options.userId && options.allowAnyCharacter) {
       return this.tokenService.findAccessTokenByCharacterId(
         options.characterEveId,
@@ -83,13 +84,16 @@ export class AuthenticatedEsiApiService {
   private async executeRequest(
     method: RequestMethods,
     accessToken: string,
-    options: GetOptions,
+    options: RequestOptions,
   ) {
     const config = {
       headers: { Authorization: `Bearer ${accessToken}` },
     };
     const request = {
       get: async () => axios.get(options.url, config),
+      post: async () => axios.post(options.url, options.data, config),
+      put: async () => axios.put(options.url, options.data, config),
+      delete: async () => axios.delete(options.url, config),
     };
 
     return request[method]();
