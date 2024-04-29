@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[lib/src/types/eve-access-token.dto.ts:9](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/types/eve-access-token.dto.ts#L9)
+[lib/src/types/eve-access-token.dto.ts:9](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/types/eve-access-token.dto.ts#L9)
 
 ___
 
@@ -28,4 +28,4 @@ ___
 
 #### Defined in
 
-[lib/src/types/eve-access-token.dto.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/types/eve-access-token.dto.ts#L6)
+[lib/src/types/eve-access-token.dto.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/types/eve-access-token.dto.ts#L6)

@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[lib/src/api/clone-bay-user.service.ts:8](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/api/clone-bay-user.service.ts#L8)
+[lib/src/api/clone-bay-user.service.ts:8](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/api/clone-bay-user.service.ts#L8)
 
 ## Methods
 
@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[lib/src/api/clone-bay-user.service.ts:13](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/api/clone-bay-user.service.ts#L13)
+[lib/src/api/clone-bay-user.service.ts:13](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/api/clone-bay-user.service.ts#L13)
 
 ___
 
@@ -59,4 +59,4 @@ ___
 
 #### Defined in
 
-[lib/src/api/clone-bay-user.service.ts:18](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/api/clone-bay-user.service.ts#L18)
+[lib/src/api/clone-bay-user.service.ts:18](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/api/clone-bay-user.service.ts#L18)

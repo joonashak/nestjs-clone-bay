@@ -41,4 +41,4 @@ Useful to build new decorators (or a decorator factory) encapsulating multiple d
 
 #### Defined in
 
-[lib/src/decorators/require-policies.decorator.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/decorators/require-policies.decorator.ts#L6)
+[lib/src/decorators/require-policies.decorator.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/decorators/require-policies.decorator.ts#L6)

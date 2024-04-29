@@ -4,4 +4,4 @@
 
 #### Defined in
 
-[lib/src/constants.ts:2](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/constants.ts#L2)
+[lib/src/constants.ts:2](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/constants.ts#L2)

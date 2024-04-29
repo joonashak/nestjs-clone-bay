@@ -8,7 +8,7 @@
 
 #### Defined in
 
-[lib/src/authorization/user-action.enum.ts:3](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/authorization/user-action.enum.ts#L3)
+[lib/src/authorization/user-action.enum.ts:3](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/authorization/user-action.enum.ts#L3)
 
 ___
 
@@ -18,7 +18,7 @@ ___
 
 #### Defined in
 
-[lib/src/authorization/user-action.enum.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/authorization/user-action.enum.ts#L6)
+[lib/src/authorization/user-action.enum.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/authorization/user-action.enum.ts#L6)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[lib/src/authorization/user-action.enum.ts:2](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/authorization/user-action.enum.ts#L2)
+[lib/src/authorization/user-action.enum.ts:2](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/authorization/user-action.enum.ts#L2)
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 #### Defined in
 
-[lib/src/authorization/user-action.enum.ts:4](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/authorization/user-action.enum.ts#L4)
+[lib/src/authorization/user-action.enum.ts:4](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/authorization/user-action.enum.ts#L4)
 
 ___
 
@@ -48,4 +48,4 @@ ___
 
 #### Defined in
 
-[lib/src/authorization/user-action.enum.ts:5](https://github.com/joonashak/nestjs-clone-bay/blob/79758ff/lib/src/authorization/user-action.enum.ts#L5)
+[lib/src/authorization/user-action.enum.ts:5](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/authorization/user-action.enum.ts#L5)
