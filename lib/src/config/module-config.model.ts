@@ -1,4 +1,5 @@
 import { IsString } from "class-validator";
+import { DynamicConfig } from "./dynamic-config.model";
 
 /** `CloneBayModule` static configuration. */
 export class ModuleConfig {
@@ -8,4 +9,6 @@ export class ModuleConfig {
 
   @IsString()
   afterLoginUrl = "/";
+
+  dynamicConfigOverride?: Partial<DynamicConfig> = {};
 }

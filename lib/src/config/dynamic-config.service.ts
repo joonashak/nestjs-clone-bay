@@ -6,6 +6,7 @@ import { PartialDeep } from "type-fest";
 import { CacheService } from "../cache/cache.service";
 import { DYNAMIC_CONFIG_CACHE_KEY } from "../constants";
 import { DynamicConfig, DynamicConfigDocument } from "./dynamic-config.model";
+import { ModuleConfigService } from "./module-config.service";
 
 /** Provides configuration that can change during run time. */
 @Injectable()
@@ -16,12 +17,26 @@ export class DynamicConfigService {
     @InjectModel(DynamicConfig.name)
     private dynamicConfigModel: Model<DynamicConfigDocument>,
     private cacheService: CacheService,
+    private moduleConfigService: ModuleConfigService,
   ) {}
 
+  /**
+   * Current dynamic application configuration.
+   *
+   * Note that static module configuration may be used to override dynamic
+   * configuration values.
+   */
   async get(): Promise<DynamicConfig> {
-    return this.cacheService.wrap(DYNAMIC_CONFIG_CACHE_KEY, async () =>
-      this.dynamicConfigModel.findOne(),
+    const dynamicConfig = await this.cacheService.wrap(
+      DYNAMIC_CONFIG_CACHE_KEY,
+      async () => (await this.dynamicConfigModel.findOne()).toObject(),
     );
+
+    const configWithOverrides = {
+      ...dynamicConfig,
+      ...this.moduleConfigService.config.dynamicConfigOverride,
+    };
+    return configWithOverrides;
   }
 
   private async update(configUpdate: PartialDeep<DynamicConfig>) {
