@@ -39,12 +39,24 @@ describe("SSO login", () => {
     await app.close();
   });
 
-  it("Redirect to SSO login page", async () => {
-    const res = await request(app.getHttpServer())
-      .get("/sso/login")
-      .expect(302);
+  describe("Controller", () => {
+    it("Redirect to SSO login page", async () => {
+      const res = await request(app.getHttpServer())
+        .get("/sso/redirect")
+        .expect(302);
 
-    expect(res.headers.location).toMatch(/^https:\/\/example.com\/authorize/);
+      expect(res.headers.location).toMatch(/^https:\/\/example.com\/authorize/);
+    });
+
+    it("Intermediate redirect", async () => {
+      const res = await request(app.getHttpServer())
+        .get("/sso/login")
+        .expect(302);
+
+      expect(res.headers.location).toMatch("redirect");
+    });
+
+    it("Redirects to desired URL after login", async () => {});
   });
 
   describe("New users", () => {

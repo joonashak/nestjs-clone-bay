@@ -36,7 +36,7 @@ import { SomeModule } from "./some/some.module";
       callbackUrl: "http://localhost:3000/sso/callback",
       scopes: ["esi-characters.read_titles.v1"],
     }),
-    CloneBayModule.forRoot(),
+    CloneBayModule.forRoot({}),
     CloneBaySsoModule,
     CloneBayResolversModule,
     SomeModule,

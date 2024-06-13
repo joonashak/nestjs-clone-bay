@@ -31,10 +31,31 @@ export class SsoController {
     private moduleConfigService: ModuleConfigService,
   ) {}
 
-  @RequireSsoAuth()
+  /**
+   * Start SSO login process.
+   *
+   * This first saves the value of an optional `afterLoginUrl` query parameter
+   * and then redirects to another GET endpoint that starts the actual login
+   * process. The intermediate redirection is done in order to save the query
+   * parameter value without having to use a middleware or a guard (the SSO
+   * login is implemented as a guard which prevents accessing the query
+   * parameters in a conventional manner).
+   */
   @Get("sso/login")
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  async login() {}
+  async login(
+    @Query("afterLoginUrl") afterLoginUrl: string | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    @Session() session: Record<string, any>,
+    @Res() response: Response,
+  ) {
+    session.afterLoginUrl = afterLoginUrl;
+    response.redirect("redirect");
+  }
+
+  @RequireSsoAuth()
+  @Get("sso/redirect")
+  async redirect() {}
 
   @UsePipes(ValidationPipe)
   @UseFilters(HttpExceptionFilter)
@@ -62,6 +83,8 @@ export class SsoController {
       session[USER_ID_KEY_IN_SESSION] = user.id;
     }
 
-    response.redirect(this.moduleConfigService.config.afterLoginUrl);
+    response.redirect(
+      session.afterLoginUrl || this.moduleConfigService.config.afterLoginUrl,
+    );
   }
 }
