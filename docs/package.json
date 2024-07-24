@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Documentation for @joonashak/nestjs-clone-bay library.",
   "authors": {
     "name": "Joonas Häkkinen",
