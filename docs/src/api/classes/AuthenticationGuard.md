@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[lib/src/authentication/authentication.guard.ts:9](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/authentication/authentication.guard.ts#L9)
+[lib/src/authentication/authentication.guard.ts:9](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/authentication/authentication.guard.ts#L9)
 
 ## Methods
 
@@ -47,4 +47,4 @@ CanActivate.canActivate
 
 #### Defined in
 
-[lib/src/authentication/authentication.guard.ts:14](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/authentication/authentication.guard.ts#L14)
+[lib/src/authentication/authentication.guard.ts:14](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/authentication/authentication.guard.ts#L14)

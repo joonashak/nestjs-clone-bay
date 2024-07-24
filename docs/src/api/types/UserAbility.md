@@ -4,4 +4,4 @@
 
 #### Defined in
 
-[lib/src/authorization/ability.factory.ts:15](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/authorization/ability.factory.ts#L15)
+[lib/src/authorization/ability.factory.ts:15](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/authorization/ability.factory.ts#L15)

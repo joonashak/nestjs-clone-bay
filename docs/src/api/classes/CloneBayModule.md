@@ -46,7 +46,7 @@ CloneBayModuleDefinition.forRoot
 
 #### Defined in
 
-[lib/src/clone-bay.module.ts:42](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/clone-bay.module.ts#L42)
+[lib/src/clone-bay.module.ts:42](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/clone-bay.module.ts#L42)
 
 ___
 
@@ -70,4 +70,4 @@ CloneBayModuleDefinition.forRootAsync
 
 #### Defined in
 
-[lib/src/clone-bay.module.ts:47](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/clone-bay.module.ts#L47)
+[lib/src/clone-bay.module.ts:47](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/clone-bay.module.ts#L47)

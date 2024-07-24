@@ -29,7 +29,7 @@ _Default: `true`_
 
 #### Defined in
 
-[lib/src/config/dynamic-config.model.ts:29](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/config/dynamic-config.model.ts#L29)
+[lib/src/config/dynamic-config.model.ts:29](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/config/dynamic-config.model.ts#L29)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[lib/src/config/dynamic-config.model.ts:14](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/config/dynamic-config.model.ts#L14)
+[lib/src/config/dynamic-config.model.ts:14](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/config/dynamic-config.model.ts#L14)
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 #### Defined in
 
-[lib/src/config/dynamic-config.model.ts:8](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/config/dynamic-config.model.ts#L8)
+[lib/src/config/dynamic-config.model.ts:8](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/config/dynamic-config.model.ts#L8)
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-[lib/src/config/dynamic-config.model.ts:11](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/config/dynamic-config.model.ts#L11)
+[lib/src/config/dynamic-config.model.ts:11](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/config/dynamic-config.model.ts#L11)
 
 ___
 
@@ -80,4 +80,4 @@ _Default: `false`_
 
 #### Defined in
 
-[lib/src/config/dynamic-config.model.ts:44](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/config/dynamic-config.model.ts#L44)
+[lib/src/config/dynamic-config.model.ts:44](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/config/dynamic-config.model.ts#L44)

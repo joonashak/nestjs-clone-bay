@@ -10,7 +10,7 @@ URL whereto redirect user after successful login.
 
 #### Defined in
 
-[lib/src/clone-bay-module-options.interface.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/clone-bay-module-options.interface.ts#L6)
+[lib/src/clone-bay-module-options.interface.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/clone-bay-module-options.interface.ts#L6)
 
 ___
 
@@ -26,4 +26,22 @@ their dynamic counterparts.
 
 #### Defined in
 
-[lib/src/clone-bay-module-options.interface.ts:15](https://github.com/joonashak/nestjs-clone-bay/blob/0cf8f89/lib/src/clone-bay-module-options.interface.ts#L15)
+[lib/src/clone-bay-module-options.interface.ts:26](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/clone-bay-module-options.interface.ts#L26)
+
+___
+
+### esiBaseUrl
+
+• `Optional` **esiBaseUrl**: `string`
+
+Optionally override default ESI API host.
+
+Use this to direct ESI API calls to a custom host. Overrides only the host
+part of URL. Useful for E2E testing.
+
+Note that this does not affect SSO authentication. That can be configured
+via `nestjs-eve-auth` options.
+
+#### Defined in
+
+[lib/src/clone-bay-module-options.interface.ts:17](https://github.com/joonashak/nestjs-clone-bay/blob/3e50c73/lib/src/clone-bay-module-options.interface.ts#L17)

@@ -4,6 +4,7 @@ import { provideMockService } from "./mock-services";
 
 export const defaultMockConfiguration: ModuleConfig = {
   afterLoginUrl: "/",
+  esiBaseUrl: "",
 };
 
 export const provideMockModuleConfigService = (
