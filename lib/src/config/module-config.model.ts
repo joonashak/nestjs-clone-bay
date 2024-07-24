@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsUrl } from "class-validator";
 import { DynamicConfig } from "./dynamic-config.model";
 
 /** `CloneBayModule` static configuration. */
@@ -7,8 +7,19 @@ export class ModuleConfig {
     Object.assign(this, init);
   }
 
-  @IsString()
+  @IsUrl({
+    require_tld: false,
+    require_host: false,
+    protocols: ["http", "https"],
+  })
   afterLoginUrl = "/";
+
+  @IsUrl({
+    require_tld: false,
+    require_protocol: true,
+    protocols: ["http", "https"],
+  })
+  esiBaseUrl = "https://esi.evetech.net";
 
   dynamicConfigOverride?: Partial<DynamicConfig> = {};
 }
