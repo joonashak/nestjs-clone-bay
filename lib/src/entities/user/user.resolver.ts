@@ -6,6 +6,7 @@ import { RequireAuthentication } from "../../decorators/require-authentication.d
 import { RequirePolicies } from "../../decorators/require-policies.decorator";
 import { UserId } from "../../decorators/user-id.decorator";
 import { EveAccessToken } from "../../types/eve-access-token.dto";
+import { AltService } from "./alt.service";
 import { TokenService } from "./token.service";
 import { User } from "./user.model";
 import { UserService } from "./user.service";
@@ -17,6 +18,7 @@ export class UserResolver {
   constructor(
     private tokenService: TokenService,
     private userService: UserService,
+    private altService: AltService,
   ) {}
 
   @RequireAuthentication()
@@ -59,5 +61,14 @@ export class UserResolver {
 
     const accessToken = await this.tokenService.refreshToken(characterEveId);
     return { eveId: characterEveId, accessToken };
+  }
+
+  @RequireAuthentication()
+  @Mutation(() => User)
+  async removeAlt(
+    @UserId() userId: string,
+    @Args("eveId") altEveId: number,
+  ): Promise<User> {
+    return this.altService.removeAlt(altEveId, userId);
   }
 }

@@ -37,4 +37,15 @@ export class AltService {
     user.markModified("alts");
     return user.save();
   }
+
+  async removeAlt(altEveId: number, userId: string): Promise<UserDocument> {
+    const user = await this.userModel.findOneAndUpdate(
+      { id: userId },
+      { $pull: { alts: { eveId: altEveId } } },
+      { returnDocument: "after" },
+    );
+
+    await this.userCacheService.invalidateForUser(user);
+    return user;
+  }
 }
