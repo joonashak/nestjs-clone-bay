@@ -1,4 +1,4 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { merge } from "lodash";
 import { Model } from "mongoose";
@@ -8,8 +8,6 @@ import { User, UserDocument } from "./user.model";
 
 @Injectable()
 export class UserService {
-  private logger = new Logger(UserService.name);
-
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private userCacheService: UserCacheService,
@@ -61,28 +59,6 @@ export class UserService {
       user.markModified("alts");
     }
 
-    return user.save();
-  }
-
-  async addAlt(alt: Character, userId: string): Promise<UserDocument> {
-    // Must populate unselected fields to avoid removing them.
-    const user = await this.userModel
-      .findOne({ id: userId })
-      .populate("alts.accessToken")
-      .populate("alts.refreshToken");
-
-    await this.userCacheService.invalidateForUser(user);
-
-    const existing = await this.findByCharacterEveId(alt.eveId);
-    if (existing) {
-      this.logger.log(
-        `Nothing was done because character given to add as an alt is already registered. (userId=${userId}, characterId=${alt.eveId})`,
-      );
-      return existing;
-    }
-
-    user.alts.push(alt);
-    user.markModified("alts");
     return user.save();
   }
 

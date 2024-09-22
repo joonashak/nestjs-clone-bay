@@ -18,7 +18,7 @@ import { AuthenticationService } from "../authentication/authentication.service"
 import { ModuleConfigService } from "../config/module-config.service";
 import { USER_ID_KEY_IN_SESSION } from "../constants";
 import { CharacterService } from "../entities/character/character.service";
-import { UserService } from "../entities/user/user.service";
+import { AltService } from "../entities/user/alt.service";
 import { HttpExceptionFilter } from "../filters/http-exception.filter";
 
 @Controller()
@@ -27,7 +27,7 @@ export class SsoController {
     private ssoService: SsoService,
     private characterService: CharacterService,
     private authenticationService: AuthenticationService,
-    private userService: UserService,
+    private altService: AltService,
     private moduleConfigService: ModuleConfigService,
   ) {}
 
@@ -77,7 +77,7 @@ export class SsoController {
     });
 
     if (session[USER_ID_KEY_IN_SESSION]) {
-      this.userService.addAlt(esiCharacter, session[USER_ID_KEY_IN_SESSION]);
+      this.altService.addAlt(esiCharacter, session[USER_ID_KEY_IN_SESSION]);
     } else {
       const user = await this.authenticationService.ssoLogin(esiCharacter);
       session[USER_ID_KEY_IN_SESSION] = user.id;
