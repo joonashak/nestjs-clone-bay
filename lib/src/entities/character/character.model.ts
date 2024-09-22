@@ -20,7 +20,7 @@ export class Character {
 
   @Field(() => Alliance, { nullable: true })
   @Prop({ default: null })
-  alliance?: Alliance;
+  alliance?: Alliance | null;
 
   @Prop({ select: false, default: null })
   accessToken?: string;
