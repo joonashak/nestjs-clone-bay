@@ -5,6 +5,7 @@ import session from "express-session";
 import { AuthenticationAllowlistService } from "../src/authentication/authentication-allowlist.service";
 import { AuthenticationService } from "../src/authentication/authentication.service";
 import { CharacterService } from "../src/entities/character/character.service";
+import { AltService } from "../src/entities/user/alt.service";
 import { UserCacheService } from "../src/entities/user/user-cache.service";
 import { User, UserSchema } from "../src/entities/user/user.model";
 import { UserService } from "../src/entities/user/user.service";
@@ -35,6 +36,7 @@ export const createTestingApp = async (): Promise<INestApplication> => {
       MockCacheService,
       UserService,
       UserCacheService,
+      AltService,
     ],
   }).compile();
 
