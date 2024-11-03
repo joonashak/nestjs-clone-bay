@@ -13,6 +13,7 @@ import { ConfigModule } from "./config/config.module";
 import { CharacterModule } from "./entities/character/character.module";
 import { UserModule } from "./entities/user/user.module";
 import { EsiModule } from "./esi/esi.module";
+import { MockingModule } from "./mocking/mocking.module";
 
 /** @group Modules */
 @Global()
@@ -27,6 +28,7 @@ import { EsiModule } from "./esi/esi.module";
     SsoModule,
     UserModule,
     AuthenticatedEsiApiModule,
+    ...(process.env.UNSAFE_MOCKING_ENABLED === "true" ? [MockingModule] : []),
   ],
   exports: [
     CLONE_BAY_MODULE_OPTIONS_TOKEN,
