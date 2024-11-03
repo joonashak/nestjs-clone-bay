@@ -76,10 +76,12 @@ export class SsoController {
       ...tokens,
     });
 
+    // TODO: session[USER_ID_KEY_IN_SESSION] should probably be something like getUserIdFromSession()...
     if (session[USER_ID_KEY_IN_SESSION]) {
       this.altService.addAlt(esiCharacter, session[USER_ID_KEY_IN_SESSION]);
     } else {
       const user = await this.authenticationService.ssoLogin(esiCharacter);
+      // TODO: ...and setUserIdInSession() here.
       session[USER_ID_KEY_IN_SESSION] = user.id;
     }
 

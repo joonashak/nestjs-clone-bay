@@ -1,6 +1,11 @@
 import { Logger, Module, OnModuleInit } from "@nestjs/common";
+import { MockingController } from "./mocking.controller";
+import { MockingService } from "./mocking.service";
 
-@Module({})
+@Module({
+  providers: [MockingService],
+  controllers: [MockingController],
+})
 export class MockingModule implements OnModuleInit {
   private readonly logger = new Logger(MockingModule.name);
 
