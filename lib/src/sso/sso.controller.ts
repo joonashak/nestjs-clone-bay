@@ -15,8 +15,8 @@ import {
 } from "@nestjs/common";
 import { Response } from "express";
 import { AuthenticationService } from "../authentication/authentication.service";
+import { getUserId, setUserId } from "../common/utils/session.util";
 import { ModuleConfigService } from "../config/module-config.service";
-import { USER_ID_KEY_IN_SESSION } from "../constants";
 import { CharacterService } from "../entities/character/character.service";
 import { AltService } from "../entities/user/alt.service";
 import { HttpExceptionFilter } from "../filters/http-exception.filter";
@@ -76,13 +76,12 @@ export class SsoController {
       ...tokens,
     });
 
-    // TODO: session[USER_ID_KEY_IN_SESSION] should probably be something like getUserIdFromSession()...
-    if (session[USER_ID_KEY_IN_SESSION]) {
-      this.altService.addAlt(esiCharacter, session[USER_ID_KEY_IN_SESSION]);
+    const loggedInUserId = getUserId(session);
+    if (loggedInUserId) {
+      this.altService.addAlt(esiCharacter, loggedInUserId);
     } else {
       const user = await this.authenticationService.ssoLogin(esiCharacter);
-      // TODO: ...and setUserIdInSession() here.
-      session[USER_ID_KEY_IN_SESSION] = user.id;
+      setUserId(session, user.id);
     }
 
     response.redirect(
