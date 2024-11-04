@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, Query, Session } from "@nestjs/common";
 import { User } from "../entities/user/user.model";
 import { MockingService } from "./mocking.service";
 
@@ -9,5 +9,13 @@ export class MockingController {
   @Post("create-user")
   async createUser(@Body() user: Omit<User, "id">) {
     return this.mockingService.createUser(user);
+  }
+
+  @Get("login")
+  async login(
+    @Query("eveId") eveId: string,
+    @Session() session: Record<string, unknown>,
+  ) {
+    return this.mockingService.loginWithEveId(session, Number(eveId));
   }
 }
