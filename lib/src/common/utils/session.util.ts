@@ -1,9 +1,10 @@
 import { InternalServerErrorException } from "@nestjs/common";
+import { get } from "lodash";
 import { USER_ID_KEY_IN_SESSION } from "../../constants";
 
 /** Get user ID from Express session or throw if not found. */
 export const getUserIdSafe = (session: unknown): string => {
-  const userId = session[USER_ID_KEY_IN_SESSION];
+  const userId = get(session, USER_ID_KEY_IN_SESSION);
 
   if (!userId || typeof userId !== "string") {
     throw new InternalServerErrorException();
