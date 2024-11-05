@@ -9,11 +9,11 @@ import {
   CLONE_BAY_MODULE_OPTIONS_TOKEN,
   CloneBayModuleDefinition,
 } from "./clone-bay.module-definition";
+import { conditionalModules } from "./conditional-modules";
 import { ConfigModule } from "./config/config.module";
 import { CharacterModule } from "./entities/character/character.module";
 import { UserModule } from "./entities/user/user.module";
 import { EsiModule } from "./esi/esi.module";
-import { MockingModule } from "./mocking/mocking.module";
 
 /** @group Modules */
 @Global()
@@ -28,7 +28,7 @@ import { MockingModule } from "./mocking/mocking.module";
     SsoModule,
     UserModule,
     AuthenticatedEsiApiModule,
-    ...(process.env.UNSAFE_MOCKING_ENABLED === "true" ? [MockingModule] : []),
+    ...conditionalModules(),
   ],
   exports: [
     CLONE_BAY_MODULE_OPTIONS_TOKEN,
