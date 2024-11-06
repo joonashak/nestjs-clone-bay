@@ -2,6 +2,7 @@ import { SsoModule as EveAuthSsoModule } from "@joonashak/nestjs-eve-auth";
 import { Module } from "@nestjs/common";
 import { CharacterModule } from "../entities/character/character.module";
 import { SsoController } from "../sso/sso.controller";
+import { SsoService } from "../sso/sso.service";
 
 /**
  * Ready-to-use HTTP implementation for EVE SSO login.
@@ -15,6 +16,7 @@ import { SsoController } from "../sso/sso.controller";
  */
 @Module({
   imports: [EveAuthSsoModule, CharacterModule],
+  providers: [SsoService],
   controllers: [SsoController],
 })
 export class CloneBaySsoModule {}
