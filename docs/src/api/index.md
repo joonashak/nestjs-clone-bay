@@ -47,6 +47,11 @@
 - [RequirePolicies](functions/RequirePolicies.md)
 - [UserId](functions/UserId.md)
 
+## Testing
+
+- [CloneBayMockingModule](classes/CloneBayMockingModule.md)
+- [CloneBayMockingService](classes/CloneBayMockingService.md)
+
 ## Type Aliases
 
 - [UserAbility](types/UserAbility.md)

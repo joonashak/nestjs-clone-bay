@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import getRequest from "../common/utils/get-request.util";
-import { USER_ID_KEY_IN_SESSION } from "../constants";
+import { getUserIdSafe } from "../common/utils/session.util";
 import { UserService } from "../entities/user/user.service";
 import { AbilityFactory, UserAbility } from "./ability.factory";
 import { CHECK_POLICIES_KEY } from "./check-policies.decorator";
@@ -23,7 +23,7 @@ export class PolicyGuard implements CanActivate {
       ) || [];
 
     const request = getRequest(context);
-    const userId = request.session[USER_ID_KEY_IN_SESSION];
+    const userId = getUserIdSafe(request.session);
     const user = await this.userService.findById(userId);
     const ability = this.caslAbilityFactory.createForUser(user);
 

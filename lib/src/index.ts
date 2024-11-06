@@ -1,5 +1,7 @@
 export { CloneBayConfigService } from "./api/clone-bay-config.service";
 export { CloneBayEsiApiService } from "./api/clone-bay-esi-api.service";
+export { CloneBayMockingModule } from "./api/clone-bay-mocking-module";
+export { CloneBayMockingService } from "./api/clone-bay-mocking.service";
 export { CloneBayResolversModule } from "./api/clone-bay-resolvers.module";
 export { CloneBaySsoModule } from "./api/clone-bay-sso.module";
 export { CloneBayUserService } from "./api/clone-bay-user.service";

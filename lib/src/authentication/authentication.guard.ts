@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 import getRequest from "../common/utils/get-request.util";
-import { USER_ID_KEY_IN_SESSION } from "../constants";
+import { getUserId } from "../common/utils/session.util";
 import { UserService } from "../entities/user/user.service";
 import { AuthenticationService } from "./authentication.service";
 
@@ -13,16 +13,14 @@ export class AuthenticationGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = getRequest(context);
-    const userId = request.session[USER_ID_KEY_IN_SESSION];
+    const userId = getUserId(request.session);
 
-    // Exit immediately, if user ID is not defined for whatever reason.
+    // Exit immediately if user ID is not defined for whatever reason.
     if (!userId) {
       return false;
     }
 
-    const user = await this.userService.findById(
-      request.session[USER_ID_KEY_IN_SESSION],
-    );
+    const user = await this.userService.findById(userId);
 
     if (user === null) {
       return false;
