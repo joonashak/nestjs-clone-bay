@@ -10,6 +10,7 @@ import { UserCacheService } from "../src/entities/user/user-cache.service";
 import { User, UserSchema } from "../src/entities/user/user.model";
 import { UserService } from "../src/entities/user/user.service";
 import { SsoController } from "../src/sso/sso.controller";
+import { SsoService } from "../src/sso/sso.service";
 import { MockCacheService } from "./mocks/cache.service.mock";
 import { provideMockDynamicConfigService } from "./mocks/dynamic-config.service.mock";
 import { MockEsiService } from "./mocks/esi-service.mock";
@@ -37,6 +38,7 @@ export const createTestingApp = async (): Promise<INestApplication> => {
       UserService,
       UserCacheService,
       AltService,
+      SsoService,
     ],
   }).compile();
 
