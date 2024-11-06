@@ -1,5 +1,6 @@
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 import {
+  CloneBayMockingModule,
   CloneBayModule,
   CloneBayResolversModule,
   CloneBaySsoModule,
@@ -40,6 +41,7 @@ import { SomeModule } from "./some/some.module";
     CloneBaySsoModule,
     CloneBayResolversModule,
     SomeModule,
+    CloneBayMockingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

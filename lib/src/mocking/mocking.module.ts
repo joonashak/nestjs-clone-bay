@@ -5,6 +5,7 @@ import { MockingService } from "./mocking.service";
 @Module({
   providers: [MockingService],
   controllers: [MockingController],
+  exports: [MockingService],
 })
 export class MockingModule implements OnModuleInit {
   private readonly logger = new Logger(MockingModule.name);

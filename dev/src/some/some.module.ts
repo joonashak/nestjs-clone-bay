@@ -1,5 +1,6 @@
 import {
   CloneBayEsiApiService,
+  CloneBayMockingModule,
   CloneBayUserService,
 } from "@joonashak/nestjs-clone-bay";
 import { Module } from "@nestjs/common";
@@ -13,6 +14,7 @@ import { SomeService } from "./some.service";
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Some.name, schema: SomeSchema }]),
+    CloneBayMockingModule,
   ],
   providers: [
     SomeService,
