@@ -9,6 +9,7 @@ import { getUserId, setUserId } from "../common/utils/session.util";
 import { ModuleConfigService } from "../config/module-config.service";
 import { CharacterService } from "../entities/character/character.service";
 import { AltService } from "../entities/user/alt.service";
+import { User } from "../entities/user/user.model";
 
 @Injectable()
 export class SsoService {
@@ -34,13 +35,18 @@ export class SsoService {
       ...tokens,
     });
 
+    const registerAlt = get(session, "registerAlt");
     const loggedInUserId = getUserId(session);
-    if (loggedInUserId) {
-      this.altService.addAlt(esiCharacter, loggedInUserId);
+
+    let user: User;
+
+    if (loggedInUserId && registerAlt) {
+      user = await this.altService.addAlt(esiCharacter, loggedInUserId);
     } else {
-      const user = await this.authenticationService.ssoLogin(esiCharacter);
-      setUserId(session, user.id);
+      user = await this.authenticationService.ssoLogin(esiCharacter);
     }
+
+    setUserId(session, user.id);
 
     return (
       get(session, "afterLoginUrl") ||

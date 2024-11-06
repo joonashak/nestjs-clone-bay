@@ -21,14 +21,11 @@ export class SsoController {
   constructor(private ssoService: SsoService) {}
 
   /**
-   * Start SSO login process.
+   * Start SSO login process to sign in.
    *
    * This first saves the value of an optional `afterLoginUrl` query parameter
-   * and then redirects to another GET endpoint that starts the actual login
-   * process. The intermediate redirection is done in order to save the query
-   * parameter value without having to use a middleware or a guard (the SSO
-   * login is implemented as a guard which prevents accessing the query
-   * parameters in a conventional manner).
+   * and then redirects to another GET endpoint that starts the actual SSO
+   * flow.
    */
   @Get("sso/login")
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -39,6 +36,27 @@ export class SsoController {
     @Res() response: Response,
   ) {
     session.afterLoginUrl = afterLoginUrl;
+    session.registerAlt = false;
+    response.redirect("redirect");
+  }
+
+  /**
+   * Start SSO login process to add alt character.
+   *
+   * This first saves the value of an optional `afterLoginUrl` query parameter
+   * and then redirects to another GET endpoint that starts the actual SSO
+   * flow.
+   */
+  @Get("sso/register-alt")
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  async registerAlt(
+    @Query("afterLoginUrl") afterLoginUrl: string | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    @Session() session: Record<string, any>,
+    @Res() response: Response,
+  ) {
+    session.afterLoginUrl = afterLoginUrl;
+    session.registerAlt = true;
     response.redirect("redirect");
   }
 
