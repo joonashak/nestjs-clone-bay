@@ -18,4 +18,10 @@ export class MockingController {
   ) {
     return this.mockingService.loginWithEveId(session, Number(eveId));
   }
+
+  @Get("reset")
+  async reset() {
+    await this.mockingService.reset();
+    return "OK";
+  }
 }
