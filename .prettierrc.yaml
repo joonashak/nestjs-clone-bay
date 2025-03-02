@@ -1,0 +1,6 @@
+printWidth: 100
+proseWrap: always
+plugins:
+  - prettier-plugin-jsdoc
+jsdocPrintWidth: 80
+jsdocCommentLineStrategy: multiline

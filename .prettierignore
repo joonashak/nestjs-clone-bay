@@ -1,0 +1,4 @@
+dist
+**/.vuepress/.cache
+**/.vuepress/.temp
+/docs/src/api
