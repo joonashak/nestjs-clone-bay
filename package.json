@@ -18,6 +18,6 @@
   "author": "Joonas Häkkinen <joonashak@proton.me>",
   "license": "GPL-3.0-only",
   "devDependencies": {
-    "@nestjs/cli": "^10.1.10"
+    "@nestjs/cli": "^10.4.9"
   }
 }
