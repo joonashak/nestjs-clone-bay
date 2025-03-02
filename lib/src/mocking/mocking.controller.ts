@@ -12,10 +12,7 @@ export class MockingController {
   }
 
   @Get("login")
-  async login(
-    @Query("eveId") eveId: string,
-    @Session() session: Record<string, unknown>,
-  ) {
+  async login(@Query("eveId") eveId: string, @Session() session: Record<string, unknown>) {
     return this.mockingService.loginWithEveId(session, Number(eveId));
   }
 

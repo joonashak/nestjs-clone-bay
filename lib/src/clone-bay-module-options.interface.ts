@@ -1,8 +1,12 @@
 import { DynamicConfig } from "./config/dynamic-config.model";
 
-/** @group Types */
+/**
+ * @group Types
+ */
 export interface CloneBayModuleOptions {
-  /** URL whereto redirect user after successful login. */
+  /**
+   * URL whereto redirect user after successful login.
+   */
   afterLoginUrl?: string;
 
   /**

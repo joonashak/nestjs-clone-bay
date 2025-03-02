@@ -16,9 +16,7 @@ export type SomeAbility = MongoAbility<[UserAction, Subjects]>;
 @Injectable()
 export class SomeAbilityFactory {
   createForUser(user: User) {
-    const { can: allow, build } = new AbilityBuilder<SomeAbility>(
-      createMongoAbility,
-    );
+    const { can: allow, build } = new AbilityBuilder<SomeAbility>(createMongoAbility);
 
     if (user.admin) {
       allow(UserAction.Manage, Some);
@@ -29,8 +27,7 @@ export class SomeAbilityFactory {
     // allow(UserAction.Read, Some, { owner: user.main.eveId });
 
     return build({
-      detectSubjectType: (item) =>
-        item.constructor as ExtractSubjectType<Subjects>,
+      detectSubjectType: (item) => item.constructor as ExtractSubjectType<Subjects>,
     });
   }
 }

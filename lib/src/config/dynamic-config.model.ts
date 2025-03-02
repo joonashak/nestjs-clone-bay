@@ -1,7 +1,9 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose from "mongoose";
 
-/** @group Types */
+/**
+ * @group Types
+ */
 @Schema({ collection: "dynamic-config" })
 export class DynamicConfig {
   @Prop()

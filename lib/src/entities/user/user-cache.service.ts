@@ -32,10 +32,7 @@ export class UserCacheService {
 
     return this.cacheService.wrap(key, () =>
       this.userModel.findOne({
-        $or: [
-          { "main.eveId": characterEveId },
-          { "alts.eveId": characterEveId },
-        ],
+        $or: [{ "main.eveId": characterEveId }, { "alts.eveId": characterEveId }],
       }),
     );
   }
@@ -59,9 +56,7 @@ export class UserCacheService {
     const characterEveIds = user.alts.map((alt) => alt.eveId);
     characterEveIds.push(user.main.eveId);
     await Promise.all(
-      characterEveIds.map((id) =>
-        this.cacheService.del(keyForFindByCharacterEveId(id)),
-      ),
+      characterEveIds.map((id) => this.cacheService.del(keyForFindByCharacterEveId(id))),
     );
 
     this.logger.verbose(`User caches invalidated. (userId=${user.id})`);

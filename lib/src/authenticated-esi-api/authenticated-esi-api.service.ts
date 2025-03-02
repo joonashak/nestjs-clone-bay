@@ -33,16 +33,16 @@ export class AuthenticatedEsiApiService {
         throw error;
       }
 
-      const newToken = await this.tokenService.refreshToken(
-        options.characterEveId,
-      );
+      const newToken = await this.tokenService.refreshToken(options.characterEveId);
       response = await this.executeRequest<T>(method, newToken, options);
     }
 
     return response;
   }
 
-  /** Prevent leaking tokens accidentally. */
+  /**
+   * Prevent leaking tokens accidentally.
+   */
   private assertUrlIsSafe(url: string, allowUnsafeUrl: boolean) {
     if (allowUnsafeUrl) {
       return;
@@ -61,9 +61,7 @@ export class AuthenticatedEsiApiService {
    */
   private async getAccessToken(options: EsiApiRequestOptions) {
     if (!options.userId && options.allowAnyCharacter) {
-      return this.tokenService.findAccessTokenByCharacterId(
-        options.characterEveId,
-      );
+      return this.tokenService.findAccessTokenByCharacterId(options.characterEveId);
     }
 
     return this.tokenService.findAccessTokenByCharacterIdSafe(
@@ -102,9 +100,6 @@ export class AuthenticatedEsiApiService {
       return false;
     }
 
-    return (
-      error.response.status === 403 &&
-      error.response.data.error === "token is expired"
-    );
+    return error.response.status === 403 && error.response.data.error === "token is expired";
   }
 }

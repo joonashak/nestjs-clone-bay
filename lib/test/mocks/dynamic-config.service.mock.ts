@@ -10,8 +10,7 @@ export const mockDynamicConfigDefaults = {
   applyAllowlistsToExistingUsers: false,
 };
 
-export const provideMockDynamicConfigService =
-  provideMockService(DynamicConfigService);
+export const provideMockDynamicConfigService = provideMockService(DynamicConfigService);
 
 export const mockDynamicConfig = (
   dynamicConfigService: DynamicConfigService,

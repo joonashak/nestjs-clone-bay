@@ -19,7 +19,9 @@ import { EsiApiRequestOptions } from "../types/esi-api-request-options.interface
  */
 @Injectable()
 export class CloneBayEsiApiService {
-  /** @ignore */
+  /**
+   * @ignore
+   */
   constructor(private apiService: AuthenticatedEsiApiService) {}
 
   async get<T>(options: EsiApiRequestOptions) {

@@ -16,9 +16,7 @@ export class AuthenticationService {
   ) {}
 
   async ssoLogin(esiCharacter: Character): Promise<UserDocument> {
-    const user = await this.userService.findByCharacterEveId(
-      esiCharacter.eveId,
-    );
+    const user = await this.userService.findByCharacterEveId(esiCharacter.eveId);
 
     if (user) {
       const allowed = await this.existingUserCanAuthenticate(user);
@@ -36,8 +34,7 @@ export class AuthenticationService {
   }
 
   async existingUserCanAuthenticate(user: UserDocument): Promise<boolean> {
-    const { applyAllowlistsToExistingUsers } =
-      await this.dynamicConfigService.get();
+    const { applyAllowlistsToExistingUsers } = await this.dynamicConfigService.get();
 
     if (!applyAllowlistsToExistingUsers) {
       return true;

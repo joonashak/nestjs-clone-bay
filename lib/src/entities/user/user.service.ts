@@ -25,7 +25,9 @@ export class UserService {
     return this.userCacheService.findById(userId);
   }
 
-  /** Search for one user with given character as main or in alts. */
+  /**
+   * Search for one user with given character as main or in alts.
+   */
   async findByCharacterEveId(characterEveId: number): Promise<UserDocument> {
     return this.userCacheService.findByCharacterEveId(characterEveId);
   }
@@ -40,10 +42,7 @@ export class UserService {
    * The main and alt characters are searched for a match by EVE ID, and the
    * matching character replaced with the given character.
    */
-  async updateCharacter(
-    user: UserDocument,
-    character: Character,
-  ): Promise<UserDocument> {
+  async updateCharacter(user: UserDocument, character: Character): Promise<UserDocument> {
     await this.userCacheService.invalidateForUser(user);
 
     if (user.main.eveId === character.eveId) {
@@ -62,13 +61,11 @@ export class UserService {
     return user.save();
   }
 
-  /** Check if character is registered under user. */
-  async userOwnsCharacter(
-    userId: string,
-    characterEveId: number,
-  ): Promise<boolean> {
-    const user =
-      await this.userCacheService.findByCharacterEveId(characterEveId);
+  /**
+   * Check if character is registered under user.
+   */
+  async userOwnsCharacter(userId: string, characterEveId: number): Promise<boolean> {
+    const user = await this.userCacheService.findByCharacterEveId(characterEveId);
 
     if (user && user.id === userId) {
       return true;

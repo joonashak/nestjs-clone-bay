@@ -1,7 +1,4 @@
-import {
-  CloneBayUserService,
-  USER_ID_KEY_IN_SESSION,
-} from "@joonashak/nestjs-clone-bay";
+import { CloneBayUserService, USER_ID_KEY_IN_SESSION } from "@joonashak/nestjs-clone-bay";
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { GqlContextType, GqlExecutionContext } from "@nestjs/graphql";
@@ -31,19 +28,15 @@ export class SomePolicyGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const policyHandlers =
-      this.reflector.get<SomePolicyHandler[]>(
-        "clone-bay-check-policies",
-        context.getHandler(),
-      ) || [];
+      this.reflector.get<SomePolicyHandler[]>("clone-bay-check-policies", context.getHandler()) ||
+      [];
 
     const request = getRequest(context);
     const userId = request.session[USER_ID_KEY_IN_SESSION];
     const user = await this.userService.findById(userId);
     const ability = this.caslAbilityFactory.createForUser(user);
 
-    return policyHandlers.every((handler) =>
-      this.execPolicyHandler(handler, ability),
-    );
+    return policyHandlers.every((handler) => this.execPolicyHandler(handler, ability));
   }
 
   private execPolicyHandler(handler: SomePolicyHandler, ability: SomeAbility) {

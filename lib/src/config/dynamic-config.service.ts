@@ -8,7 +8,9 @@ import { DYNAMIC_CONFIG_CACHE_KEY } from "../constants";
 import { DynamicConfig, DynamicConfigDocument } from "./dynamic-config.model";
 import { ModuleConfigService } from "./module-config.service";
 
-/** Provides configuration that can change during run time. */
+/**
+ * Provides configuration that can change during run time.
+ */
 @Injectable()
 export class DynamicConfigService {
   private readonly logger = new Logger(DynamicConfigService.name);
@@ -27,9 +29,8 @@ export class DynamicConfigService {
    * configuration values.
    */
   async get(): Promise<DynamicConfig> {
-    const dynamicConfig = await this.cacheService.wrap(
-      DYNAMIC_CONFIG_CACHE_KEY,
-      async () => (await this.dynamicConfigModel.findOne()).toObject(),
+    const dynamicConfig = await this.cacheService.wrap(DYNAMIC_CONFIG_CACHE_KEY, async () =>
+      (await this.dynamicConfigModel.findOne()).toObject(),
     );
 
     const configWithOverrides = {

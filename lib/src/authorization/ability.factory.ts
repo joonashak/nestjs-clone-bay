@@ -17,17 +17,14 @@ export type UserAbility = MongoAbility<[UserAction, Subjects]>;
 @Injectable()
 export class AbilityFactory {
   createForUser(user: User) {
-    const { can: allow, build } = new AbilityBuilder<UserAbility>(
-      createMongoAbility,
-    );
+    const { can: allow, build } = new AbilityBuilder<UserAbility>(createMongoAbility);
 
     if (user.admin) {
       allow(UserAction.Manage, "all");
     }
 
     return build({
-      detectSubjectType: (item) =>
-        item.constructor as ExtractSubjectType<Subjects>,
+      detectSubjectType: (item) => item.constructor as ExtractSubjectType<Subjects>,
     });
   }
 }

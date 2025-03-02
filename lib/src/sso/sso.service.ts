@@ -1,7 +1,4 @@
-import {
-  SsoService as EveAuthSsoService,
-  EveSsoCallbackParams,
-} from "@joonashak/nestjs-eve-auth";
+import { SsoService as EveAuthSsoService, EveSsoCallbackParams } from "@joonashak/nestjs-eve-auth";
 import { Injectable } from "@nestjs/common";
 import { get } from "lodash";
 import { AuthenticationService } from "../authentication/authentication.service";
@@ -21,10 +18,7 @@ export class SsoService {
     private moduleConfigService: ModuleConfigService,
   ) {}
 
-  async login(
-    callbackParams: EveSsoCallbackParams,
-    session: unknown,
-  ): Promise<string> {
+  async login(callbackParams: EveSsoCallbackParams, session: unknown): Promise<string> {
     const {
       character: { id: characterId },
       tokens,
@@ -48,9 +42,6 @@ export class SsoService {
 
     setUserId(session, user.id);
 
-    return (
-      get(session, "afterLoginUrl") ||
-      this.moduleConfigService.config.afterLoginUrl
-    );
+    return get(session, "afterLoginUrl") || this.moduleConfigService.config.afterLoginUrl;
   }
 }

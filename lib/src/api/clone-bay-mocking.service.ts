@@ -2,7 +2,9 @@ import { Injectable } from "@nestjs/common";
 import { User } from "../entities/user/user.model";
 import { MockingService } from "../mocking/mocking.service";
 
-/** @group Testing */
+/**
+ * @group Testing
+ */
 @Injectable()
 export class CloneBayMockingService {
   constructor(private mockingService: MockingService) {}

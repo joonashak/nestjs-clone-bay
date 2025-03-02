@@ -6,11 +6,7 @@ import { DynamicConfigService } from "../src/config/dynamic-config.service";
 import { User } from "../src/entities/user/user.model";
 import { UserService } from "../src/entities/user/user.service";
 import { mockDynamicConfig } from "./mocks/dynamic-config.service.mock";
-import {
-  mockEsiCharacter,
-  mockEsiCharacterId,
-  mockEsiCorporation,
-} from "./mocks/esi-service.mock";
+import { mockEsiCharacter, mockEsiCharacterId, mockEsiCorporation } from "./mocks/esi-service.mock";
 import { createTestingApp } from "./testing-app";
 
 const callbackUrl = "/sso/callback?code=asd&state=asd";
@@ -41,17 +37,13 @@ describe("SSO login", () => {
 
   describe("Controller", () => {
     it("Redirect to SSO login page", async () => {
-      const res = await request(app.getHttpServer())
-        .get("/sso/redirect")
-        .expect(302);
+      const res = await request(app.getHttpServer()).get("/sso/redirect").expect(302);
 
       expect(res.headers.location).toMatch(/^https:\/\/example.com\/authorize/);
     });
 
     it("Intermediate redirect", async () => {
-      const res = await request(app.getHttpServer())
-        .get("/sso/login")
-        .expect(302);
+      const res = await request(app.getHttpServer()).get("/sso/login").expect(302);
 
       expect(res.headers.location).toMatch("redirect");
     });
@@ -131,8 +123,7 @@ describe("SSO login", () => {
     it("User is updated upon login", async () => {
       const user = await userService.findByCharacterEveId(mockEsiCharacterId);
       await request(app.getHttpServer()).get(callbackUrl).expect(302);
-      const updatedUser =
-        await userService.findByCharacterEveId(mockEsiCharacterId);
+      const updatedUser = await userService.findByCharacterEveId(mockEsiCharacterId);
 
       expect(updatedUser._id).toEqual(user._id);
       expect(updatedUser.updatedAt).not.toEqual(user.updatedAt);

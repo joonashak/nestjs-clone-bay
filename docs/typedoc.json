@@ -1,13 +1,9 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": [
-    "../lib/src/index.ts"
-  ],
+  "entryPoints": ["../lib/src/index.ts"],
   "tsconfig": "../lib/tsconfig.build.json",
   "out": "./src/api",
-  "plugin": [
-    "typedoc-plugin-markdown"
-  ],
+  "plugin": ["typedoc-plugin-markdown"],
   "githubPages": false,
   "hideInPageTOC": true,
   "hideBreadcrumbs": true,
@@ -17,13 +13,5 @@
   "cleanOutputDir": true,
   "name": "API Reference",
   "allReflectionsHaveOwnDocument": true,
-  "groupOrder": [
-    "Modules",
-    "Services",
-    "Guards",
-    "Types",
-    "Decorators",
-    "Exceptions",
-    "*"
-  ]
+  "groupOrder": ["Modules", "Services", "Guards", "Types", "Decorators", "Exceptions", "*"]
 }

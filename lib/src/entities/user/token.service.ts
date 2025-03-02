@@ -28,9 +28,7 @@ export class TokenService {
     }));
   }
 
-  async findAccessTokenByCharacterId(
-    characterEveId: number,
-  ): Promise<EveAccessToken> {
+  async findAccessTokenByCharacterId(characterEveId: number): Promise<EveAccessToken> {
     const user = await this.userService.findByCharacterEveId(characterEveId);
     const tokens = await this.findAccessTokensByUserId(user.id);
     return tokens.find((t) => t.eveId === characterEveId);
@@ -45,10 +43,7 @@ export class TokenService {
     characterEveId: number,
     userId: string,
   ): Promise<EveAccessToken> {
-    const userOwnsCharacter = await this.userService.userOwnsCharacter(
-      userId,
-      characterEveId,
-    );
+    const userOwnsCharacter = await this.userService.userOwnsCharacter(userId, characterEveId);
 
     if (!userOwnsCharacter) {
       throw new CharacterDoesNotBelongException();
@@ -77,26 +72,21 @@ export class TokenService {
     return tokens.accessToken;
   }
 
-  /** Revoke all refresh tokens for user. */
+  /**
+   * Revoke all refresh tokens for user.
+   */
   async revokeTokens(inputUser: User): Promise<void> {
     const user = await this.findUserWithRefreshTokens(inputUser.main.eveId);
     const refreshTokens = user.alts.map((alt) => alt.refreshToken);
     refreshTokens.push(user.main.refreshToken);
-    await Promise.all(
-      refreshTokens.map((token) => this.ssoService.revokeRefreshToken(token)),
-    );
+    await Promise.all(refreshTokens.map((token) => this.ssoService.revokeRefreshToken(token)));
     await this.userCacheService.invalidateForUser(user);
   }
 
-  private async findUserWithRefreshTokens(
-    characterEveId: number,
-  ): Promise<UserDocument> {
+  private async findUserWithRefreshTokens(characterEveId: number): Promise<UserDocument> {
     return this.userModel
       .findOne({
-        $or: [
-          { "main.eveId": characterEveId },
-          { "alts.eveId": characterEveId },
-        ],
+        $or: [{ "main.eveId": characterEveId }, { "alts.eveId": characterEveId }],
       })
       .populate("main.accessToken")
       .populate("main.refreshToken")

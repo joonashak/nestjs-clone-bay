@@ -8,7 +8,9 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { DynamicConfig, DynamicConfigDocument } from "./dynamic-config.model";
 
-/** Initialization for dynamic configuration "singleton". */
+/**
+ * Initialization for dynamic configuration "singleton".
+ */
 @Injectable()
 export class DynamicConfigInitService implements OnApplicationBootstrap {
   private readonly logger = new Logger(DynamicConfigInitService.name);
