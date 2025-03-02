@@ -3,15 +3,24 @@ changelog:
     labels:
       - exclude from release notes
   categories:
+    - title: Breaking Changes
+      labels:
+        - BREAKING
     - title: New Features
       labels:
-        - feature
+        - new feature
     - title: Improvements
       labels:
         - improvement
     - title: Bug Fixes
       labels:
         - bug
+    - title: Dependency Updates
+      labels:
+        - dependencies
+    - title: Maintenance
+      labels:
+        - maintenance
     - title: Other
       labels:
         - "*"
