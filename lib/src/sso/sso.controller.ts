@@ -25,7 +25,6 @@ export class SsoController {
    * flow.
    */
   @Get("sso/login")
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async login(
     @Query("afterLoginUrl") afterLoginUrl: string | undefined,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,7 +44,6 @@ export class SsoController {
    * flow.
    */
   @Get("sso/register-alt")
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async registerAlt(
     @Query("afterLoginUrl") afterLoginUrl: string | undefined,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
