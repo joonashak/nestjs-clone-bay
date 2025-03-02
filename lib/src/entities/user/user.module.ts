@@ -8,10 +8,7 @@ import { User, UserSchema } from "./user.model";
 import { UserService } from "./user.service";
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-    SsoModule,
-  ],
+  imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]), SsoModule],
   providers: [UserService, UserCacheService, TokenService, AltService],
   exports: [MongooseModule, UserService, TokenService, AltService],
 })

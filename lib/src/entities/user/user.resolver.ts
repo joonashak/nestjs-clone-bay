@@ -47,10 +47,7 @@ export class UserResolver {
     @UserId() userId: string,
     @Args("characterEveId") characterEveId: number,
   ): Promise<EveAccessToken> {
-    const canActivate = await this.userService.userOwnsCharacter(
-      userId,
-      characterEveId,
-    );
+    const canActivate = await this.userService.userOwnsCharacter(userId, characterEveId);
 
     if (!canActivate) {
       this.logger.warn(
@@ -65,10 +62,7 @@ export class UserResolver {
 
   @RequireAuthentication()
   @Mutation(() => User)
-  async removeAlt(
-    @UserId() userId: string,
-    @Args("eveId") altEveId: number,
-  ): Promise<User> {
+  async removeAlt(@UserId() userId: string, @Args("eveId") altEveId: number): Promise<User> {
     return this.altService.removeAlt(altEveId, userId);
   }
 }

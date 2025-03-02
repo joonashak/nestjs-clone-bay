@@ -14,7 +14,9 @@ import { CharacterModule } from "./entities/character/character.module";
 import { UserModule } from "./entities/user/user.module";
 import { EsiModule } from "./esi/esi.module";
 
-/** @group Modules */
+/**
+ * @group Modules
+ */
 @Global()
 @Module({
   imports: [

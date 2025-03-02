@@ -1,7 +1,4 @@
-import {
-  CloneBayEsiApiService,
-  CloneBayMockingService,
-} from "@joonashak/nestjs-clone-bay";
+import { CloneBayEsiApiService, CloneBayMockingService } from "@joonashak/nestjs-clone-bay";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";

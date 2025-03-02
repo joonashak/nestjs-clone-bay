@@ -18,10 +18,14 @@ import { DynamicConfigService } from "../config/dynamic-config.service";
  */
 @Injectable()
 export class CloneBayConfigService {
-  /** @ignore */
+  /**
+   * @ignore
+   */
   constructor(private dynamicConfigService: DynamicConfigService) {}
 
-  /** Get current dynamic configuration. */
+  /**
+   * Get current dynamic configuration.
+   */
   async getDynamicConfig(): Promise<DynamicConfig> {
     return this.dynamicConfigService.get();
   }

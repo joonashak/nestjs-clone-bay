@@ -17,19 +17,14 @@ export class PolicyGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const policyHandlers =
-      this.reflector.get<PolicyHandler[]>(
-        CHECK_POLICIES_KEY,
-        context.getHandler(),
-      ) || [];
+      this.reflector.get<PolicyHandler[]>(CHECK_POLICIES_KEY, context.getHandler()) || [];
 
     const request = getRequest(context);
     const userId = getUserIdSafe(request.session);
     const user = await this.userService.findById(userId);
     const ability = this.caslAbilityFactory.createForUser(user);
 
-    return policyHandlers.every((handler) =>
-      this.execPolicyHandler(handler, ability),
-    );
+    return policyHandlers.every((handler) => this.execPolicyHandler(handler, ability));
   }
 
   private execPolicyHandler(handler: PolicyHandler, ability: UserAbility) {

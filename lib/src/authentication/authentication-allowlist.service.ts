@@ -36,10 +36,7 @@ export class AuthenticationAllowlistService {
       return true;
     }
 
-    if (
-      character.alliance &&
-      allowedAlliances.includes(character.alliance.eveId)
-    ) {
+    if (character.alliance && allowedAlliances.includes(character.alliance.eveId)) {
       return true;
     }
 

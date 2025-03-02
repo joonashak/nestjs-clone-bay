@@ -21,6 +21,8 @@ import { CloneBayMockingService } from "./clone-bay-mocking.service";
   exports: [CloneBayMockingService],
 })
 export class CloneBayMockingModule {
-  /** @ignore */
+  /**
+   * @ignore
+   */
   constructor() {}
 }

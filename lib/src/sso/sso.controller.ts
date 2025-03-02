@@ -1,7 +1,4 @@
-import {
-  EveSsoCallbackParams,
-  RequireSsoAuth,
-} from "@joonashak/nestjs-eve-auth";
+import { EveSsoCallbackParams, RequireSsoAuth } from "@joonashak/nestjs-eve-auth";
 import {
   Controller,
   Get,

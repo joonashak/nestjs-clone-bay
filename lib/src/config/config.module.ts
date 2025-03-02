@@ -6,16 +6,8 @@ import { DynamicConfigService } from "./dynamic-config.service";
 import { ModuleConfigService } from "./module-config.service";
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      { name: DynamicConfig.name, schema: DynamicConfigSchema },
-    ]),
-  ],
-  providers: [
-    DynamicConfigService,
-    DynamicConfigInitService,
-    ModuleConfigService,
-  ],
+  imports: [MongooseModule.forFeature([{ name: DynamicConfig.name, schema: DynamicConfigSchema }])],
+  providers: [DynamicConfigService, DynamicConfigInitService, ModuleConfigService],
   exports: [DynamicConfigService, MongooseModule, ModuleConfigService],
 })
 export class ConfigModule {}

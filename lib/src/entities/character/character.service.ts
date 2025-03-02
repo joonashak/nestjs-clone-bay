@@ -30,8 +30,7 @@ export class CharacterService {
 
     let alliance: Alliance = null;
     if (allianceId) {
-      const esiAlliance =
-        await this.esiService.getAlliancePublicInfo(allianceId);
+      const esiAlliance = await this.esiService.getAlliancePublicInfo(allianceId);
       alliance = {
         eveId: allianceId,
         name: esiAlliance.name,

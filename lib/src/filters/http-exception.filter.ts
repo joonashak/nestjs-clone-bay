@@ -1,9 +1,4 @@
-import {
-  ArgumentsHost,
-  Catch,
-  ExceptionFilter,
-  HttpException,
-} from "@nestjs/common";
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from "@nestjs/common";
 import { Request, Response } from "express";
 
 @Catch(HttpException)
@@ -15,9 +10,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const status = exception.getStatus();
 
     // Make ValidationPipe messages and other error messages appear in a consistent fashion.
-    const message = exception.getResponse()["message"] || [
-      exception.getResponse(),
-    ];
+    const message = exception.getResponse()["message"] || [exception.getResponse()];
 
     response.status(status).json({
       statusCode: status,

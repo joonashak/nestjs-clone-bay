@@ -1,6 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 
-/** @group Types */
+/**
+ * @group Types
+ */
 export interface EsiApiRequestOptions {
   /**
    * EVE ID of the character whose ESI access token should be used to
@@ -22,7 +24,9 @@ export interface EsiApiRequestOptions {
    * belonging to them. Can be turned off with `allowAnyCharacter`.
    */
   userId?: string;
-  /** Data payload for POST and PUT requests. */
+  /**
+   * Data payload for POST and PUT requests.
+   */
   data?: object;
   /**
    * Optional Axios configuration.

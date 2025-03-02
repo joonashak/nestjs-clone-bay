@@ -27,9 +27,7 @@ import { SomeModule } from "./some/some.module";
       driver: ApolloDriver,
       autoSchemaFile: true,
       playground: false,
-      plugins: [
-        ApolloServerPluginLandingPageLocalDefault({ includeCookies: true }),
-      ],
+      plugins: [ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })],
     }),
     EveAuthModule.forRoot({
       clientId: process.env.CLIENT_ID,

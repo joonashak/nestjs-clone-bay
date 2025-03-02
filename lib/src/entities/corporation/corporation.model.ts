@@ -1,7 +1,9 @@
 import { Field, ObjectType } from "@nestjs/graphql";
 import { Prop, Schema } from "@nestjs/mongoose";
 
-/** Simple model containing immutable properties of corporations. */
+/**
+ * Simple model containing immutable properties of corporations.
+ */
 @ObjectType()
 @Schema()
 export class Corporation {

@@ -7,9 +7,7 @@ export const defaultMockConfiguration: ModuleConfig = {
   esiBaseUrl: "",
 };
 
-export const provideMockModuleConfigService = (
-  override: Partial<ModuleConfig> = {},
-) =>
+export const provideMockModuleConfigService = (override: Partial<ModuleConfig> = {}) =>
   provideMockService(ModuleConfigService)({
     config: {
       ...defaultMockConfiguration,

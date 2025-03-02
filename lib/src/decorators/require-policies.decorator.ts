@@ -4,7 +4,4 @@ import { PolicyHandler } from "../authorization/policy-handler.interface";
 import { PolicyGuard } from "../authorization/policy.guard";
 
 export const RequirePolicies = (...handlers: PolicyHandler[]) =>
-  applyDecorators(
-    SetMetadata(CHECK_POLICIES_KEY, handlers),
-    UseGuards(PolicyGuard),
-  );
+  applyDecorators(SetMetadata(CHECK_POLICIES_KEY, handlers), UseGuards(PolicyGuard));

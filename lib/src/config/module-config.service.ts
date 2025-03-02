@@ -9,9 +9,7 @@ import { ModuleConfig } from "./module-config.model";
 export class ModuleConfigService {
   public readonly config: ModuleConfig;
 
-  constructor(
-    @Inject(CLONE_BAY_MODULE_OPTIONS_TOKEN) options: CloneBayModuleOptions,
-  ) {
+  constructor(@Inject(CLONE_BAY_MODULE_OPTIONS_TOKEN) options: CloneBayModuleOptions) {
     this.config = new ModuleConfig(options);
     // Running validation here ensures that execution is stopped immediately upon bad config.
     const errors = validateSync(this.config);
