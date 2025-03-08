@@ -30,6 +30,6 @@ export const getUserId = (session: unknown): string | undefined => {
 /**
  * Set user ID in Express session by mutating given session object.
  */
-export const setUserId = (session: unknown, userId: string): void => {
+export const setUserId = (session: object, userId: string): void => {
   session[USER_ID_KEY_IN_SESSION] = userId;
 };

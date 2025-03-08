@@ -5,6 +5,6 @@ export class EveAccessToken {
   @Field()
   eveId: number;
 
-  @Field()
+  @Field(() => String, { nullable: true })
   accessToken: string | undefined;
 }

@@ -1,5 +1,5 @@
 import { SsoModule } from "@joonashak/nestjs-eve-auth";
-import { Global, Module } from "@nestjs/common";
+import { ConfigurableModuleAsyncOptions, Global, Module } from "@nestjs/common";
 import { AuthenticatedEsiApiModule } from "./authenticated-esi-api/authenticated-esi-api.module";
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { AuthorizationModule } from "./authorization/authorization.module";
@@ -46,7 +46,9 @@ export class CloneBayModule extends CloneBayModuleDefinition {
   }
 
   // Pass-through method to allow zero arguments.
-  static forRootAsync(options: CloneBayModuleOptions = {}) {
+  static forRootAsync(
+    options: ConfigurableModuleAsyncOptions<CloneBayModuleOptions, "create"> & Partial<object> = {},
+  ) {
     return super.forRootAsync(options);
   }
 }

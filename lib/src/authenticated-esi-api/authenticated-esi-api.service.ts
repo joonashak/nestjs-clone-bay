@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import axios, { AxiosResponse } from "axios";
 import { has } from "lodash";
 import { TokenService } from "../entities/user/token.service";
@@ -69,6 +69,12 @@ export class AuthenticatedEsiApiService {
       return this.tokenService.findAccessTokenByCharacterId(options.characterEveId);
     }
 
+    if (!options.userId) {
+      throw new InternalServerErrorException(
+        "Missing `userId` when calling `AuthenticatedEsiApiService.getAccessToken`.",
+      );
+    }
+
     return this.tokenService.findAccessTokenByCharacterIdSafe(
       options.characterEveId,
       options.userId,
@@ -84,7 +90,7 @@ export class AuthenticatedEsiApiService {
     const config = {
       ...axiosConfig,
       headers: {
-        ...axiosConfig.headers,
+        ...axiosConfig?.headers,
         Authorization: `Bearer ${accessToken}`,
       },
     };

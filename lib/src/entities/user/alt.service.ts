@@ -1,6 +1,7 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
+import { UserNotFoundException } from "../../exceptions/user-not-found.exception";
 import { Character } from "../character/character.model";
 import { UserCacheService } from "./user-cache.service";
 import { User, UserDocument } from "./user.model";
@@ -23,6 +24,10 @@ export class AltService {
       .populate("alts.accessToken")
       .populate("alts.refreshToken");
 
+    if (!user) {
+      throw new UserNotFoundException();
+    }
+
     await this.userCacheService.invalidateForUser(user);
 
     const existing = await this.userService.findByCharacterEveId(alt.eveId);
@@ -44,6 +49,10 @@ export class AltService {
       { $pull: { alts: { eveId: altEveId } } },
       { returnDocument: "after" },
     );
+
+    if (!user) {
+      throw new UserNotFoundException();
+    }
 
     await this.userCacheService.invalidateForUser(user);
     return user;

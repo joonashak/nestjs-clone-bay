@@ -19,7 +19,7 @@ export class Character {
   corporation: Corporation;
 
   @Field(() => Alliance, { nullable: true })
-  @Prop({ default: null })
+  @Prop({ type: Alliance, default: null })
   alliance?: Alliance | null;
 
   @Prop({ select: false, default: null })
