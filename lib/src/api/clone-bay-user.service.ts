@@ -13,7 +13,10 @@ export class CloneBayUserService {
 
   async findById(userId: string): Promise<User | null> {
     const user = await this.userService.findById(userId);
-    return user?.toObject();
+    if (!user) {
+      return null;
+    }
+    return user.toObject();
   }
 
   /**
