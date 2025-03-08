@@ -6,6 +6,6 @@ import { CloneBayException } from "./clone-bay.exception";
  */
 export class RefreshTokenNotFoundException extends CloneBayException {
   constructor() {
-    super("Refresh token not found. New SSO login is required.", HttpStatus.NOT_FOUND);
+    super("Refresh token not found. New SSO login is required.", HttpStatus.FORBIDDEN);
   }
 }
