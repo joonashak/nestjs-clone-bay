@@ -41,7 +41,7 @@
     "type-fest": "^4.36.0"
   },
   "peerDependencies": {
-    "@joonashak/nestjs-eve-auth": "^0.4.0",
+    "@joonashak/nestjs-eve-auth": "^0.4.1",
     "@nestjs/common": "^11.0.11",
     "@nestjs/core": "^11.0.11",
     "@nestjs/graphql": "^13.0.3",
