@@ -13,6 +13,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { SomeModule } from "./some/some.module";
+import { UserModule } from "./user/user.module";
 
 /*
  * WARNING!
@@ -40,6 +41,7 @@ import { SomeModule } from "./some/some.module";
     CloneBayResolversModule,
     SomeModule,
     CloneBayMockingModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

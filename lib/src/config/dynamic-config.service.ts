@@ -5,6 +5,7 @@ import { Model } from "mongoose";
 import { PartialDeep } from "type-fest";
 import { CacheService } from "../cache/cache.service";
 import { DYNAMIC_CONFIG_CACHE_KEY } from "../constants";
+import { InvalidConfigurationException } from "../exceptions";
 import { DynamicConfig, DynamicConfigDocument } from "./dynamic-config.model";
 import { ModuleConfigService } from "./module-config.service";
 
@@ -29,9 +30,14 @@ export class DynamicConfigService {
    * configuration values.
    */
   async get(): Promise<DynamicConfig> {
-    const dynamicConfig = await this.cacheService.wrap(DYNAMIC_CONFIG_CACHE_KEY, async () =>
-      (await this.dynamicConfigModel.findOne()).toObject(),
+    const dynamicConfig = await this.cacheService.wrap(
+      DYNAMIC_CONFIG_CACHE_KEY,
+      async () => await this.dynamicConfigModel.findOne(),
     );
+
+    if (!dynamicConfig) {
+      throw new InvalidConfigurationException();
+    }
 
     const configWithOverrides = {
       ...dynamicConfig,
@@ -43,6 +49,11 @@ export class DynamicConfigService {
   private async update(configUpdate: PartialDeep<DynamicConfig>) {
     await this.cacheService.del(DYNAMIC_CONFIG_CACHE_KEY);
     const current = await this.dynamicConfigModel.findOne();
+
+    if (!current) {
+      throw new InvalidConfigurationException();
+    }
+
     merge(current, configUpdate);
     return this.dynamicConfigModel.findOneAndUpdate({}, current, { new: true });
   }

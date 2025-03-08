@@ -1,7 +1,8 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import axios, { AxiosResponse } from "axios";
 import { has } from "lodash";
 import { TokenService } from "../entities/user/token.service";
+import { AccessTokenNotFoundException } from "../exceptions/access-token-not-found.exception";
 import { UnsafeEsiUrlException } from "../exceptions/unsafe-esi-url.exception";
 import { EsiApiRequestOptions } from "../types/esi-api-request-options.interface";
 
@@ -21,12 +22,16 @@ export class AuthenticatedEsiApiService {
   async request<T>(method: RequestMethods, getOptions: EsiApiRequestOptions) {
     const options = { ...defaultOptions, ...getOptions };
     this.assertUrlIsSafe(options.url, options.allowUnsafeUrl);
-    const { accessToken } = await this.getAccessToken(options);
+    const token = await this.getAccessToken(options);
+
+    if (!token || !token.accessToken) {
+      throw new AccessTokenNotFoundException();
+    }
 
     let response: AxiosResponse<T>;
 
     try {
-      response = await this.executeRequest<T>(method, accessToken, options);
+      response = await this.executeRequest<T>(method, token.accessToken, options);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (!this.tokenHasExpired(error)) {
@@ -64,6 +69,12 @@ export class AuthenticatedEsiApiService {
       return this.tokenService.findAccessTokenByCharacterId(options.characterEveId);
     }
 
+    if (!options.userId) {
+      throw new InternalServerErrorException(
+        "Missing `userId` when calling `AuthenticatedEsiApiService.getAccessToken`.",
+      );
+    }
+
     return this.tokenService.findAccessTokenByCharacterIdSafe(
       options.characterEveId,
       options.userId,
@@ -79,7 +90,7 @@ export class AuthenticatedEsiApiService {
     const config = {
       ...axiosConfig,
       headers: {
-        ...axiosConfig.headers,
+        ...axiosConfig?.headers,
         Authorization: `Bearer ${accessToken}`,
       },
     };

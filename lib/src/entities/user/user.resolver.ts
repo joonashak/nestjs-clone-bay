@@ -5,6 +5,7 @@ import { UserAction } from "../../authorization/user-action.enum";
 import { RequireAuthentication } from "../../decorators/require-authentication.decorator";
 import { RequirePolicies } from "../../decorators/require-policies.decorator";
 import { UserId } from "../../decorators/user-id.decorator";
+import { UserNotFoundException } from "../../exceptions/user-not-found.exception";
 import { EveAccessToken } from "../../types/eve-access-token.dto";
 import { AltService } from "./alt.service";
 import { TokenService } from "./token.service";
@@ -24,7 +25,11 @@ export class UserResolver {
   @RequireAuthentication()
   @Query(() => User)
   async whoami(@UserId() userId: string): Promise<User> {
-    return this.userService.findById(userId);
+    const user = await this.userService.findById(userId);
+    if (!user) {
+      throw new UserNotFoundException();
+    }
+    return user;
   }
 
   // FIXME: Testing CASL.

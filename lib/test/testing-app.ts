@@ -19,9 +19,15 @@ import { MockOAuthStrategy } from "./mocks/oauth.strategy.mock";
 import { MockSsoService } from "./mocks/sso-service.mock";
 
 export const createTestingApp = async (): Promise<INestApplication> => {
+  const mongoUrl = process.env.MONGO_URL;
+
+  if (!mongoUrl) {
+    throw new Error("Integration test missing `MONGO_URL` env var.");
+  }
+
   const module = await Test.createTestingModule({
     imports: [
-      MongooseModule.forRoot(process.env.MONGO_URL),
+      MongooseModule.forRoot(mongoUrl),
       MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     ],
     controllers: [SsoController],

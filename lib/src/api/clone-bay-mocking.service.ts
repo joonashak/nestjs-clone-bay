@@ -13,7 +13,7 @@ export class CloneBayMockingService {
     return this.mockingService.createUser(user);
   }
 
-  async loginWithEveId(session: unknown, eveId: number) {
+  async loginWithEveId(session: object, eveId: number) {
     return this.mockingService.loginWithEveId(session, eveId);
   }
 }

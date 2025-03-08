@@ -21,13 +21,13 @@ export class UserCacheService {
     private cacheService: CacheService,
   ) {}
 
-  async findById(userId: string): Promise<UserDocument> {
+  async findById(userId: string): Promise<UserDocument | null> {
     return this.cacheService.wrap(keyForFindById(userId), async () =>
       this.userModel.findOne({ id: userId }),
     );
   }
 
-  async findByCharacterEveId(characterEveId: number): Promise<UserDocument> {
+  async findByCharacterEveId(characterEveId: number): Promise<UserDocument | null> {
     const key = keyForFindByCharacterEveId(characterEveId);
 
     return this.cacheService.wrap(key, () =>
@@ -37,7 +37,7 @@ export class UserCacheService {
     );
   }
 
-  async findWithAccessTokens(userId: string): Promise<UserDocument> {
+  async findWithAccessTokens(userId: string): Promise<UserDocument | null> {
     const key = keyForFindWithAccessTokens(userId);
 
     return this.cacheService.wrap(key, () =>

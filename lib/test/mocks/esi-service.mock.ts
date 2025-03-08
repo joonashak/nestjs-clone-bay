@@ -1,9 +1,5 @@
 import { EsiService } from "../../src/esi/esi.service";
-import {
-  EsiAlliancePublicInfo,
-  EsiCharacterPublicInfo,
-  EsiCorporationPublicInfo,
-} from "../../src/esi/esi.types";
+import { EsiAlliancePublicInfo, EsiCharacterPublicInfo } from "../../src/esi/esi.types";
 import { provideMockService } from "./mock-services";
 
 export const mockEsiCharacterId = 123456789;
@@ -22,7 +18,7 @@ export const mockEsiCharacter: EsiCharacterPublicInfo = {
   title: "<color=0xff00ccff>Kolumbus</color>",
 };
 
-export const mockEsiCorporation: EsiCorporationPublicInfo = {
+export const mockEsiCorporation = {
   alliance_id: 99004344,
   ceo_id: 93280169,
   creator_id: 2115210637,

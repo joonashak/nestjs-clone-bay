@@ -18,7 +18,8 @@ export class SsoService {
     private moduleConfigService: ModuleConfigService,
   ) {}
 
-  async login(callbackParams: EveSsoCallbackParams, session: unknown): Promise<string> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async login(callbackParams: EveSsoCallbackParams, session: Record<string, any>): Promise<string> {
     const {
       character: { id: characterId },
       tokens,

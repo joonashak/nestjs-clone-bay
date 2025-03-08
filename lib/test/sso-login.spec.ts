@@ -1,6 +1,7 @@
 import { SsoService } from "@joonashak/nestjs-eve-auth";
 import { INestApplication } from "@nestjs/common";
 import { getConnectionToken } from "@nestjs/mongoose";
+import { get } from "lodash";
 import request from "supertest";
 import { DynamicConfigService } from "../src/config/dynamic-config.service";
 import { User } from "../src/entities/user/user.model";
@@ -125,8 +126,10 @@ describe("SSO login", () => {
       await request(app.getHttpServer()).get(callbackUrl).expect(302);
       const updatedUser = await userService.findByCharacterEveId(mockEsiCharacterId);
 
-      expect(updatedUser._id).toEqual(user._id);
-      expect(updatedUser.updatedAt).not.toEqual(user.updatedAt);
+      expect(updatedUser).toBeTruthy();
+      expect(user).toBeTruthy();
+      expect(get(updatedUser, "_id")).toEqual(get(user, "_id"));
+      expect(get(updatedUser, "updatedAt")).not.toEqual(get(user, "updatedAt"));
     });
 
     it("Old tokens are updated upon login", async () => {
@@ -140,7 +143,9 @@ describe("SSO login", () => {
       await request(app.getHttpServer()).get(callbackUrl).expect(302);
       const user = await findMockUser();
       const updatedUser = await userService.findWithAccessTokens(user.id);
-      expect(updatedUser.main.accessToken).toEqual(accessToken);
+
+      expect(updatedUser).toBeTruthy();
+      expect(get(updatedUser, "main.accessToken")).toEqual(accessToken);
     });
 
     it("Existing users are allowed to login when DynamicConfig.allowNewUsers is off", async () => {

@@ -9,7 +9,6 @@ import { UserService } from "../entities/user/user.service";
 export class MockingService {
   constructor(
     @InjectConnection() private dbConnection: Connection,
-
     private userService: UserService,
   ) {}
 
@@ -17,7 +16,7 @@ export class MockingService {
     return this.userService.create(user);
   }
 
-  async loginWithEveId(session: unknown, eveId: number) {
+  async loginWithEveId(session: object, eveId: number) {
     const user = await this.userService.findByCharacterEveId(eveId);
 
     if (!user) {

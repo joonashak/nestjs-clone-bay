@@ -28,7 +28,7 @@ export class CharacterService {
       ticker: esiCorporation.ticker,
     };
 
-    let alliance: Alliance = null;
+    let alliance: Alliance | null = null;
     if (allianceId) {
       const esiAlliance = await this.esiService.getAlliancePublicInfo(allianceId);
       alliance = {

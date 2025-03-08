@@ -21,18 +21,18 @@ export class UserService {
     return this.userModel.find({});
   }
 
-  async findById(userId: string): Promise<UserDocument> {
+  async findById(userId: string): Promise<UserDocument | null> {
     return this.userCacheService.findById(userId);
   }
 
   /**
    * Search for one user with given character as main or in alts.
    */
-  async findByCharacterEveId(characterEveId: number): Promise<UserDocument> {
+  async findByCharacterEveId(characterEveId: number): Promise<UserDocument | null> {
     return this.userCacheService.findByCharacterEveId(characterEveId);
   }
 
-  async findWithAccessTokens(userId: string): Promise<UserDocument> {
+  async findWithAccessTokens(userId: string): Promise<UserDocument | null> {
     return this.userCacheService.findWithAccessTokens(userId);
   }
 
