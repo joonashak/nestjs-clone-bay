@@ -1,13 +1,16 @@
-import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { User, UserDocument } from "./user.model";
+import { CloneBayUserService } from "@joonashak/nestjs-clone-bay";
+import { Injectable, Logger } from "@nestjs/common";
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  logger = new Logger(UserService.name);
 
-  async create(user: User) {
-    return this.userModel.create(user);
+  constructor(private cloneBayUserService: CloneBayUserService) {}
+
+  async whoami(userId: string) {
+    this.logger.debug(userId);
+    const user = await this.cloneBayUserService.findById(userId);
+    this.logger.debug(user);
+    return user;
   }
 }
