@@ -6,5 +6,5 @@ export class EveAccessToken {
   eveId: number;
 
   @Field()
-  accessToken: string;
+  accessToken: string | undefined;
 }

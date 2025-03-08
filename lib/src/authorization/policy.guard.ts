@@ -3,6 +3,7 @@ import { Reflector } from "@nestjs/core";
 import getRequest from "../common/utils/get-request.util";
 import { getUserIdSafe } from "../common/utils/session.util";
 import { UserService } from "../entities/user/user.service";
+import { UserNotFoundException } from "../exceptions/user-not-found.exception";
 import { AbilityFactory, UserAbility } from "./ability.factory";
 import { CHECK_POLICIES_KEY } from "./check-policies.decorator";
 import { PolicyHandler } from "./policy-handler.interface";
@@ -22,6 +23,11 @@ export class PolicyGuard implements CanActivate {
     const request = getRequest(context);
     const userId = getUserIdSafe(request.session);
     const user = await this.userService.findById(userId);
+
+    if (!user) {
+      throw new UserNotFoundException();
+    }
+
     const ability = this.caslAbilityFactory.createForUser(user);
 
     return policyHandlers.every((handler) => this.execPolicyHandler(handler, ability));
