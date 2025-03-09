@@ -19,13 +19,13 @@
 
 #### Defined in
 
-[lib/src/api/clone-bay-user.service.ts:8](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/api/clone-bay-user.service.ts#L8)
+[lib/src/api/clone-bay-user.service.ts:9](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-user.service.ts#L9)
 
 ## Methods
 
 ### findById
 
-▸ **findById**(`userId`): `Promise`\<[`User`](User.md)\>
+▸ **findById**(`userId`): `Promise`\<``null`` \| [`User`](User.md)\>
 
 #### Parameters
 
@@ -35,17 +35,21 @@
 
 #### Returns
 
-`Promise`\<[`User`](User.md)\>
+`Promise`\<``null`` \| [`User`](User.md)\>
 
 #### Defined in
 
-[lib/src/api/clone-bay-user.service.ts:13](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/api/clone-bay-user.service.ts#L13)
+[lib/src/api/clone-bay-user.service.ts:14](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-user.service.ts#L14)
 
 ___
 
 ### revokeTokens
 
 ▸ **revokeTokens**(`userId`): `Promise`\<`void`\>
+
+Revoke all SSO tokens for user.
+
+Throws if the user is not found.
 
 #### Parameters
 
@@ -59,4 +63,4 @@ ___
 
 #### Defined in
 
-[lib/src/api/clone-bay-user.service.ts:18](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/api/clone-bay-user.service.ts#L18)
+[lib/src/api/clone-bay-user.service.ts:23](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-user.service.ts#L23)

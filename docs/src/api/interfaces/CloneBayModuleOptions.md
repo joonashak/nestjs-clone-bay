@@ -10,7 +10,7 @@ URL whereto redirect user after successful login.
 
 #### Defined in
 
-[lib/src/clone-bay-module-options.interface.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/clone-bay-module-options.interface.ts#L6)
+[lib/src/clone-bay-module-options.interface.ts:10](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/clone-bay-module-options.interface.ts#L10)
 
 ___
 
@@ -26,7 +26,7 @@ their dynamic counterparts.
 
 #### Defined in
 
-[lib/src/clone-bay-module-options.interface.ts:26](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/clone-bay-module-options.interface.ts#L26)
+[lib/src/clone-bay-module-options.interface.ts:30](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/clone-bay-module-options.interface.ts#L30)
 
 ___
 
@@ -44,4 +44,4 @@ via `nestjs-eve-auth` options.
 
 #### Defined in
 
-[lib/src/clone-bay-module-options.interface.ts:17](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/clone-bay-module-options.interface.ts#L17)
+[lib/src/clone-bay-module-options.interface.ts:21](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/clone-bay-module-options.interface.ts#L21)

@@ -16,7 +16,7 @@ who it belongs to!**
 
 #### Defined in
 
-[lib/src/types/esi-api-request-options.interface.ts:48](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/types/esi-api-request-options.interface.ts#L48)
+[lib/src/types/esi-api-request-options.interface.ts:52](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/types/esi-api-request-options.interface.ts#L52)
 
 ___
 
@@ -30,7 +30,7 @@ Default `false`. **Disabling this may cause tokens to leak!**
 
 #### Defined in
 
-[lib/src/types/esi-api-request-options.interface.ts:38](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/types/esi-api-request-options.interface.ts#L38)
+[lib/src/types/esi-api-request-options.interface.ts:42](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/types/esi-api-request-options.interface.ts#L42)
 
 ___
 
@@ -44,7 +44,7 @@ Authorization header is automatically appended to this.
 
 #### Defined in
 
-[lib/src/types/esi-api-request-options.interface.ts:32](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/types/esi-api-request-options.interface.ts#L32)
+[lib/src/types/esi-api-request-options.interface.ts:36](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/types/esi-api-request-options.interface.ts#L36)
 
 ___
 
@@ -57,7 +57,7 @@ authenticate the request.
 
 #### Defined in
 
-[lib/src/types/esi-api-request-options.interface.ts:9](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/types/esi-api-request-options.interface.ts#L9)
+[lib/src/types/esi-api-request-options.interface.ts:11](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/types/esi-api-request-options.interface.ts#L11)
 
 ___
 
@@ -69,7 +69,7 @@ Data payload for POST and PUT requests.
 
 #### Defined in
 
-[lib/src/types/esi-api-request-options.interface.ts:26](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/types/esi-api-request-options.interface.ts#L26)
+[lib/src/types/esi-api-request-options.interface.ts:30](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/types/esi-api-request-options.interface.ts#L30)
 
 ___
 
@@ -85,7 +85,7 @@ accidental token leaks. This behavior can be disabled with
 
 #### Defined in
 
-[lib/src/types/esi-api-request-options.interface.ts:17](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/types/esi-api-request-options.interface.ts#L17)
+[lib/src/types/esi-api-request-options.interface.ts:19](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/types/esi-api-request-options.interface.ts#L19)
 
 ___
 
@@ -100,4 +100,4 @@ belonging to them. Can be turned off with `allowAnyCharacter`.
 
 #### Defined in
 
-[lib/src/types/esi-api-request-options.interface.ts:24](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/types/esi-api-request-options.interface.ts#L24)
+[lib/src/types/esi-api-request-options.interface.ts:26](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/types/esi-api-request-options.interface.ts#L26)

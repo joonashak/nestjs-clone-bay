@@ -36,7 +36,6 @@ Instantiate a plain HTTP Exception.
 **`Example`**
 
 ```ts
-throw new HttpException()
 throw new HttpException('message', HttpStatus.BAD_REQUEST)
 throw new HttpException('custom message', HttpStatus.BAD_REQUEST, {
  cause: new Error('Cause Error'),
@@ -69,7 +68,7 @@ HttpException.constructor
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:57
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:62
 
 ## Methods
 
@@ -87,7 +86,7 @@ HttpException.getResponse
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:68
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:72
 
 ___
 
@@ -105,7 +104,7 @@ HttpException.getStatus
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:69
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:73
 
 ___
 
@@ -130,7 +129,7 @@ HttpException.initCause
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:65
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:69
 
 ___
 
@@ -148,7 +147,7 @@ HttpException.initMessage
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:66
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:70
 
 ___
 
@@ -166,7 +165,7 @@ HttpException.initName
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:67
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:71
 
 ___
 
@@ -193,7 +192,7 @@ HttpException.captureStackTrace
 
 #### Defined in
 
-lib/node_modules/@types/node/globals.d.ts:4
+lib/node_modules/@types/node/globals.d.ts:136
 
 ___
 
@@ -205,7 +204,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `nil` | ``""`` |
+| `nil` | ``null`` \| ``""`` |
 | `message` | `HttpExceptionBodyMessage` |
 | `statusCode` | `number` |
 
@@ -219,7 +218,7 @@ HttpException.createBody
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:70
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:74
 
 ▸ **createBody**(`message`, `error`, `statusCode`): `HttpExceptionBody`
 
@@ -241,7 +240,7 @@ HttpException.createBody
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:71
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:75
 
 ▸ **createBody**\<`Body`\>(`custom`): `Body`
 
@@ -267,7 +266,7 @@ HttpException.createBody
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:72
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:76
 
 ___
 
@@ -296,7 +295,7 @@ HttpException.extractDescriptionAndOptionsFrom
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:80
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:84
 
 ___
 
@@ -320,7 +319,7 @@ HttpException.getDescriptionFrom
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:73
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:77
 
 ___
 
@@ -344,7 +343,7 @@ HttpException.getHttpExceptionOptionsFrom
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:74
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:78
 
 ## Properties
 
@@ -352,13 +351,16 @@ lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:74
 
 • **cause**: `unknown`
 
+Exception cause. Indicates the specific original cause of the error.
+It is used when catching and re-throwing an error with a more-specific or useful error message in order to still have access to the original error.
+
 #### Inherited from
 
 HttpException.cause
 
 #### Defined in
 
-lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:58
+lib/node_modules/@nestjs/common/exceptions/http.exception.d.ts:28
 
 ___
 
@@ -372,7 +374,7 @@ HttpException.message
 
 #### Defined in
 
-docs/node_modules/typescript/lib/lib.es5.d.ts:1068
+docs/node_modules/typescript/lib/lib.es5.d.ts:1077
 
 ___
 
@@ -386,7 +388,7 @@ HttpException.name
 
 #### Defined in
 
-docs/node_modules/typescript/lib/lib.es5.d.ts:1067
+docs/node_modules/typescript/lib/lib.es5.d.ts:1076
 
 ___
 
@@ -400,7 +402,7 @@ HttpException.stack
 
 #### Defined in
 
-docs/node_modules/typescript/lib/lib.es5.d.ts:1069
+docs/node_modules/typescript/lib/lib.es5.d.ts:1078
 
 ___
 
@@ -408,11 +410,15 @@ ___
 
 ▪ `Static` `Optional` **prepareStackTrace**: (`err`: `Error`, `stackTraces`: `CallSite`[]) => `any`
 
+Optional override for formatting stack traces
+
+**`See`**
+
+https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+
 #### Type declaration
 
 ▸ (`err`, `stackTraces`): `any`
-
-Optional override for formatting stack traces
 
 ##### Parameters
 
@@ -425,17 +431,13 @@ Optional override for formatting stack traces
 
 `any`
 
-**`See`**
-
-https://v8.dev/docs/stack-trace-api#customizing-stack-traces
-
 #### Inherited from
 
 HttpException.prepareStackTrace
 
 #### Defined in
 
-lib/node_modules/@types/node/globals.d.ts:11
+lib/node_modules/@types/node/globals.d.ts:143
 
 ___
 
@@ -449,4 +451,4 @@ HttpException.stackTraceLimit
 
 #### Defined in
 
-lib/node_modules/@types/node/globals.d.ts:13
+lib/node_modules/@types/node/globals.d.ts:145

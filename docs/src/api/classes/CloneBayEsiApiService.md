@@ -36,7 +36,7 @@ See [EsiApiRequestOptions](../interfaces/EsiApiRequestOptions.md) for method par
 
 #### Defined in
 
-[lib/src/api/clone-bay-esi-api.service.ts:37](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/api/clone-bay-esi-api.service.ts#L37)
+[lib/src/api/clone-bay-esi-api.service.ts:39](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-esi-api.service.ts#L39)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[lib/src/api/clone-bay-esi-api.service.ts:25](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/api/clone-bay-esi-api.service.ts#L25)
+[lib/src/api/clone-bay-esi-api.service.ts:27](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-esi-api.service.ts#L27)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[lib/src/api/clone-bay-esi-api.service.ts:29](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/api/clone-bay-esi-api.service.ts#L29)
+[lib/src/api/clone-bay-esi-api.service.ts:31](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-esi-api.service.ts#L31)
 
 ___
 
@@ -114,4 +114,4 @@ ___
 
 #### Defined in
 
-[lib/src/api/clone-bay-esi-api.service.ts:33](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/api/clone-bay-esi-api.service.ts#L33)
+[lib/src/api/clone-bay-esi-api.service.ts:35](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-esi-api.service.ts#L35)
