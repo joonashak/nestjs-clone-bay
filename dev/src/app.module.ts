@@ -1,19 +1,12 @@
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
-import {
-  CloneBayMockingModule,
-  CloneBayModule,
-  CloneBayResolversModule,
-  CloneBaySsoModule,
-} from "@joonashak/nestjs-clone-bay";
+import { CloneBayModule } from "@joonashak/nestjs-clone-bay";
 import { EveAuthModule } from "@joonashak/nestjs-eve-auth";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { MongooseModule } from "@nestjs/mongoose";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
+import { ChildModule } from "./child/child.module";
 import { SomeModule } from "./some/some.module";
-import { UserModule } from "./user/user.module";
 
 /*
  * WARNING!
@@ -36,14 +29,14 @@ import { UserModule } from "./user/user.module";
       callbackUrl: "http://localhost:3000/sso/callback",
       scopes: ["esi-characters.read_titles.v1"],
     }),
-    CloneBayModule.forRoot({}),
-    CloneBaySsoModule,
-    CloneBayResolversModule,
+    CloneBayModule.forRoot({
+      afterLoginUrl: "/whoami",
+      // dynamicConfigOverride: { allowNewUsers: false },
+    }),
     SomeModule,
-    CloneBayMockingModule,
-    UserModule,
+    ChildModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  // controllers: [AppController],
+  // providers: [AppService],
 })
 export class AppModule {}
