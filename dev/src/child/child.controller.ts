@@ -1,4 +1,4 @@
-import { RemoveMeService } from "@joonashak/nestjs-clone-bay";
+import { RemoveMeService, UserId } from "@joonashak/nestjs-clone-bay";
 import { Controller, Get, Logger } from "@nestjs/common";
 
 @Controller()
@@ -12,5 +12,10 @@ export class ChildController {
     const d = await this.removeMeService.doSomethingWithDynamicConfig();
     this.logger.debug(d);
     return this.removeMeService.doSomethingBasedOnConfig();
+  }
+
+  @Get("whoami")
+  async whoami(@UserId() userId: string) {
+    return userId;
   }
 }

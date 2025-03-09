@@ -26,7 +26,7 @@ import { ChildModule } from "./child/child.module";
       scopes: ["esi-characters.read_titles.v1"],
     }),
     CloneBayModule.forRoot({
-      afterLoginUrl: "dsa",
+      afterLoginUrl: "/whoami",
       // dynamicConfigOverride: { allowNewUsers: false },
     }),
     // CloneBayCoreModule.forRoot({ afterLoginUrl: "asd" }),
