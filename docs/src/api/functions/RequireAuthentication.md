@@ -8,10 +8,6 @@
 
 ▸ \<`TFunction`, `Y`\>(`target`, `propertyKey?`, `descriptor?`): `void`
 
-Function that returns a new decorator that applies all decorators provided by param
-
-Useful to build new decorators (or a decorator factory) encapsulating multiple decorators related with the same feature
-
 ##### Type parameters
 
 | Name | Type |
@@ -31,8 +27,6 @@ Useful to build new decorators (or a decorator factory) encapsulating multiple d
 
 `void`
 
-**`Public Api`**
-
 #### Defined in
 
-[lib/src/decorators/require-authentication.decorator.ts:4](https://github.com/joonashak/nestjs-clone-bay/blob/37c762a/lib/src/decorators/require-authentication.decorator.ts#L4)
+[lib/src/decorators/require-authentication.decorator.ts:4](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/decorators/require-authentication.decorator.ts#L4)

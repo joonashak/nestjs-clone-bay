@@ -2,8 +2,6 @@
 
 ▸ **UserId**(`...dataOrPipes`): `ParameterDecorator`
 
-Defines HTTP route param decorator
-
 #### Parameters
 
 | Name | Type |
@@ -14,8 +12,6 @@ Defines HTTP route param decorator
 
 `ParameterDecorator`
 
-**`Public Api`**
-
 #### Defined in
 
-lib/node_modules/@nestjs/common/decorators/http/create-route-param-metadata.decorator.d.ts:12
+[lib/src/decorators/user-id.decorator.ts:5](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/decorators/user-id.decorator.ts#L5)
