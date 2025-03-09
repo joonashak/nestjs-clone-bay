@@ -1,8 +1,10 @@
 import { Logger, Module, OnModuleInit } from "@nestjs/common";
+import { UserModule } from "../entities/user/user.module";
 import { MockingController } from "./mocking.controller";
 import { MockingService } from "./mocking.service";
 
 @Module({
+  imports: [UserModule],
   providers: [MockingService],
   controllers: [MockingController],
   exports: [MockingService],

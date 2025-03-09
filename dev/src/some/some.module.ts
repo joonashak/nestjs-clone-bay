@@ -1,4 +1,4 @@
-import { CloneBayModule } from "@joonashak/nestjs-clone-bay";
+import { CloneBayMockingModule, CloneBayModule } from "@joonashak/nestjs-clone-bay";
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { SomeAbilityFactory } from "./some-ability.factory";
@@ -11,6 +11,7 @@ import { SomeService } from "./some.service";
   imports: [
     MongooseModule.forFeature([{ name: Some.name, schema: SomeSchema }]),
     CloneBayModule.forChildren(),
+    CloneBayMockingModule,
   ],
   providers: [SomeService, SomeResolver, SomeAbilityFactory],
   controllers: [SomeController],
