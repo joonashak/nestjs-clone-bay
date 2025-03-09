@@ -13,9 +13,9 @@ import { CloneBaySsoModule } from "./sso/clone-bay-sso.module";
 //     AuthenticationModule,
 //     AuthorizationModule,
 //     CacheModule,
-//     CharacterModule,
+//     CharacterModule,---
 //     ConfigModule,
-//     EsiModule,
+//     EsiModule,----
 //     UserModule,
 //     AuthenticatedEsiApiModule,
 //     CloneBaySsoModule,

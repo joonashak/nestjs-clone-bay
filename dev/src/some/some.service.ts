@@ -1,4 +1,4 @@
-import { CloneBayEsiApiService, CloneBayMockingService } from "@joonashak/nestjs-clone-bay";
+import { CloneBayEsiApiService } from "@joonashak/nestjs-clone-bay";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
@@ -9,7 +9,6 @@ export class SomeService {
   constructor(
     @InjectModel(Some.name) private someModel: Model<SomeDocument>,
     private apiService: CloneBayEsiApiService,
-    private mockingService: CloneBayMockingService,
   ) {}
 
   async findAll() {

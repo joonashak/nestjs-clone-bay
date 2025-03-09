@@ -1,8 +1,12 @@
+import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 import { CloneBayModule } from "@joonashak/nestjs-clone-bay";
 import { EveAuthModule } from "@joonashak/nestjs-eve-auth";
+import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
+import { GraphQLModule } from "@nestjs/graphql";
 import { MongooseModule } from "@nestjs/mongoose";
 import { ChildModule } from "./child/child.module";
+import { SomeModule } from "./some/some.module";
 
 /*
  * WARNING!
@@ -13,12 +17,12 @@ import { ChildModule } from "./child/child.module";
 @Module({
   imports: [
     MongooseModule.forRoot(process.env.MONGO_URL),
-    // GraphQLModule.forRoot<ApolloDriverConfig>({
-    //   driver: ApolloDriver,
-    //   autoSchemaFile: true,
-    //   playground: false,
-    //   plugins: [ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })],
-    // }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+      playground: false,
+      plugins: [ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })],
+    }),
     EveAuthModule.forRoot({
       clientId: process.env.CLIENT_ID,
       secretKey: process.env.SECRET_KEY,
@@ -30,7 +34,7 @@ import { ChildModule } from "./child/child.module";
       // dynamicConfigOverride: { allowNewUsers: false },
     }),
     // CloneBayCoreModule.forRoot({ afterLoginUrl: "asd" }),
-    // SomeModule,
+    SomeModule,
     ChildModule,
   ],
   // controllers: [AppController],

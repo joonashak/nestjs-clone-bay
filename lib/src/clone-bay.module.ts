@@ -1,4 +1,7 @@
 import { DynamicModule, Module } from "@nestjs/common";
+import { AuthenticatedEsiApiModule } from "./authenticated-esi-api/authenticated-esi-api.module";
+import { AuthenticationModule } from "./authentication/authentication.module";
+import { AuthorizationModule } from "./authorization/authorization.module";
 import { CloneBayCoreModule } from "./clone-bay-core.module";
 import { CloneBayModuleOptions } from "./clone-bay-module-options.interface";
 import { UserModule } from "./entities/user/user.module";
@@ -17,8 +20,20 @@ export class CloneBayModule {
   static forChildren(): DynamicModule {
     return {
       module: CloneBayModule,
-      imports: [RemoveMeModule, UserModule],
-      exports: [RemoveMeModule, UserModule],
+      imports: [
+        RemoveMeModule,
+        UserModule,
+        AuthenticationModule,
+        AuthenticatedEsiApiModule,
+        AuthorizationModule,
+      ],
+      exports: [
+        RemoveMeModule,
+        UserModule,
+        AuthenticationModule,
+        AuthenticatedEsiApiModule,
+        AuthorizationModule,
+      ],
     };
   }
 }
