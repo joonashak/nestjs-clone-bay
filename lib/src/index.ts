@@ -17,7 +17,3 @@ export { User } from "./entities/user/user.model";
 export * from "./exceptions";
 export { CloneBaySsoModule } from "./sso/clone-bay-sso.module";
 export * from "./types";
-
-// FIXME: Remove
-export { CloneBayCoreModule } from "./clone-bay-core.module";
-export { RemoveMeService } from "./remove-me/remove-me.service";

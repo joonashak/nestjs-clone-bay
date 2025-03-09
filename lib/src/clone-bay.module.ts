@@ -5,7 +5,6 @@ import { AuthorizationModule } from "./authorization/authorization.module";
 import { CloneBayCoreModule } from "./clone-bay-core.module";
 import { CloneBayModuleOptions } from "./clone-bay-module-options.interface";
 import { UserModule } from "./entities/user/user.module";
-import { RemoveMeModule } from "./remove-me/remove-me.module";
 
 @Module({})
 export class CloneBayModule {
@@ -20,20 +19,8 @@ export class CloneBayModule {
   static forChildren(): DynamicModule {
     return {
       module: CloneBayModule,
-      imports: [
-        RemoveMeModule,
-        UserModule,
-        AuthenticationModule,
-        AuthenticatedEsiApiModule,
-        AuthorizationModule,
-      ],
-      exports: [
-        RemoveMeModule,
-        UserModule,
-        AuthenticationModule,
-        AuthenticatedEsiApiModule,
-        AuthorizationModule,
-      ],
+      imports: [UserModule, AuthenticationModule, AuthenticatedEsiApiModule, AuthorizationModule],
+      exports: [UserModule, AuthenticationModule, AuthenticatedEsiApiModule, AuthorizationModule],
     };
   }
 }

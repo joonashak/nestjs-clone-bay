@@ -33,7 +33,6 @@ import { SomeModule } from "./some/some.module";
       afterLoginUrl: "/whoami",
       // dynamicConfigOverride: { allowNewUsers: false },
     }),
-    // CloneBayCoreModule.forRoot({ afterLoginUrl: "asd" }),
     SomeModule,
     ChildModule,
   ],

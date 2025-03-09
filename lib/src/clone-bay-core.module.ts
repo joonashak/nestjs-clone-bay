@@ -8,29 +8,6 @@ import { CloneBaySsoModule } from "./sso/clone-bay-sso.module";
  * @group Modules
  */
 @Global()
-// @Module({
-//   imports: [
-//     AuthenticationModule,
-//     AuthorizationModule,
-//     CacheModule,
-//     CharacterModule,---
-//     ConfigModule,
-//     EsiModule,----
-//     UserModule,
-//     AuthenticatedEsiApiModule,
-//     CloneBaySsoModule,
-//   ],
-//   exports: [
-//     CLONE_BAY_MODULE_OPTIONS_TOKEN,
-//     ConfigModule,
-//     UserModule,
-//     AuthenticationModule,
-//     AuthorizationModule,
-//     AuthenticatedEsiApiModule,
-//     CacheModule,
-//     UserModule,
-//   ],
-// })
 @Module({})
 export class CloneBayCoreModule {
   static forRoot(options: CloneBayModuleOptions = {}): DynamicModule {
