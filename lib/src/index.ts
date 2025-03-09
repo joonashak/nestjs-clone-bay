@@ -15,5 +15,4 @@ export { RequirePolicies } from "./decorators/require-policies.decorator";
 export { UserId } from "./decorators/user-id.decorator";
 export { User } from "./entities/user/user.model";
 export * from "./exceptions";
-export { CloneBaySsoModule } from "./sso/clone-bay-sso.module";
 export * from "./types";
