@@ -31,6 +31,7 @@ export class SsoController {
     @Session() session: Record<string, any>,
     @Res() response: Response,
   ) {
+    console.log(session);
     session.afterLoginUrl = afterLoginUrl;
     session.registerAlt = false;
     response.redirect("redirect");
@@ -68,6 +69,7 @@ export class SsoController {
     @Session() session: Record<string, any>,
     @Res() response: Response,
   ) {
+    console.log(session);
     const redirectUrl = await this.ssoService.login(callbackParams, session);
     response.redirect(redirectUrl);
   }

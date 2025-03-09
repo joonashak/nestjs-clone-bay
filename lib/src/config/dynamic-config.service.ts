@@ -34,6 +34,11 @@ export class DynamicConfigService {
       DYNAMIC_CONFIG_CACHE_KEY,
       async () => await this.dynamicConfigModel.findOne(),
     );
+    console.log("dynamicConfig", dynamicConfig);
+    console.log(
+      "this.moduleConfigService.config.dynamicConfigOverride",
+      this.moduleConfigService.config.dynamicConfigOverride,
+    );
 
     if (!dynamicConfig) {
       throw new InvalidConfigurationException();
@@ -43,6 +48,7 @@ export class DynamicConfigService {
       ...dynamicConfig,
       ...this.moduleConfigService.config.dynamicConfigOverride,
     };
+    console.log("configWithOverrides", configWithOverrides);
     return configWithOverrides;
   }
 

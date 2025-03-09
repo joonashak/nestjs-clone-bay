@@ -1,19 +1,8 @@
-import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
-import {
-  CloneBayMockingModule,
-  CloneBayModule,
-  CloneBayResolversModule,
-  CloneBaySsoModule,
-} from "@joonashak/nestjs-clone-bay";
+import { CloneBayModule } from "@joonashak/nestjs-clone-bay";
 import { EveAuthModule } from "@joonashak/nestjs-eve-auth";
-import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
-import { GraphQLModule } from "@nestjs/graphql";
 import { MongooseModule } from "@nestjs/mongoose";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { SomeModule } from "./some/some.module";
-import { UserModule } from "./user/user.module";
+import { ChildModule } from "./child/child.module";
 
 /*
  * WARNING!
@@ -24,26 +13,24 @@ import { UserModule } from "./user/user.module";
 @Module({
   imports: [
     MongooseModule.forRoot(process.env.MONGO_URL),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: true,
-      playground: false,
-      plugins: [ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })],
-    }),
+    // GraphQLModule.forRoot<ApolloDriverConfig>({
+    //   driver: ApolloDriver,
+    //   autoSchemaFile: true,
+    //   playground: false,
+    //   plugins: [ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })],
+    // }),
     EveAuthModule.forRoot({
       clientId: process.env.CLIENT_ID,
       secretKey: process.env.SECRET_KEY,
       callbackUrl: "http://localhost:3000/sso/callback",
       scopes: ["esi-characters.read_titles.v1"],
     }),
-    CloneBayModule.forRoot({}),
-    CloneBaySsoModule,
-    CloneBayResolversModule,
-    SomeModule,
-    CloneBayMockingModule,
-    UserModule,
+    CloneBayModule.forRoot({ afterLoginUrl: "dsa" }),
+    // CloneBayCoreModule.forRoot({ afterLoginUrl: "asd" }),
+    // SomeModule,
+    ChildModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  // controllers: [AppController],
+  // providers: [AppService],
 })
 export class AppModule {}

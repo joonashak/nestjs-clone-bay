@@ -20,10 +20,13 @@ export class SsoService {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async login(callbackParams: EveSsoCallbackParams, session: Record<string, any>): Promise<string> {
+    console.log("SsoService.login");
+    console.log(session);
     const {
       character: { id: characterId },
       tokens,
     } = await this.eveAuthSsoService.callback(callbackParams, session);
+    console.log(characterId);
 
     const esiCharacter = await this.characterService.addPublicInfoFromEsi({
       eveId: characterId,

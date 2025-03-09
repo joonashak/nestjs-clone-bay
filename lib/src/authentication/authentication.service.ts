@@ -54,7 +54,10 @@ export class AuthenticationService {
   }
 
   private async newUserCanAuthenticate(character: Character): Promise<boolean> {
-    const { allowNewUsers } = await this.dynamicConfigService.get();
+    console.log("newUserCanAuthenticate", character);
+    const config = await this.dynamicConfigService.get();
+    console.log("config", config);
+    const { allowNewUsers } = config;
 
     if (!allowNewUsers) {
       return false;

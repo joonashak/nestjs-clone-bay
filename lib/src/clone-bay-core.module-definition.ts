@@ -3,7 +3,7 @@ import { CloneBayModuleOptions } from "./clone-bay-module-options.interface";
 import { CLONE_BAY_MODULE_NAME, CLONE_BAY_MODULE_OPTIONS_INJECTION_TOKEN } from "./constants";
 
 export const {
-  ConfigurableModuleClass: CloneBayModuleDefinition,
+  ConfigurableModuleClass: CloneBayCoreModuleDefinition,
   /**
    * @group Constants
    */
