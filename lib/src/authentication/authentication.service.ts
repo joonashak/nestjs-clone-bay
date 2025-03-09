@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable, Logger } from "@nestjs/common";
 import { DynamicConfigService } from "../config/dynamic-config.service";
 import { Character } from "../entities/character/character.model";
-import { UserDocument } from "../entities/user/user.model";
+import { User, UserDocument } from "../entities/user/user.model";
 import { UserService } from "../entities/user/user.service";
 import { AuthenticationAllowlistService } from "./authentication-allowlist.service";
 
@@ -33,7 +33,7 @@ export class AuthenticationService {
     throw new ForbiddenException();
   }
 
-  async existingUserCanAuthenticate(user: UserDocument): Promise<boolean> {
+  async existingUserCanAuthenticate(user: User): Promise<boolean> {
     const { applyAllowlistsToExistingUsers } = await this.dynamicConfigService.get();
 
     if (!applyAllowlistsToExistingUsers) {

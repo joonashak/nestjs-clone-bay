@@ -21,10 +21,11 @@ export class UserCacheService {
     private cacheService: CacheService,
   ) {}
 
-  async findById(userId: string): Promise<UserDocument | null> {
-    return this.cacheService.wrap(keyForFindById(userId), async () =>
-      this.userModel.findOne({ id: userId }),
-    );
+  async findById(userId: string): Promise<User | null> {
+    return this.cacheService.wrap(keyForFindById(userId), async () => {
+      const doc = await this.userModel.findOne({ id: userId });
+      return doc ? doc.toObject() : null;
+    });
   }
 
   async findByCharacterEveId(characterEveId: number): Promise<UserDocument | null> {

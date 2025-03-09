@@ -21,7 +21,7 @@ export class UserService {
     return this.userModel.find({});
   }
 
-  async findById(userId: string): Promise<UserDocument | null> {
+  async findById(userId: string): Promise<User | null> {
     return this.userCacheService.findById(userId);
   }
 

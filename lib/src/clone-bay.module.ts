@@ -1,6 +1,7 @@
 import { DynamicModule, Module } from "@nestjs/common";
 import { CloneBayCoreModule } from "./clone-bay-core.module";
 import { CloneBayModuleOptions } from "./clone-bay-module-options.interface";
+import { UserModule } from "./entities/user/user.module";
 import { RemoveMeModule } from "./remove-me/remove-me.module";
 
 @Module({})
@@ -16,8 +17,8 @@ export class CloneBayModule {
   static forChildren(): DynamicModule {
     return {
       module: CloneBayModule,
-      imports: [RemoveMeModule],
-      exports: [RemoveMeModule],
+      imports: [RemoveMeModule, UserModule],
+      exports: [RemoveMeModule, UserModule],
     };
   }
 }
