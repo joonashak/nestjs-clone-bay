@@ -1,12 +1,16 @@
 import { RemoveMeService } from "@joonashak/nestjs-clone-bay";
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Logger } from "@nestjs/common";
 
 @Controller()
 export class ChildController {
+  logger = new Logger(ChildController.name);
+
   constructor(private removeMeService: RemoveMeService) {}
 
   @Get("child")
   async child() {
+    const d = await this.removeMeService.doSomethingWithDynamicConfig();
+    this.logger.debug(d);
     return this.removeMeService.doSomethingBasedOnConfig();
   }
 }

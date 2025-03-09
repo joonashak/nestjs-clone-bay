@@ -25,7 +25,10 @@ import { ChildModule } from "./child/child.module";
       callbackUrl: "http://localhost:3000/sso/callback",
       scopes: ["esi-characters.read_titles.v1"],
     }),
-    CloneBayModule.forRoot({ afterLoginUrl: "dsa" }),
+    CloneBayModule.forRoot({
+      afterLoginUrl: "dsa",
+      // dynamicConfigOverride: { allowNewUsers: false },
+    }),
     // CloneBayCoreModule.forRoot({ afterLoginUrl: "asd" }),
     // SomeModule,
     ChildModule,

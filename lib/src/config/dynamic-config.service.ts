@@ -30,26 +30,15 @@ export class DynamicConfigService {
    * configuration values.
    */
   async get(): Promise<DynamicConfig> {
-    const dynamicConfig = await this.cacheService.wrap(
-      DYNAMIC_CONFIG_CACHE_KEY,
-      async () => await this.dynamicConfigModel.findOne(),
-    );
-    console.log("dynamicConfig", dynamicConfig);
-    console.log(
-      "this.moduleConfigService.config.dynamicConfigOverride",
-      this.moduleConfigService.config.dynamicConfigOverride,
+    const dynamicConfig = await this.cacheService.wrap(DYNAMIC_CONFIG_CACHE_KEY, async () =>
+      this.dynamicConfigModel.findOne(),
     );
 
     if (!dynamicConfig) {
       throw new InvalidConfigurationException();
     }
 
-    const configWithOverrides = {
-      ...dynamicConfig,
-      ...this.moduleConfigService.config.dynamicConfigOverride,
-    };
-    console.log("configWithOverrides", configWithOverrides);
-    return configWithOverrides;
+    return merge(dynamicConfig, this.moduleConfigService.config.dynamicConfigOverride);
   }
 
   private async update(configUpdate: PartialDeep<DynamicConfig>) {
