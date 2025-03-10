@@ -10,6 +10,7 @@ export { CloneBayModuleOptions } from "./clone-bay-module-options.interface";
 export { CloneBayModule } from "./clone-bay.module";
 export { DynamicConfig } from "./config/dynamic-config.model";
 export * from "./constants";
+export { CurrentUser } from "./decorators/current-user.decorator";
 export { RequireAuthentication } from "./decorators/require-authentication.decorator";
 export { RequirePolicies } from "./decorators/require-policies.decorator";
 export { UserId } from "./decorators/user-id.decorator";
