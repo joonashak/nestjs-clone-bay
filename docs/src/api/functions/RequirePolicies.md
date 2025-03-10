@@ -35,4 +35,4 @@
 
 #### Defined in
 
-[lib/src/decorators/require-policies.decorator.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/decorators/require-policies.decorator.ts#L6)
+[lib/src/decorators/require-policies.decorator.ts:6](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/decorators/require-policies.decorator.ts#L6)

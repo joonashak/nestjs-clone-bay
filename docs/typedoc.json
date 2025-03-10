@@ -13,5 +13,6 @@
   "cleanOutputDir": true,
   "name": "API Reference",
   "allReflectionsHaveOwnDocument": true,
-  "groupOrder": ["Modules", "Services", "Guards", "Types", "Decorators", "Exceptions", "*"]
+  "groupOrder": ["Modules", "Services", "Guards", "Types", "Decorators", "Exceptions", "*"],
+  "sourceLinkTemplate": "https://github.com/joonashak/nestjs-clone-bay/blob/main/{path}#L{line}"
 }

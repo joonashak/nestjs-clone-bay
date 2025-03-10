@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[lib/src/entities/user/user.model.ts:25](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/entities/user/user.model.ts#L25)
+[lib/src/entities/user/user.model.ts:25](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/entities/user/user.model.ts#L25)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[lib/src/entities/user/user.model.ts:21](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/entities/user/user.model.ts#L21)
+[lib/src/entities/user/user.model.ts:21](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/entities/user/user.model.ts#L21)
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 #### Defined in
 
-[lib/src/entities/user/user.model.ts:12](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/entities/user/user.model.ts#L12)
+[lib/src/entities/user/user.model.ts:12](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/entities/user/user.model.ts#L12)
 
 ___
 
@@ -48,4 +48,4 @@ ___
 
 #### Defined in
 
-[lib/src/entities/user/user.model.ts:16](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/entities/user/user.model.ts#L16)
+[lib/src/entities/user/user.model.ts:16](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/entities/user/user.model.ts#L16)
