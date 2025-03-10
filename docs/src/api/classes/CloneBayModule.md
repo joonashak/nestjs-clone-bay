@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[lib/src/clone-bay.module.ts:19](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/clone-bay.module.ts#L19)
+[lib/src/clone-bay.module.ts:19](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/clone-bay.module.ts#L19)
 
 ___
 
@@ -42,4 +42,4 @@ ___
 
 #### Defined in
 
-[lib/src/clone-bay.module.ts:11](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/clone-bay.module.ts#L11)
+[lib/src/clone-bay.module.ts:11](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/clone-bay.module.ts#L11)

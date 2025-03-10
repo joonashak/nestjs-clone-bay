@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[lib/src/api/clone-bay-user.service.ts:9](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-user.service.ts#L9)
+[lib/src/api/clone-bay-user.service.ts:9](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/api/clone-bay-user.service.ts#L9)
 
 ## Methods
 
@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[lib/src/api/clone-bay-user.service.ts:14](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-user.service.ts#L14)
+[lib/src/api/clone-bay-user.service.ts:14](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/api/clone-bay-user.service.ts#L14)
 
 ___
 
@@ -63,4 +63,4 @@ Throws if the user is not found.
 
 #### Defined in
 
-[lib/src/api/clone-bay-user.service.ts:23](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-user.service.ts#L23)
+[lib/src/api/clone-bay-user.service.ts:23](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/api/clone-bay-user.service.ts#L23)

@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[lib/src/api/clone-bay-mocking.service.ts:10](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-mocking.service.ts#L10)
+[lib/src/api/clone-bay-mocking.service.ts:10](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/api/clone-bay-mocking.service.ts#L10)
 
 ## Methods
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[lib/src/api/clone-bay-mocking.service.ts:12](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-mocking.service.ts#L12)
+[lib/src/api/clone-bay-mocking.service.ts:12](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/api/clone-bay-mocking.service.ts#L12)
 
 ___
 
@@ -59,4 +59,4 @@ ___
 
 #### Defined in
 
-[lib/src/api/clone-bay-mocking.service.ts:16](https://github.com/joonashak/nestjs-clone-bay/blob/1a4ecf31d03284a98989ab940da71aae76589b7b/lib/src/api/clone-bay-mocking.service.ts#L16)
+[lib/src/api/clone-bay-mocking.service.ts:16](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/api/clone-bay-mocking.service.ts#L16)
