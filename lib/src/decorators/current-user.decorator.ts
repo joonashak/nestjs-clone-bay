@@ -9,6 +9,22 @@ import getRequest from "../common/utils/get-request.util";
  * If `options.nullable` is set to `true`, this decorator will return `null` for
  * a missing user. Otherwise throws HTTP 401.
  *
+ * ### Examples:
+ *
+ * ```ts
+ * @Get("hello")
+ * async hello(@CurrentUser() user: User) {
+ *   // Will throw if user is not found.
+ * }
+ * ```
+ *
+ * ```ts
+ * @Get("hello")
+ * async hello(@CurrentUser({ nullable: true }) user: User) {
+ *   // `user` is `null` if not authenticated or not found. No error is thrown.
+ * }
+ * ```
+ *
  * @returns `User | null`
  * @group Decorators
  */

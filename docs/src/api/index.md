@@ -11,6 +11,10 @@
 - [CloneBayModuleOptions](interfaces/CloneBayModuleOptions.md)
 - [EsiApiRequestOptions](interfaces/EsiApiRequestOptions.md)
 
+## Decorators
+
+- [CurrentUser](functions/CurrentUser.md)
+
 ## Exceptions
 
 - [CloneBayException](classes/CloneBayException.md)
