@@ -2,6 +2,7 @@ import { DynamicModule, Global, Module } from "@nestjs/common";
 import { CloneBayModuleOptions } from "./clone-bay-module-options.interface";
 import { ConfigModule } from "./config/config.module";
 import { CLONE_BAY_MODULE_OPTIONS_INJECTION_TOKEN } from "./constants";
+import { MiddlewareModule } from "./middleware/middleware.module";
 import { CloneBaySsoModule } from "./sso/clone-bay-sso.module";
 
 /**
@@ -18,7 +19,7 @@ export class CloneBayCoreModule {
 
     return {
       module: CloneBayCoreModule,
-      imports: [ConfigModule.register(options), CloneBaySsoModule],
+      imports: [ConfigModule.register(options), CloneBaySsoModule, MiddlewareModule],
       providers: [moduleOptions],
       exports: [ConfigModule],
     };
