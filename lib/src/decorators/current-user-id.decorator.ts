@@ -2,11 +2,11 @@ import { createParamDecorator, ExecutionContext, UnauthorizedException } from "@
 import getRequest from "../common/utils/get-request.util";
 import { getUserId, getUserIdSafe } from "../common/utils/session.util";
 
-type UserIdDecoratorOptions = { nullable?: boolean };
+type CurrentUserIdDecoratorOptions = { nullable?: boolean };
 
 // Exported for easier testing.
 export const decoratorFunction = (
-  options: UserIdDecoratorOptions = {},
+  options: CurrentUserIdDecoratorOptions = {},
   context: ExecutionContext,
 ): string | undefined => {
   const request = getRequest(context);
@@ -23,4 +23,4 @@ export const decoratorFunction = (
   }
 };
 
-export const UserId = createParamDecorator<UserIdDecoratorOptions>(decoratorFunction);
+export const CurrentUserId = createParamDecorator<CurrentUserIdDecoratorOptions>(decoratorFunction);

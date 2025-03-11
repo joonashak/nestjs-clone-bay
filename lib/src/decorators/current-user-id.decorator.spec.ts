@@ -1,6 +1,6 @@
 import { mockUser } from "../../test/data";
 import { mockContextWithSession } from "../../test/mocks/mock-context";
-import { decoratorFunction } from "./user-id.decorator";
+import { decoratorFunction } from "./current-user-id.decorator";
 
 describe("@UserId decorator", () => {
   const userId = mockUser.id;
