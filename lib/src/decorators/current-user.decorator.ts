@@ -1,6 +1,28 @@
-import { createParamDecorator, UnauthorizedException } from "@nestjs/common";
+import { createParamDecorator, ExecutionContext, UnauthorizedException } from "@nestjs/common";
 import { get } from "lodash";
 import getRequest from "../common/utils/get-request.util";
+import { User } from "../entities/user/user.model";
+
+type CurrentUserDecoratorOptions = { nullable?: boolean };
+
+// Exported for easier testing.
+export const decoratorFunction = (
+  options: CurrentUserDecoratorOptions = {},
+  context: ExecutionContext,
+): User | null => {
+  const request = getRequest(context);
+  const user = get(request, "cloneBayUser");
+
+  if (!options.nullable && !user) {
+    throw new UnauthorizedException();
+  }
+
+  if (!user) {
+    return null;
+  }
+
+  return user;
+};
 
 /**
  * Inject authenticated user into method argument.
@@ -28,17 +50,4 @@ import getRequest from "../common/utils/get-request.util";
  * @returns `User | null`
  * @group Decorators
  */
-export const CurrentUser = createParamDecorator<{ nullable?: boolean }>((options = {}, context) => {
-  const request = getRequest(context);
-  const user = get(request, "cloneBayUser");
-
-  if (!options.nullable && !user) {
-    throw new UnauthorizedException();
-  }
-
-  if (!user) {
-    return null;
-  }
-
-  return user;
-});
+export const CurrentUser = createParamDecorator<CurrentUserDecoratorOptions>(decoratorFunction);
