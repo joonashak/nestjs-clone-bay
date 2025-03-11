@@ -19,7 +19,7 @@ async hello(@CurrentUser() user: User) {
 
 ```ts
 @Get("hello")
-async hello(@CurrentUser({ nullable: true }) user: User) {
+async hello(@CurrentUser({ nullable: true }) user: User | null) {
   // `user` is `null` if not authenticated or not found. No error is thrown.
 }
 ```
@@ -28,7 +28,7 @@ async hello(@CurrentUser({ nullable: true }) user: User) {
 
 | Name | Type |
 | :------ | :------ |
-| `...dataOrPipes` | (`PipeTransform`\<`any`, `any`\> \| `Type`\<`PipeTransform`\<`any`, `any`\>\> \| \{ `nullable?`: `boolean`  })[] |
+| `...dataOrPipes` | (`PipeTransform`\<`any`, `any`\> \| `Type`\<`PipeTransform`\<`any`, `any`\>\> \| `CurrentUserDecoratorOptions`)[] |
 
 #### Returns
 
@@ -38,4 +38,4 @@ async hello(@CurrentUser({ nullable: true }) user: User) {
 
 #### Defined in
 
-[lib/src/decorators/current-user.decorator.ts:31](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/decorators/current-user.decorator.ts#L31)
+[lib/src/decorators/current-user.decorator.ts:53](https://github.com/joonashak/nestjs-clone-bay/blob/main/lib/src/decorators/current-user.decorator.ts#L53)

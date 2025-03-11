@@ -14,6 +14,7 @@
 ## Decorators
 
 - [CurrentUser](functions/CurrentUser.md)
+- [CurrentUserId](functions/CurrentUserId.md)
 
 ## Exceptions
 
@@ -43,7 +44,6 @@
 
 - [RequireAuthentication](functions/RequireAuthentication.md)
 - [RequirePolicies](functions/RequirePolicies.md)
-- [UserId](functions/UserId.md)
 
 ## Testing
 

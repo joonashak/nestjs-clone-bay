@@ -42,7 +42,7 @@ export const decoratorFunction = (
  *
  * ```ts
  * @Get("hello")
- * async hello(@CurrentUser({ nullable: true }) user: User) {
+ * async hello(@CurrentUser({ nullable: true }) user: User | null) {
  *   // `user` is `null` if not authenticated or not found. No error is thrown.
  * }
  * ```

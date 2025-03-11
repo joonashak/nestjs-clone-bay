@@ -2,9 +2,9 @@ import { ForbiddenException, Logger } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { UserAbility } from "../../authorization/ability.factory";
 import { UserAction } from "../../authorization/user-action.enum";
+import { CurrentUserId } from "../../decorators/current-user-id.decorator";
 import { RequireAuthentication } from "../../decorators/require-authentication.decorator";
 import { RequirePolicies } from "../../decorators/require-policies.decorator";
-import { UserId } from "../../decorators/user-id.decorator";
 import { UserNotFoundException } from "../../exceptions/user-not-found.exception";
 import { EveAccessToken } from "../../types/eve-access-token.dto";
 import { AltService } from "./alt.service";
@@ -24,7 +24,7 @@ export class UserResolver {
 
   @RequireAuthentication()
   @Query(() => User)
-  async whoami(@UserId() userId: string): Promise<User> {
+  async whoami(@CurrentUserId() userId: string): Promise<User> {
     const user = await this.userService.findById(userId);
     if (!user) {
       throw new UserNotFoundException();
@@ -42,14 +42,14 @@ export class UserResolver {
 
   @RequireAuthentication()
   @Query(() => [EveAccessToken])
-  async getMyTokens(@UserId() userId: string): Promise<EveAccessToken[]> {
+  async getMyTokens(@CurrentUserId() userId: string): Promise<EveAccessToken[]> {
     return this.tokenService.findAccessTokensByUserId(userId);
   }
 
   @RequireAuthentication()
   @Mutation(() => EveAccessToken)
   async refreshToken(
-    @UserId() userId: string,
+    @CurrentUserId() userId: string,
     @Args("characterEveId") characterEveId: number,
   ): Promise<EveAccessToken> {
     const canActivate = await this.userService.userOwnsCharacter(userId, characterEveId);
@@ -67,7 +67,7 @@ export class UserResolver {
 
   @RequireAuthentication()
   @Mutation(() => User)
-  async removeAlt(@UserId() userId: string, @Args("eveId") altEveId: number): Promise<User> {
+  async removeAlt(@CurrentUserId() userId: string, @Args("eveId") altEveId: number): Promise<User> {
     return this.altService.removeAlt(altEveId, userId);
   }
 }
