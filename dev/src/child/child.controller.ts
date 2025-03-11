@@ -1,10 +1,4 @@
-import {
-  CloneBayUserService,
-  CurrentUser,
-  RequireAuthentication,
-  User,
-  UserId,
-} from "@joonashak/nestjs-clone-bay";
+import { CloneBayUserService, UserId } from "@joonashak/nestjs-clone-bay";
 import { Controller, Get, Logger } from "@nestjs/common";
 
 @Controller()
@@ -18,9 +12,10 @@ export class ChildController {
     return this.userService.findById(userId);
   }
 
-  @RequireAuthentication()
+  // @RequireAuthentication()
   @Get("private")
-  async priv(@CurrentUser() user: User) {
+  async priv(@UserId() user: string) {
+    console.log(user);
     return user;
   }
 }
