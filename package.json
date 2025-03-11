@@ -1,6 +1,6 @@
 {
   "name": "nestjs-clone-bay",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Development environment for nestjs-clone-bay",
   "scripts": {
     "postinstall": "cd dev && npm ci && cd ../docs && npm ci && cd ../lib && npm ci",
